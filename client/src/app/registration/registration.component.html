@@ -1,0 +1,33 @@
+<h1 id="register-title">&#164; WELCOME &#164;</h1>
+<div class="container">
+  <div class="block register">
+    <h2>Register</h2>
+    <form action="/register/process" method="POST">
+      <label>
+        Email:
+        <input type="text" name="email" [(ngModel)]="newUser.email">
+      </label>
+      <label>
+        First Name:
+        <input type="text" name="first_name" [(ngModel)]="newUser.first_name">
+      </label>
+      <label>
+        Last Name:
+        <input type="text" name="last_name" [(ngModel)]="newUser.last_name">
+      </label>
+      <label>
+        Password:
+        <input type="password" name="password" [(ngModel)]="newUser.password">
+        <p>*Password must contain at least 8 characters</p>
+      </label>
+      <label>
+        Confirm Password:
+        <input type="password" name="confirm_pw" [(ngModel)]="newUser.confirm_pw">
+      </label>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
+      </div>
+    </form>
+    <p>Already have an account?<a href="/"> Sign in here</a></p>
+  </div>
+</div>
