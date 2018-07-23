@@ -27,7 +27,7 @@ public class Activity {
     private Double lat;
     private String result;
     private String imgRef;
-    private String desc;
+    private String description;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -40,8 +40,23 @@ public class Activity {
     @ManyToOne(fetch = FetchType.LAZY)	
     @JoinColumn(name="agenda_id")
     private Agenda agenda;
+    
+    @Column(updatable=false)
+	private Date createdAt;
+	
+	private Date updatedAt;
+	public Activity() {
+	}
+    
+    public String getDescription() {
+		return description;
+	}
 
-    public Long getId() {
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getId() {
 		return id;
 	}
 	public Double getLng() {
@@ -56,9 +71,7 @@ public class Activity {
 	public String getImgRef() {
 		return imgRef;
 	}
-	public String getDesc() {
-		return desc;
-	}
+	
 	public List<User> getLikedBy() {
 		return likedBy;
 	}
@@ -86,9 +99,7 @@ public class Activity {
 	public void setImgRef(String imgRef) {
 		this.imgRef = imgRef;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+	
 	public void setLikedBy(List<User> likedBy) {
 		this.likedBy = likedBy;
 	}
@@ -101,12 +112,7 @@ public class Activity {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	@Column(updatable=false)
-	private Date createdAt;
 	
-	private Date updatedAt;
-	public Activity() {
-	}
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();

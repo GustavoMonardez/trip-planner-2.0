@@ -2,9 +2,12 @@ package com.gustavo.tripplanner.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.gustavo.tripplanner.models.Activity;
 import com.gustavo.tripplanner.models.Agenda;
@@ -15,6 +18,9 @@ import com.gustavo.tripplanner.services.AgendaService;
 import com.gustavo.tripplanner.services.TripService;
 import com.gustavo.tripplanner.services.UserService;
 
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TripController {
 	private final ActivityService activityService;
 	private final AgendaService agendaService;
