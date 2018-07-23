@@ -21,8 +21,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
   register(){
-    console.log("entering here")
-    console.log(this.newUser);
+    this.tripService.registerUser(this.newUser);
   }
 
 }

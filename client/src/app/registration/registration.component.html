@@ -2,32 +2,36 @@
 <div class="container">
   <div class="block register">
     <h2>Register</h2>
-    <form action="/register/process" method="POST">
-      <label>
-        Email:
-        <input type="text" name="email" [(ngModel)]="newUser.email">
-      </label>
-      <label>
-        First Name:
-        <input type="text" name="first_name" [(ngModel)]="newUser.first_name">
-      </label>
-      <label>
-        Last Name:
-        <input type="text" name="last_name" [(ngModel)]="newUser.last_name">
-      </label>
-      <label>
-        Password:
-        <input type="password" name="password" [(ngModel)]="newUser.password">
-        <p>*Password must contain at least 8 characters</p>
-      </label>
-      <label>
-        Confirm Password:
-        <input type="password" name="confirm_pw" [(ngModel)]="newUser.confirm_pw">
-      </label>
-      <div class="text-right">
-        <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
-      </div>
+    <form>
+      <table>
+        <tr>
+          <td>Email:</td>
+          <td><input type="text" name="email" [(ngModel)]="newUser.email" autocomplete="email"></td>
+        </tr>
+        <tr>
+          <td>First Name:</td>
+          <td><input type="text" name="first_name" [(ngModel)]="newUser.first_name" autocomplete="first_name"></td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td><input type="text" name="last_name" [(ngModel)]="newUser.last_name" autocomplete="last_name"></td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td><input type="password" name="password" [(ngModel)]="newUser.password" autocomplete="new-password"></td>
+        </tr>
+        <tr>
+          <p>*Password must contain at least 8 characters</p>
+        </tr>
+        <tr>
+          <td>Confirm Password:</td>
+          <td><input type="password" name="confirm_pw" [(ngModel)]="newUser.confirm_pw" autocomplete="new-password"></td>
+        </tr>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
+        </div>
+      </table>
     </form>
-    <p>Already have an account?<a href="/"> Sign in here</a></p>
+    <p>Already have an account?<a [routerLink]="['/login']"> Sign in here</a></p>
   </div>
 </div>
