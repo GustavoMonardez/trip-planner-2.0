@@ -8,4 +8,8 @@ import { HttpClient } from '@angular/common/http';
 export class TripService {
 
   constructor(private _http:HttpClient) { }
+
+  registerUser(user:{}){
+    console.log("entering tripservice", user);
+  }
 }
