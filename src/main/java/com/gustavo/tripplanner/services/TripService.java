@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.gustavo.tripplanner.models.Trip;
+import com.gustavo.tripplanner.models.User;
 import com.gustavo.tripplanner.repositories.TripRepository;
 
 @Service
@@ -17,6 +18,8 @@ public class TripService {
 	}
 	//create
 	public Trip createTrip(Trip trip) {
+		System.out.println(trip.getAdmins());
+		tripRepository.save(trip);
 		return tripRepository.save(trip);
 	}
 	//read

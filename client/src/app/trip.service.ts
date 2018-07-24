@@ -22,5 +22,8 @@ export class TripService {
     }
     return this._http.post(this.apiUrl+"trips",tripPost);
   }
+  getUser(userId:string){
+    return this._http.get(this.apiUrl+"users/"+userId);
+  }
 
 }

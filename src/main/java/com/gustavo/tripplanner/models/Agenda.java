@@ -16,6 +16,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="agendas")
 public class Agenda {
@@ -27,9 +29,11 @@ public class Agenda {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "agenda_id")
+    @JsonIgnoreProperties("agenda")
     private Trip trip;
 
     @OneToMany(mappedBy="agenda", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("agenda")
     private List<Activity> activities;
     
     @Column(updatable=false)
