@@ -17,6 +17,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="activities")
 public class Activity {
@@ -35,10 +37,12 @@ public class Activity {
             joinColumns = @JoinColumn(name = "activity_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
             )
+    @JsonIgnoreProperties("likedActivties")
     private List<User> likedBy;
 
     @ManyToOne(fetch = FetchType.LAZY)	
     @JoinColumn(name="agenda_id")
+    @JsonIgnoreProperties("activities")
     private Agenda agenda;
     
     @Column(updatable=false)

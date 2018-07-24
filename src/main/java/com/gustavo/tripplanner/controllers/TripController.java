@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gustavo.tripplanner.models.Activity;
 import com.gustavo.tripplanner.models.Agenda;
 import com.gustavo.tripplanner.models.Trip;
@@ -74,8 +75,11 @@ public class TripController {
 	public Trip findTripById(@PathVariable("trip_id")Long trip_id) {
 		return tripService.findTripById(trip_id);
 	}
+	//I am here atm;
 	@GetMapping("/users/{user_id}")
 	public User findUserById(@PathVariable("user_id")Long user_id) {
+		System.out.println("entering here");
+		User user = userService.findUserById(user_id);
 		return userService.findUserById(user_id);
 	}
 	/*********************UPDATE*******************/

@@ -44,4 +44,7 @@ export class TripService {
   findAgendaById(agenda_id){
     return this._http.get(this.apiUrl+"agendas/"+agenda_id);
   }
+  getUser(userId:string){
+    return this._http.get(this.apiUrl+"users/"+userId);
+  }
 }
