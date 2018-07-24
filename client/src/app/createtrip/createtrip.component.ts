@@ -32,10 +32,10 @@ export class CreatetripComponent implements OnInit {
   }
 
   createTrip(){
-    this.tripService.createTrip(this.trip, this.userId).subscribe(data=>{
+    this.tripService.createTrip(this.trip, this.userId).subscribe(trip=>{
       //eventually add an if check to test if the trip is valid here
-      if(data['id'] != null){
-        this.router.navigate(['/dashboard']);
+      if(trip['id'] != null){
+        this.router.navigate(['/trips/plan',trip['id']]);
       }
     });
   }
