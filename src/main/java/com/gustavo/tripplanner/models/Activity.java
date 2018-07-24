@@ -25,7 +25,7 @@ public class Activity {
     private Long id;
     private Double lng;
     private Double lat;
-    private String result;
+    private String location;
     private String imgRef;
     private String description;
 
@@ -48,7 +48,15 @@ public class Activity {
 	public Activity() {
 	}
     
-    public String getDescription() {
+    public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getDescription() {
 		return description;
 	}
 
@@ -65,9 +73,7 @@ public class Activity {
 	public Double getLat() {
 		return lat;
 	}
-	public String getResult() {
-		return result;
-	}
+	
 	public String getImgRef() {
 		return imgRef;
 	}
@@ -93,9 +99,7 @@ public class Activity {
 	public void setLat(Double lat) {
 		this.lat = lat;
 	}
-	public void setResult(String result) {
-		this.result = result;
-	}
+	
 	public void setImgRef(String imgRef) {
 		this.imgRef = imgRef;
 	}
