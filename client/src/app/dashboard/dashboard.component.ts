@@ -15,11 +15,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.tripService.curUser == null){
-      this.router.navigate(['/login'])
-    }else{
-      this.currentUser = this.tripService.curUser;
-    }
+    
   }
 
 }

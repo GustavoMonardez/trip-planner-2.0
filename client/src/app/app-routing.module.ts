@@ -9,7 +9,7 @@ import { CreatetripComponent } from './createtrip/createtrip.component';
 const routes: Routes = [
   {path:'registration',component:RegistrationComponent},
   {path:'login',component:LoginComponent},
-  {path:'dashboard',component:DashboardComponent}
+  {path:'dashboard',component:DashboardComponent},
   {path:'createtrip',component:CreatetripComponent}
 ];
 

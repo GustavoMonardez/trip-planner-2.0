@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
   login(){
     this.tripService.loginUser(this.user).subscribe(data=>{
+    	console.log(data);
       if(data['email'] != null){
         localStorage.setItem("User",data['email']);
         this.router.navigate(['/dashboard'])

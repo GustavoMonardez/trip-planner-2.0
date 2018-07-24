@@ -16,7 +16,7 @@ import { CreatetripComponent } from './createtrip/createtrip.component';
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
     CreatetripComponent
   ],
   imports: [
