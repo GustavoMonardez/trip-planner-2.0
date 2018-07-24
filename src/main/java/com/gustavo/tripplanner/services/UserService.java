@@ -37,4 +37,21 @@ public class UserService {
 	public List<User>findAllUsers(){
 		return userRepository.findAll();
 	}
+	
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+	//doesn't include bcrypt add it eventually
+	public boolean authenticateUser(String email, String password) {
+		User user = userRepository.findByEmail(email);
+		if(user == null) {
+			return false;
+		} else {
+			if(password.equals(user.getPassword())) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
 }

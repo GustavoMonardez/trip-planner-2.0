@@ -25,7 +25,7 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty
+	@NotEmpty(message="please enter a name")
 	private String firstName;
 	
 	@NotEmpty
@@ -39,6 +39,8 @@ public class User {
 	
 	@Transient
 	private String passwordConfirmation;
+	@Transient
+	private List<String> errors;
 	
 	@Column(updatable=false)
 	private Date createdAt;
