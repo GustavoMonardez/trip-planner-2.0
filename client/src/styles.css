@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    margin:0;
+    padding:0;
+}
+#main-container{
+    width: 90%;
+    margin:auto;
+}
+/************************TRIPS PAGE*************************/
+#agenda-container,#sidebar-container{
+    display: inline-block;
+    vertical-align: top;
+    height:700px;
+    overflow-y:scroll;
+}
+#agenda-container{
+    width: 70%;
+    background-color: azure;
+}
+#sidebar-container{
+    width:30%;
+    background-color:bisque;
+}
+#proposed-container,#suggestions-container{
+    height:50%;
+}
+#proposed-container{
+    background-color:cadetblue;
+}
+#suggestions-container{
+    background-color: coral;
+}
+.single-activity{
+    width:80%;
+    margin:auto auto 2% auto;
+    border:1px solid black;
+}

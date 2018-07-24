@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatetripComponent } from './createtrip/createtrip.component';
 import { TripsComponent } from './trips/trips.component';
+import { NgDragDropModule } from 'ng-drag-drop';
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { TripsComponent } from './trips/trips.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgDragDropModule.forRoot()
   ],
   providers: [TripService],
   bootstrap: [AppComponent]

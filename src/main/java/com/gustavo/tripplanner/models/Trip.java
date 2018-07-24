@@ -55,7 +55,7 @@ public class Trip {
 	
 	@OneToMany(mappedBy="trip", fetch=FetchType.LAZY) 
 	@JsonIgnoreProperties("trip")
-	private List<Agenda> agenda;
+	private List<Agenda> agendas;
 	
 	@ManyToMany(fetch=FetchType.LAZY) 
 	@JoinTable( 
@@ -105,8 +105,8 @@ public class Trip {
 		return guests;
 	}
 
-	public List<Agenda> getAgenda() {
-		return agenda;
+	public List<Agenda> getAgendas() {
+		return agendas;
 	}
 
 	public List<User> getInvitees() {
@@ -149,8 +149,8 @@ public class Trip {
 		this.guests = guests;
 	}
 
-	public void setAgenda(List<Agenda> agenda) {
-		this.agenda = agenda;
+	public void setAgendas(List<Agenda> agenda) {
+		this.agendas = agenda;
 	}
 
 	public void setInvitees(List<User> invitees) {
@@ -164,7 +164,7 @@ public class Trip {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
+	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
