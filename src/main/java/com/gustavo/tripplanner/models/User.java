@@ -41,14 +41,13 @@ public class User {
 	
 	@Transient
 	private String passwordConfirmation;
-	@Transient
-	private List<String> errors;
 	
 	@Column(updatable=false)
 	private Date createdAt;
 	
 	private Date updatedAt;
-	
+	@Transient
+	private int hostid;	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 			name="users_likes",

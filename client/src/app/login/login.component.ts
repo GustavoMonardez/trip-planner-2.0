@@ -25,8 +25,10 @@ export class LoginComponent implements OnInit {
     this.tripService.loginUser(this.user).subscribe(data=>{
     	console.log(data);
       if(data['email'] != null){
-        localStorage.setItem("User",data['email']);
-        this.router.navigate(['/dashboard'])
+        localStorage.setItem("userEmail",data['email']);
+        localStorage.setItem("userId",data['id']);
+        localStorage.setItem("userName", data['firstName'] + " " + data['lastName'])
+        this.router.navigate(['/dashboard']);
       } else{
         this.user = {
           email:"",

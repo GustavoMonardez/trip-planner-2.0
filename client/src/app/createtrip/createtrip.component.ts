@@ -9,25 +9,35 @@ import { Router } from '@angular/router';
 })
 export class CreatetripComponent implements OnInit {
   trip:{};
+  userId:string;
   constructor(
     private tripService:TripService,
     private router:Router
   ) { }
 
   ngOnInit() {
-    if(!localStorage.getItem("User")){
+    if(!localStorage.getItem("userId")){
       this.router.navigate(['/login']);
+    } else {
+      this.userId = localStorage.getItem("userId");
+      this.trip = {
+        title:"",
+        description:"",
+        date_from:"",
+        date_to:""
+      }
+
     }
-    this.trip = {
-      title:"",
-      description:"",
-      date_from:"",
-      date_to:""
-    }
+    
   }
 
   createTrip(){
-    console.log(this.trip);
+    this.tripService.createTrip(this.trip, this.userId).subscribe(data=>{
+      //eventually add an if check to test if the trip is valid here
+      if(data['id'] != null){
+        this.router.navigate(['/dashboard']);
+      }
+    }
   }
 
 }

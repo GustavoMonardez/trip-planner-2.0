@@ -9,13 +9,18 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   currentUser:any;
+  userEmail:any;
+  userId:any;
+  userName:any;
   constructor(
     private tripService:TripService,
     private router:Router
   ) { }
 
   ngOnInit() {
-    
+    this.userEmail = localStorage.getItem("userEmail");
+    this.userId = localStorage.getItem("userId");
+    this.userName = localStorage.getItem("userName");
   }
 
 }

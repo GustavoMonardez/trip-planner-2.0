@@ -15,4 +15,12 @@ export class TripService {
   loginUser(user:{}){
     return this._http.post(this.apiUrl+"loginuser",user);
   }
+  createTrip(trip:{}, userId:string){
+    var tripPost = {
+      "trip":trip,
+      "hostId":userId
+    }
+    return this._http.post(this.apiUrl+"trips",tripPost);
+  }
+
 }
