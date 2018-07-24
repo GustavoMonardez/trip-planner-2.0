@@ -2,6 +2,7 @@ package com.gustavo.tripplanner.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ import com.gustavo.tripplanner.services.TripService;
 import com.gustavo.tripplanner.services.UserService;
 
 @RestController
+@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class TripController {
 	private final ActivityService activityService;
@@ -129,7 +131,8 @@ public class TripController {
 	@PostMapping("/loginuser")
 	public User loginuser(@RequestBody User user, BindingResult br) {
 		if(userService.authenticateUser(user.getEmail(), user.getPassword())) {
-			return userService.findByEmail(user.getEmail());
+			User curUser = userService.findByEmail(user.getEmail());
+			return curUser;
 		}else {
 			return new User();
 		}

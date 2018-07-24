@@ -24,11 +24,8 @@ export class LoginComponent implements OnInit {
   login(){
     this.tripService.loginUser(this.user).subscribe(data=>{
       if(data['email'] != null){
-        console.log("hey the login was correct");
-        //store the in the service
-        this.tripService.storeUser(data);
-        //route them somewhere here
-        //this.router.navigate(['/someroute'])
+        localStorage.setItem("User",data['email']);
+        this.router.navigate(['/dashboard'])
       } else{
         this.user = {
           email:"",
