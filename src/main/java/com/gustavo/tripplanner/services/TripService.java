@@ -25,7 +25,7 @@ public class TripService {
 		if(trip.isPresent()) return trip.get();
 		else return null;
 	}
-	//udpate
+	//update
 	public Trip updateTrip(Trip trip) {
 		return tripRepository.save(trip);
 	}

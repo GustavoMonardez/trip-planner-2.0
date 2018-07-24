@@ -17,6 +17,7 @@ import com.gustavo.tripplanner.models.Activity;
 import com.gustavo.tripplanner.models.Agenda;
 import com.gustavo.tripplanner.models.Trip;
 import com.gustavo.tripplanner.models.User;
+import com.gustavo.tripplanner.postmodels.TripPost;
 import com.gustavo.tripplanner.services.ActivityService;
 import com.gustavo.tripplanner.services.AgendaService;
 import com.gustavo.tripplanner.services.TripService;
@@ -50,8 +51,14 @@ public class TripController {
 	public Agenda createAgenda(@RequestBody Agenda agenda) {
 		return agendaService.createAgenda(agenda);
 	}
+	// started modifying -bob
+	// todo add validations
 	@PostMapping("/trips")
-	public Trip createTrip(@RequestBody Trip trip) {
+	public Trip createTrip(@RequestBody TripPost tripPost) {
+		Trip trip = tripPost.getTrip();
+		Long userId = tripPost.getHostId();
+		User user = userService.findUserById(userId);
+		trip.getAdmins().add(user);
 		return tripService.createTrip(trip);
 	}
 	/*********************READ: GET BY ID*******************/

@@ -1,5 +1,6 @@
 package com.gustavo.tripplanner.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,13 +53,16 @@ public class Trip {
 			inverseJoinColumns = @JoinColumn(name = "invitees_id") ) 
 	private List<User> invitees;
 	
+	
 	@Column(updatable=false)
 	private Date createdAt;
 	
 	private Date updatedAt;
 	
 	public Trip() {
-		
+		//added this line here to avoid a null pointer exception
+		//when creating a trip
+		this.admins = new ArrayList<User>();
 	}
 	
 	public Long getId() {
