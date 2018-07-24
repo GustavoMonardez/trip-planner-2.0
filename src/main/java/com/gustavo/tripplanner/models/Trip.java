@@ -21,36 +21,48 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity 
 @Table(name="trips") 
 public class Trip { 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private Long id; @NotEmpty 
+	private Long id; 
+	@NotEmpty 
 	private String title; 
 	private String description; 
 	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date date_from; 
 	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date date_to;
+	
 	@ManyToMany(fetch=FetchType.LAZY) 
 	@JoinTable( 
 			name = "trips_admins", 
 			joinColumns = @JoinColumn(name = "trip_id"), 
 			inverseJoinColumns = @JoinColumn(name = "admin_id") ) 
+	@JsonIgnoreProperties("tripsCreated")
 	private List<User> admins;
+	
 	@ManyToMany(fetch=FetchType.LAZY) 
 	@JoinTable( 
 			name = "trips_guests", 
 			joinColumns = @JoinColumn(name = "trip_id"), 
 			inverseJoinColumns = @JoinColumn(name = "guest_id") ) 
+	@JsonIgnoreProperties("tripsAttending")
 	private List<User> guests;
+	
 	@OneToMany(mappedBy="trip", fetch=FetchType.LAZY) 
+	@JsonIgnoreProperties("trip")
 	private List<Agenda> agenda;
+	
 	@ManyToMany(fetch=FetchType.LAZY) 
 	@JoinTable( 
 			name = "trips_invitees", 
 			joinColumns = @JoinColumn(name = "trip_id"), 
 			inverseJoinColumns = @JoinColumn(name = "invitees_id") ) 
+	@JsonIgnoreProperties("tripsInvited")
 	private List<User> invitees;
 	
 	
