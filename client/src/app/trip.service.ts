@@ -15,6 +15,4 @@ export class TripService {
   loginUser(user:{}){
     return this._http.post(this.apiUrl+"loginuser",user);
   }
-
-  
 }
