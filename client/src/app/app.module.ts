@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatetripComponent } from './createtrip/createtrip.component';
+import { TripsComponent } from './trips/trips.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CreatetripComponent } from './createtrip/createtrip.component';
     RegistrationComponent,
     LoginComponent,
     DashboardComponent,
-    CreatetripComponent
+    CreatetripComponent,
+    TripsComponent
   ],
   imports: [
     BrowserModule,
