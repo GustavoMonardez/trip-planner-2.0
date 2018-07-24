@@ -18,5 +18,6 @@ export class TripService {
   }
   storeUser(user:{}){
     this.curUser = user;
+    
   }
 }

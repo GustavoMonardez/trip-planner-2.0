@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         //store the in the service
         this.tripService.storeUser(data);
         //route them somewhere here
-        //this.router.navigate(['/someroute'])
+        this.router.navigate(['/dashboard'])
       } else{
         this.user = {
           email:"",
