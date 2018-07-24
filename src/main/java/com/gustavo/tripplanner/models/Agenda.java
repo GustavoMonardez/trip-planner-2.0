@@ -81,6 +81,9 @@ public class Agenda {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public void addActivity(Activity activity) {
+		this.activities.add(activity);
+	}
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();

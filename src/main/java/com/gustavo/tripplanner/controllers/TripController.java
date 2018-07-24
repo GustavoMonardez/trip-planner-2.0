@@ -7,10 +7,12 @@ import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gustavo.tripplanner.models.Activity;
@@ -40,6 +42,60 @@ public class TripController {
 		this.tripService = tripService;
 		this.userService = userService;
 	}
+	/*********************CREATE*******************/
+	@PostMapping("/activities")
+	public Activity createActivity(@RequestBody Activity activity) {
+		return activityService.createActivity(activity);
+	}
+	@PostMapping("/agendas")
+	public Agenda createAgenda(@RequestBody Agenda agenda) {
+		return agendaService.createAgenda(agenda);
+	}
+	@PostMapping("/trips")
+	public Trip createTrip(@RequestBody Trip trip) {
+		return tripService.createTrip(trip);
+	}
+	/*********************READ: GET BY ID*******************/
+	@GetMapping("/activities/{activity_id}")
+	public Activity findActivityById(@PathVariable("activity_id")Long activity_id) {
+		return activityService.findActivityById(activity_id);
+	}
+	@GetMapping("/agendas/{agenda_id}")
+	public Agenda findAgendaById(@PathVariable("agenda_id")Long agenda_id) {
+		return agendaService.findAgendaById(agenda_id);
+	}
+	@GetMapping("/trips/{trip_id}")
+	public Trip findTripById(@PathVariable("trip_id")Long trip_id) {
+		return tripService.findTripById(trip_id);
+	}
+	@GetMapping("/users/{user_id}")
+	public User findUserById(@PathVariable("user_id")Long user_id) {
+		return userService.findUserById(user_id);
+	}
+	/*********************UPDATE*******************/
+	@PostMapping("/agendas/{agenda_id}/edit")
+	public Agenda addActivityToAgenda(@PathVariable("agenda_id")Long agenda_id,@RequestBody Activity activity) {
+		Agenda agenda = agendaService.findAgendaById(agenda_id);
+		agenda.addActivity(activity);
+		return agendaService.updateAgenda(agenda);
+	}
+	/*********************DELETE BY ID*******************/
+	@PostMapping("/activities/{activity_id}/delete")
+	public void deleteActivityById(@PathVariable("activity_id")Long activity_id) {
+		activityService.deleteActivityById(activity_id);
+	}
+	@PostMapping("/agendas/{agenda_id}/delete")
+	public void deleteAgendaById(@PathVariable("agenda_id")Long agenda_id) {
+		agendaService.deleteAgendaById(agenda_id);
+	}
+	@PostMapping("/trips/{trip_id}/delete")
+	public void deleteTripById(@PathVariable("trip_id")Long trip_id) {
+		tripService.deleteTripById(trip_id);
+	}
+	@PostMapping("/users/{user_id}/delete")
+	public void deleteUserById(@PathVariable("user_id")Long user_id) {
+		userService.deleteUserById(user_id);
+	}
 	/*********************GET ALL*******************/
 	@GetMapping("/activities")
 	public List<Activity>allActivities() {
@@ -57,11 +113,6 @@ public class TripController {
 	@GetMapping("/users")
 	public List<User>allUsers(){
 		return userService.findAllUsers();
-	}
-	/*********************GET BY ID*******************/
-	@GetMapping("/users/{user_id}")
-	public User findUserById(@RequestParam("user_id")Long user_id) {
-		return userService.findUserById(user_id);
 	}
 	/*********************CREATE*******************/
 	@PostMapping("/users")
