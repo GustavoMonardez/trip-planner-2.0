@@ -16,6 +16,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -32,6 +33,7 @@ public class User {
 	private String lastName;
 	
 	@NotEmpty
+	@Email	
 	private String email;
 	
 	@NotEmpty

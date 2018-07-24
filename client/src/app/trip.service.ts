@@ -6,8 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TripService {
-  apiUrl = "http://localhost:8080/";
-  curUser:{};
+  apiUrl = "http://localhost:8080/api/";
   constructor(private _http:HttpClient) { }
 
   registerUser(user:{}){
@@ -15,9 +14,5 @@ export class TripService {
   }
   loginUser(user:{}){
     return this._http.post(this.apiUrl+"loginuser",user);
-  }
-  storeUser(user:{}){
-    this.curUser = user;
-    
   }
 }
