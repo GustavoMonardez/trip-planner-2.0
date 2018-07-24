@@ -10,11 +10,11 @@
         </tr>
         <tr>
           <td>First Name:</td>
-          <td><input type="text" name="first_name" [(ngModel)]="newUser.first_name" autocomplete="first_name"></td>
+          <td><input type="text" name="first_name" [(ngModel)]="newUser.firstName" autocomplete="first_name"></td>
         </tr>
         <tr>
           <td>Last Name:</td>
-          <td><input type="text" name="last_name" [(ngModel)]="newUser.last_name" autocomplete="last_name"></td>
+          <td><input type="text" name="last_name" [(ngModel)]="newUser.lastName" autocomplete="last_name"></td>
         </tr>
         <tr>
           <td>Password:</td>
@@ -25,7 +25,7 @@
         </tr>
         <tr>
           <td>Confirm Password:</td>
-          <td><input type="password" name="confirm_pw" [(ngModel)]="newUser.confirm_pw" autocomplete="new-password"></td>
+          <td><input type="password" name="confirm_pw" [(ngModel)]="newUser.passwordConfirmation" autocomplete="new-password"></td>
         </tr>
         <div class="text-right">
           <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
