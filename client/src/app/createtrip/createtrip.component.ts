@@ -37,7 +37,7 @@ export class CreatetripComponent implements OnInit {
       if(data['id'] != null){
         this.router.navigate(['/dashboard']);
       }
-    }
+    });
   }
 
 }
