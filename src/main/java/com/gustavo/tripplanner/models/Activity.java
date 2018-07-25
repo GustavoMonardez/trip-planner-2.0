@@ -45,6 +45,11 @@ public class Activity {
     @JsonIgnoreProperties("activities")
     private Agenda agenda;
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "trip_id")
+    @JsonIgnoreProperties("proposedActivities")
+    private Trip trip;
+    
     @Column(updatable=false)
 	private Date createdAt;
 	

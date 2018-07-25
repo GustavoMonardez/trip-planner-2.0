@@ -64,6 +64,9 @@ public class Trip {
 	@JsonIgnoreProperties("tripsInvited")
 	private List<User> invitees;
 	
+	@OneToMany(mappedBy="trip", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("trip")
+	private List<Activity> proposedActivities;
 	
 	@Column(updatable=false)
 	private Date createdAt;
