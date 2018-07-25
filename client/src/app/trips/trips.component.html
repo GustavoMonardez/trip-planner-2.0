@@ -2,7 +2,7 @@
   <h2>Current Trip: {{currentTrip.title}}</h2>
   <p>Navbar(map/travel buddies)</p>
 </div>
-<div droppable (onDrop)="onProposedDrop($event)" id="agenda-container">
+<!-- <div droppable (onDrop)="onProposedDrop($event)" id="agenda-container">
   <h2>Agenda</h2>
   <div *ngFor="let proposed of droppedProposed" class="list-group-item" class="single-activity">
       <h3>{{proposed.location}}</h3>
@@ -25,3 +25,41 @@
     </div>
   </div>
 </div>
+ -->
+<div id="agenda-container">
+    <h2>Agenda</h2>
+  <!--  start agendas(days) -->
+  <div  class="sidebar-days">
+      <h3 *ngFor="let agenda of agendas" class="day-number" (click)="selectDay(agenda.day)">Day {{agenda.day}}</h3>
+  </div><div
+   class="single-agenda">
+      <div droppable  [dropScope]="'agendaDay'" (onDrop)="onActivityDrop($event)" class="agenda-day">
+        <div *ngFor="let activity of currentAgenda.activities" class="single-activity">
+          <h3>{{activity.location}}</h3>
+          <p>{{activity.description}}</p>
+        </div>
+      </div>
+  </div>
+<!-- end agendas(days) -->
+</div><div
+id="sidebar-container">
+<!-- start activities (proposed) -->
+ <div droppable (onDrop)="onSuggestionDrop($event)" id="proposed-container">
+   <h2>Proposed</h2>
+   <div draggable [dragScope]="'agendaDay'" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity">
+     <h3>{{activity.location}}</h3>
+     <p>{{activity.description}}</p>
+   </div>
+<!-- end activities (proposed) -->
+ </div><div 
+ id="suggestions-container">
+<!-- start suggestions (google) -->
+   <h2>Suggestions</h2>
+   <div draggable *ngFor="let suggestion of suggestions" [dragData]="suggestion" class="single-activity">
+     <h3>{{suggestion.location}}</h3>
+     <p>{{suggestion.description}}</p>
+   </div>
+ </div>
+</div>
+<!-- end suggestions (google) -->
+  

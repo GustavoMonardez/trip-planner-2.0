@@ -36,3 +36,26 @@
     margin:auto auto 2% auto;
     border:1px solid black;
 }
+.single-agenda,.sidebar-days{
+    display: inline-block;
+    vertical-align: top;
+}
+.sidebar-days{
+    width:26%;
+    border: 1px solid silver;
+    padding:2%;
+}
+.single-agenda{
+    width:65%;
+    height:100%;
+    margin-left:2%;
+    border: 1px solid silver;
+}
+.agenda-day{
+    height:40px;
+    border: 1px solid silver;
+}
+.day-number{
+    width:20%;
+    border:1px solid silver;
+}
