@@ -31,7 +31,7 @@ import { GooglePlacesDirective } from './google-places.directive';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB7dASW0fD9Eemhj7fFCyF-NYyyOmGX8Ds',
+      apiKey: 'YOUR_API_KEY',
       libraries: ["places"]
     })
   ],
