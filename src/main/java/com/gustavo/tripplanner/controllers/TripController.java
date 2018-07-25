@@ -55,11 +55,7 @@ public class TripController {
 	// todo add validations
 	@PostMapping("/trips")
 	public Trip createTrip(@RequestBody TripPost tripPost) {
-		Trip trip = tripPost.getTrip();
-		Long userId = tripPost.getHostId();
-		User user = userService.findUserById(userId);
-		trip.getAdmins().add(user);
-		return tripService.createTrip(trip);
+		return tripService.createTrip((Trip) tripPost.getTrip(), (Long) tripPost.getHostId());
 	}
 	/*********************READ: GET BY ID*******************/
 	@GetMapping("/activities/{activity_id}")
