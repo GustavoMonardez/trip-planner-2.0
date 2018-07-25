@@ -44,7 +44,7 @@ import { NgDragDropModule } from 'ng-drag-drop';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_API_KEY',
+      apiKey: 'AIzaSyB7dASW0fD9Eemhj7fFCyF-NYyyOmGX8Ds',
       libraries: ["places"]
     })
   ],

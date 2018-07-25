@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tr *ngFor="let admintrip of user.tripsCreated">
-    <td><a href = "/trip/plan/{{admintrip.id}}">{{admintrip.title}}</a></td>
+    <td><a href = "/trips/plan/{{admintrip.id}}">{{admintrip.title}}</a></td>
     <td>{{admintrip.date_from | date: "yyyy-MM-dd" }}</td>
     <td>{{admintrip.date_to | date: "yyyy-MM-dd" }}</td>
     <td>{{admintrip.description}}</td>
