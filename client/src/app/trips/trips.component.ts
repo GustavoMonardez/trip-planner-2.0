@@ -17,7 +17,10 @@ export class TripsComponent implements OnInit {
   suggestions = [
     {location:"Suggestion 1",description:"Description for sug 1"},
     {location:"Suggestion 2",description:"Description for sug 2"},
-    {location:"Suggestion 3",description:"Description for sug 3"}
+    {location:"Suggestion 3",description:"Description for sug 3"},
+    {location:"Suggestion 4",description:"Description for sug 4"},
+    {location:"Suggestion 5",description:"Description for sug 5"},
+    {location:"Suggestion 6",description:"Description for sug 6"}
   ];
   constructor(
     private tripService:TripService,

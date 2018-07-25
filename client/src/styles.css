@@ -23,6 +23,7 @@
 }
 #proposed-container,#suggestions-container{
     height:50%;
+    overflow-y:scroll;
 }
 #proposed-container{
     background-color:cadetblue;
