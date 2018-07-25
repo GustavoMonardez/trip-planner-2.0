@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { TripService } from '../trip.service';
 import { ActivatedRoute,Params } from '@angular/router';
+import { } from '@types/googlemaps';
 
 @Component({
   selector: 'app-trips',
@@ -14,14 +15,20 @@ export class TripsComponent implements OnInit {
   newAgenda={};
   droppedSuggestions:any;
   droppedProposed:any;
-  suggestions = [
-    {location:"Suggestion 1",description:"Description for sug 1"},
-    {location:"Suggestion 2",description:"Description for sug 2"},
-    {location:"Suggestion 3",description:"Description for sug 3"}
-  ];
+  suggestions = [];
+  suggestion_type = "restaurant";
+  // google suggestion
+  place: any;
+  map: google.maps.Map;
+  googleService: any;
+  nearbySearchList: any;
+  @ViewChild('gmap') gmapElement: any;
+
+
   constructor(
     private tripService:TripService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private cdr:ChangeDetectorRef
   ){}
   ngOnInit() {
     this.route.params.subscribe((params:Params)=>{
@@ -54,7 +61,14 @@ export class TripsComponent implements OnInit {
     this.tripService.findAllActivities().subscribe(data=>{
       this.droppedSuggestions = data;
     });
+    // google map
+    this.map = new google.maps.Map(this.gmapElement.nativeElement, {
+      center: {lat: -33.8688, lng: 151.2195},
+      zoom: 13,
+      mapTypeId: 'roadmap'
+    });
   }
+
   onSuggestionDrop(e: any) {
     console.log("e: "+e.dragData.location);
     this.newActivity={
@@ -70,11 +84,11 @@ export class TripsComponent implements OnInit {
     });
     console.log("after: "+this.droppedSuggestions);
   }
-  onProposedDrop(e: any) {  
+  onProposedDrop(e: any) {
     this.newActivity={
       description:e.dragData.description,
       location:e.dragData.location
-    };  
+    };
     this.tripService.addActivityToAgenda(e.dragData.id,1).subscribe(data=>{
         if(data['location'] != null){
           console.log("successfully added activity to agenda");
@@ -83,6 +97,37 @@ export class TripsComponent implements OnInit {
           console.log("errors adding act to agenda");
         }
     });
-    
+
   }
+
+  // google searchbox
+  apiCall(placeObj) {
+    this.place = placeObj;
+    this.getNearbySearches();
+  }
+
+  getNearbySearches() {
+    this.googleService = new google.maps.places.PlacesService(this.map);
+    var location = new google.maps.LatLng(this.place.geometry.location.lat(), this.place.geometry.location.lng());
+    let request = {
+      location: location,
+      radius: '300',
+      type: [this.suggestion_type]
+    };
+    this.googleService.nearbySearch(request, (results, status) => {
+      this.suggestions = [];
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        this.nearbySearchList = results;
+        console.log(this.nearbySearchList);
+        // add to suggestions
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          this.suggestions.push({location: place.name, description: "insert description here"});
+        }
+        this.cdr.detectChanges();
+      }
+    })
+
+  }
+
 }

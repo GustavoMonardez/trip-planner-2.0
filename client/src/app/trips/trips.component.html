@@ -16,12 +16,32 @@
       <h3>{{suggestion.location}}</h3>
       <p>{{suggestion.description}}</p>
     </div>
-  </div><div 
+  </div><div
   id="suggestions-container">
     <h2>Suggestions</h2>
+    <p>I am looking for...</p>
+    <select [(ngModel)]="suggestion_type" (change)="getNearbySearches()">
+      <option value="point_of_interest">Anything</option>
+      <option value="bar">Bar</option>
+      <option value="cafe">Cafe</option>
+      <option value="restaurant">Restaurant</option>
+      <option value="shopping_mall">Shopping Mall</option>
+      <option value="park">Park</option>
+      <option value="lodging">Lodging</option>
+      <option value="airport">Airport</option>
+    </select>
+    <input
+    google-places
+    (onSelect)="apiCall($event)"
+    type="text"
+    class="google-place-input"
+    placeholder="Type to search..">
+    <div id="map" #gmap></div>
     <div draggable *ngFor="let suggestion of suggestions" [dragData]="suggestion" class="single-activity">
       <h3>{{suggestion.location}}</h3>
       <p>{{suggestion.description}}</p>
     </div>
+    <p *ngIf="suggestions.length == 0">No suggestions found</p>
   </div>
+
 </div>
