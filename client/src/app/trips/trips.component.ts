@@ -3,6 +3,7 @@ import { TripService } from '../trip.service';
 import { ActivatedRoute,Params } from '@angular/router';
 import { } from '@types/googlemaps';
 
+
 @Component({
   selector: 'app-trips',
   templateUrl: './trips.component.html',
@@ -44,6 +45,7 @@ export class TripsComponent implements OnInit {
         if(data['title'] != null){
           this.currentTrip = data;      
           //set activities
+          this.droppedSuggestions = this.currentTrip['proposedActivities'];
           //set agendas   
           for(let i=0; i < this.currentTrip['agendas'].length; ++i){
             //each agenda may contain a list of activities that we
@@ -52,42 +54,16 @@ export class TripsComponent implements OnInit {
           }
           //set current agenda to day one (this might need to be changed)
           this.currentAgenda = this.agendas[0];
-          //this should be implemented when we create a new trip
-        /*   if(this.currentTrip['agendas'].length == 0){
-            this.newAgenda = {
-              trip:this.currentTrip,
-              day:1,
-              date:Date.now()
-            }
-            this.tripService.createAgenda(this.newAgenda).subscribe(data=>{
-              if(data['day'] != null) {
-                 //this needs refactoring
-                this.droppedProposed = this.currentTrip['agendas'][0]['activities'];
-                console.log("successfully created agenda");
-              }
-              else console.log("error creating agenda");
-            });
-          }else{
-             //this needs refactoring
-             //this.droppedProposed = [];
-             //this.droppedProposed = this.currentTrip['agendas'][0]['activities'];
-          } */
         }else{
           console.log("there were errors while fetching trip");
         }
       });
     });
-    //this needs to be changed: it is finding ALL activities suggestions
-    //on the proposed section when we only need activities proposed only 
-    //for this particular trip
-    this.tripService.findAllActivities().subscribe(data=>{
-      this.droppedSuggestions = data;
-    });
     // google map
     this.map = new google.maps.Map(this.gmapElement.nativeElement, {
       center: {lat: -33.8688, lng: 151.2195},
       zoom: 13,
-      mapTypeId: 'roadmap'
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     });
   }
   onSuggestionDrop(e: any) {
@@ -98,7 +74,7 @@ export class TripsComponent implements OnInit {
       location:e.dragData.location
     };
     /*******An activity should be associated with a trip?******/
-    this.tripService.createActivity(this.newActivity).subscribe(data=>{
+    this.tripService.createActivity(this.newActivity,this.trip_id).subscribe(data=>{
         //if succesfully created activity, added to our lists
         if(data['location'] != null){
           this.droppedSuggestions.push(data);
@@ -155,5 +131,21 @@ export class TripsComponent implements OnInit {
     })
 
   }
-
+  createNewDay(){
+    console.log("I'd be creating day "+this.currentTrip['agendas'].length);
+    let agenda = {
+        day:this.currentTrip['agendas'].length+1,
+        trip_id:this.trip_id,
+        activities:[]
+    }
+    this.tripService.createAgenda(agenda,this.trip_id).subscribe(data=>{
+      if(data['day'] != null){
+        console.log("successfully added one day to trip");
+        //this.currentTrip['agendas'].push(data);
+        this.agendas.push(data);
+      }else{
+        console.log("error adding new day");
+      }
+    })
+  }
 }

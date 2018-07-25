@@ -47,8 +47,10 @@ public class TripController {
 	public Activity createActivity(@RequestBody Activity activity) {
 		return activityService.createActivity(activity);
 	}
-	@PostMapping("/agendas")
-	public Agenda createAgenda(@RequestBody Agenda agenda) {
+	@PostMapping("/agendas/{trip_id}/create")
+	public Agenda createAgenda(@RequestBody Agenda agenda,@PathVariable("trip_id")Long trip_id) {
+		Trip trip = tripService.findTripById(trip_id);
+		agenda.setTrip(trip);
 		return agendaService.createAgenda(agenda);
 	}
 	// started modifying -bob
@@ -83,8 +85,15 @@ public class TripController {
 		System.out.println("from server activity: "+activity_id);
 		Agenda agenda = agendaService.findAgendaById(agenda_id);
 		Activity activity = activityService.findActivityById(activity_id);
+		activity.setTrip(null);
 		activity.setAgenda(agenda);
 		return activityService.updateActivity(activity);
+	}
+	@PostMapping("/activities/{trip_id}/edit")
+	public Activity addActivityToTrip(@PathVariable("trip_id")Long trip_id,@RequestBody Activity activity) {
+		Trip trip = tripService.findTripById(trip_id);
+		activity.setTrip(trip);
+		return activityService.createActivity(activity);
 	}
 	/*********************DELETE BY ID*******************/
 	@PostMapping("/activities/{activity_id}/delete")
