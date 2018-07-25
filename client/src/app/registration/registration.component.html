@@ -6,26 +6,102 @@
       <table>
         <tr>
           <td>Email:</td>
-          <td><input type="text" name="email" [(ngModel)]="newUser.email" autocomplete="email"></td>
+          <td>
+              <input 
+                type="email" 
+                name="email"
+                required
+                minlength = '3'
+                maxlength = '20' 
+                [(ngModel)]="newUser.email"
+                #email = "ngModel" 
+                autocomplete="email"
+              >
+            </td>
         </tr>
+        <tr *ngIf="email.errors">
+            <td></td>
+            <td>
+              <p class = "error" *ngIf="email.errors.required">*An email is required</p>
+              <p class = "error" *ngIf="email.errors.minlength">*Min length of an email is 3 characters</p>
+            </td>
+          </tr>
         <tr>
           <td>First Name:</td>
-          <td><input type="text" name="first_name" [(ngModel)]="newUser.firstName" autocomplete="first_name"></td>
+          <td>
+              <input 
+                type="text" 
+                name="first_name"
+                required
+                minlength = '3'
+                maxlength = '20' 
+                [(ngModel)]="newUser.firstName"
+                #first_name = "ngModel" 
+                autocomplete="first_name"
+              >
+            </td>
         </tr>
+        <tr *ngIf="first_name.errors">
+            <td></td>
+            <td>
+              <p class = "error" *ngIf="first_name.errors.required">*An first name is required</p>
+              <p class = "error" *ngIf="first_name.errors.minlength">*Min length of an first name is 3 characters</p>
+            </td>
+          </tr>
         <tr>
           <td>Last Name:</td>
-          <td><input type="text" name="last_name" [(ngModel)]="newUser.lastName" autocomplete="last_name"></td>
+          <td>
+              <input 
+                type="text" 
+                name="last_name"
+                required
+                minlength = '3'
+                maxlength = '20'  
+                [(ngModel)]="newUser.lastName" 
+                #last_name = "ngModel"
+                autocomplete="last_name"
+              >
+            </td>
         </tr>
+        <tr *ngIf="last_name.errors">
+            <td></td>
+            <td>
+              <p class = "error" *ngIf="last_name.errors.required">*An last name is required</p>
+              <p class = "error" *ngIf="last_name.errors.minlength">*Min length of an last name is 3 characters</p>
+            </td>
+          </tr>
         <tr>
           <td>Password:</td>
-          <td><input type="password" name="password" [(ngModel)]="newUser.password" autocomplete="new-password"></td>
+          <td>
+              <input 
+                type="password" 
+                name="password" 
+                required
+                minlength = '3'
+                maxlength = '20'  
+                [(ngModel)]="newUser.password" 
+                #password = "ngModel"
+                autocomplete="new-password"
+              >
+            </td>
         </tr>
         <tr>
           <p>*Password must contain at least 8 characters</p>
         </tr>
         <tr>
           <td>Confirm Password:</td>
-          <td><input type="password" name="confirm_pw" [(ngModel)]="newUser.passwordConfirmation" autocomplete="new-password"></td>
+          <td>
+              <input 
+                type="password" 
+                name="confirm_pw"
+                required
+                minlength = '3'
+                maxlength = '20'   
+                [(ngModel)]="newUser.passwordConfirmation"
+                #confirm_pw = "ngModel"
+                autocomplete="new-password"
+              >
+            </td>
         </tr>
         <div class="text-right">
           <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
