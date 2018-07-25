@@ -37,9 +37,9 @@ export class TripService {
   createActivity(activity:{}){
     return this._http.post(this.apiUrl+"activities",activity);
   }
-  addActivityToAgenda(activity:{},agenda_id){
+  addActivityToAgenda(activity_id,agenda_id){
     ///agendas/{agenda_id}/edit
-    return this._http.post(this.apiUrl+"agendas/"+agenda_id+"/edit",activity);
+    return this._http.post(this.apiUrl+"agendas/"+agenda_id+"/edit",activity_id);
   }
   /********************AGENDA********************/
   createAgenda(agenda:{}){

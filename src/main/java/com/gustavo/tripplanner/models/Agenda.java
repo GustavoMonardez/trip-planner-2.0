@@ -28,7 +28,7 @@ public class Agenda {
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "agenda_id")
+    @JoinColumn(name = "trip_id")
     @JsonIgnoreProperties("agenda")
     private Trip trip;
 
