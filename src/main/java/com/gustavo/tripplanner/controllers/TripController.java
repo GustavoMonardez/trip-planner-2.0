@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gustavo.tripplanner.models.Activity;
@@ -149,6 +150,16 @@ public class TripController {
 			return curUser;
 		}else {
 			return new User();
+		}
+	}
+	/*********************FIND USER*******************/
+	//of the format /finduser/search?term=someNameOrEmail&last=asdf
+	@GetMapping("/finduser/search")
+	public List<User> finduser(@RequestParam("term") String term, @RequestParam(value="lastname",required = false) String lastname){
+		if(lastname == null) {
+			return userService.searchUsers(term);			
+		}else {
+			return userService.searchUsers(term, lastname);
 		}
 	}
 }

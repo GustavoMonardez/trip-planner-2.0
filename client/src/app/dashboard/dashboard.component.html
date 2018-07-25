@@ -1,8 +1,23 @@
 <nav>
   <a href="/logout">Logout</a>
-  <p>Hello {{userName}}</p>
 </nav>
 <div *ngIf="user">
+  <div>
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td>{{user.firstName}} {{user.lastName}}</td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td>User since:</td>
+        <td>{{user.createdAt | date:"longDate"}} </td>
+      </tr>
+    </table>
+  </div>
   <div *ngIf="user.tripsCreated.length > 0">
     <h3>Trips Administrating</h3>
     <table>
@@ -46,8 +61,7 @@
   <h1>Loading...</h1>
 </div>
 
-<div>
-  <h1>Search for other users!</h1>
-  <input #search>
-</div>
 <p><a [routerLink]="['/createtrip']">Add Travel Plan</a></p>
+
+
+<app-user-search></app-user-search>
