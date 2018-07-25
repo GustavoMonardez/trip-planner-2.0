@@ -2,20 +2,47 @@
   <a href="/logout">Logout</a>
   <p>Hello {{userName}}</p>
 </nav>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>From</th>
-      <th>To</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tr *ngFor="let admintrip of user.tripsCreated">
-    <td><a href = "/trips/plan/{{admintrip.id}}">{{admintrip.title}}</a></td>
-    <td>{{admintrip.date_from | date: "yyyy-MM-dd" }}</td>
-    <td>{{admintrip.date_to | date: "yyyy-MM-dd" }}</td>
-    <td>{{admintrip.description}}</td>
-  </tr>
-</table>
+<div *ngIf="user">
+  <div *ngIf="user.tripsCreated.length > 0">
+    <h3>Trips Administrating</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let admintrip of user.tripsCreated">
+        <td><a href = "/trips/plan/{{admintrip.id}}">{{admintrip.title}}</a></td>
+        <td>{{admintrip.date_from | date: "yyyy-MM-dd" }}</td>
+        <td>{{admintrip.date_to | date: "yyyy-MM-dd" }}</td>
+        <td>{{admintrip.description}}</td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="user.tripsInvited.length > 0">
+    <h3>Trips Attending</h3>
+    <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let trip of user.tripsInvited">
+          <td><a href = "/trips/plan/{{trip.id}}">{{trip.title}}</a></td>
+          <td>{{trip.date_from | date: "yyyy-MM-dd" }}</td>
+          <td>{{trip.date_to | date: "yyyy-MM-dd" }}</td>
+          <td>{{trip.description}}</td>
+        </tr>
+      </table>
+  </div>
+</div>
+<div *ngIf="!user">
+  <h1>Loading...</h1>
+</div>
 <p><a [routerLink]="['/createtrip']">Add Travel Plan</a></p>

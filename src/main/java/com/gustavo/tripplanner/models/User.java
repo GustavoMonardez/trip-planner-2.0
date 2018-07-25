@@ -64,7 +64,7 @@ public class User {
 			joinColumns=@JoinColumn(name="guest_id"),
 			inverseJoinColumns=@JoinColumn(name="trip_id")
 	)
-	@JsonIgnoreProperties("guests")//
+	@JsonIgnoreProperties("guests")
 	private List<Trip> tripsAttending;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
