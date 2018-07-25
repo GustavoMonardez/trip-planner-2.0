@@ -7,13 +7,24 @@ import { AppComponent } from './app.component';
 import { TripService } from './trip.service';
 import { HttpClientModule} from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiTestingComponent } from './api-testing/api-testing.component';
-// AGM (Angular Google Maps)
+
 import { AgmCoreModule } from '@agm/core';
 import { JsApiTestingComponent } from './js-api-testing/js-api-testing.component';
 import { DirApiTestingComponent } from './dir-api-testing/dir-api-testing.component';
 import { GooglePlacesDirective } from './google-places.directive';
+
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreatetripComponent } from './createtrip/createtrip.component';
+import { TripsComponent } from './trips/trips.component';
+import { NgDragDropModule } from 'ng-drag-drop';
+
+
+
 
 @NgModule({
   declarations: [
@@ -23,6 +34,11 @@ import { GooglePlacesDirective } from './google-places.directive';
     JsApiTestingComponent,
     DirApiTestingComponent,
     GooglePlacesDirective
+    LoginComponent,
+    DashboardComponent,
+    CreatetripComponent,
+    TripsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -37,6 +53,8 @@ import { GooglePlacesDirective } from './google-places.directive';
   ],
   providers: [
     TripService
+    NgDragDropModule.forRoot()
+
   ],
   bootstrap: [AppComponent]
 })

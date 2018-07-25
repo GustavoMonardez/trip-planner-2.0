@@ -1,0 +1,29 @@
+<h1 id="register-title">&#164; DREAM ON &#164;</h1>
+<div class="container">
+  <div class="block register">
+  <h2>Add a Trip</h2>
+  <form>
+    <table>
+      <tr>
+        <td>Trip Title:</td>
+        <td><input name="title" type="text" [(ngModel)] = "trip.title"></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><input name="description" type="text" [(ngModel)] = "trip.description"></td>
+      </tr>
+      <tr>
+        <td>From:</td>
+        <td><input name="date_from" type="date" [(ngModel)] = "trip.date_from"></td>
+      </tr>
+      <tr>
+        <td>To:</td>
+        <td><input name="date_to" type="date" [(ngModel)] = "trip.date_to"></td>
+      </tr>
+    </table>
+    <div>
+      <button (click) = "createTrip()">Let's go places!</button>
+    </div>
+  </form>
+  </div>
+</div>

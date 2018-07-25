@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TripService } from '../trip.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -9,20 +10,29 @@ import { TripService } from '../trip.service';
 export class RegistrationComponent implements OnInit {
   newUser: {};
 
-  constructor(private tripService:TripService) { }
+  constructor(
+    private tripService:TripService,
+    private router:Router
+  ) { }
 
   ngOnInit() {
     this.newUser = {
       email:"",
-      first_name:"",
-      last_name:"",
+      firstName:"",
+      lastName:"",
       password:"",
-      confirm_pw:""
+      passwordConfirmation:""
     }
   }
   register(){
-    console.log("entering here")
-    console.log(this.newUser);
+    this.tripService.registerUser(this.newUser).subscribe(data=>{
+      console.log(data)
+      if(data['email'] != null){
+        this.router.navigate(['/login']);
+      } else{
+        console.log("There are errors here")
+      }
+    });
   }
 
 }

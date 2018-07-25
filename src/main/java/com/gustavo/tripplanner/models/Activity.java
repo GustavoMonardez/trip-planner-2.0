@@ -17,6 +17,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="activities")
 public class Activity {
@@ -25,9 +27,9 @@ public class Activity {
     private Long id;
     private Double lng;
     private Double lat;
-    private String result;
+    private String location;
     private String imgRef;
-    private String desc;
+    private String description;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -35,13 +37,38 @@ public class Activity {
             joinColumns = @JoinColumn(name = "activity_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
             )
+    @JsonIgnoreProperties("likedActivties")
     private List<User> likedBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="agenda_id")
+    @JsonIgnoreProperties("activities")
     private Agenda agenda;
+    
+    @Column(updatable=false)
+	private Date createdAt;
+	
+	private Date updatedAt;
+	public Activity() {
+	}
+    
+    public String getLocation() {
+		return location;
+	}
 
-    public Long getId() {
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getId() {
 		return id;
 	}
 	public Double getLng() {
@@ -50,15 +77,11 @@ public class Activity {
 	public Double getLat() {
 		return lat;
 	}
-	public String getResult() {
-		return result;
-	}
+	
 	public String getImgRef() {
 		return imgRef;
 	}
-	public String getDesc() {
-		return desc;
-	}
+	
 	public List<User> getLikedBy() {
 		return likedBy;
 	}
@@ -80,15 +103,11 @@ public class Activity {
 	public void setLat(Double lat) {
 		this.lat = lat;
 	}
-	public void setResult(String result) {
-		this.result = result;
-	}
+	
 	public void setImgRef(String imgRef) {
 		this.imgRef = imgRef;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+	
 	public void setLikedBy(List<User> likedBy) {
 		this.likedBy = likedBy;
 	}
@@ -100,12 +119,6 @@ public class Activity {
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-	@Column(updatable=false)
-	private Date createdAt;
-
-	private Date updatedAt;
-	public Activity() {
 	}
 	@PrePersist
 	protected void onCreate() {

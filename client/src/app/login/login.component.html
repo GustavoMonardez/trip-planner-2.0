@@ -1,0 +1,20 @@
+<h1 id="welcome-title">EXPLORE &#164; RELAX &#164; ENJOY</h1>
+<div>
+  <h2>Sign in</h2>
+  <form>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" name="email" [(ngModel)]="user.email"></td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><input type="password" name="password" [(ngModel)]="user.password"></td>
+    </tr>
+    <div class="text-right">
+        <button (click)="login()">Sign in</button>
+    </div>
+  </form>
+  <div></div>
+  <p>New?<a [routerLink]="['/registration']"> Register here</a></p>
+</div>
+

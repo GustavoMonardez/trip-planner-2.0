@@ -1,0 +1,21 @@
+<nav>
+  <a href="/logout">Logout</a>
+  <p>Hello {{userName}}</p>
+</nav>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let admintrip of user.tripsCreated">
+    <td><a href = "/trip/plan/{{admintrip.id}}">{{admintrip.title}}</a></td>
+    <td>{{admintrip.date_from | date: "yyyy-MM-dd" }}</td>
+    <td>{{admintrip.date_to | date: "yyyy-MM-dd" }}</td>
+    <td>{{admintrip.description}}</td>
+  </tr>
+</table>
+<p><a [routerLink]="['/createtrip']">Add Travel Plan</a></p>

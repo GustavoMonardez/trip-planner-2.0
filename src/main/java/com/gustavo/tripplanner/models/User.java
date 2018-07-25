@@ -1,5 +1,6 @@
 package com.gustavo.tripplanner.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="users")
@@ -25,13 +30,14 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty
+	@NotEmpty(message="please enter a name")
 	private String firstName;
 	
 	@NotEmpty
 	private String lastName;
 	
 	@NotEmpty
+	@Email	
 	private String email;
 	
 	@NotEmpty
@@ -44,13 +50,13 @@ public class User {
 	private Date createdAt;
 	
 	private Date updatedAt;
-	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 			name="users_likes",
 			joinColumns=@JoinColumn(name="user_id"),
 			inverseJoinColumns=@JoinColumn(name="activity_id")
 	)
+	@JsonIgnoreProperties("likedBy")
 	private List<Activity> likedActivities;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -59,7 +65,8 @@ public class User {
 			joinColumns=@JoinColumn(name="guest_id"),
 			inverseJoinColumns=@JoinColumn(name="trip_id")
 	)
-	private List<Activity> tripsAttending;
+	@JsonIgnoreProperties("guests")//
+	private List<Trip> tripsAttending;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
@@ -67,7 +74,8 @@ public class User {
 			joinColumns=@JoinColumn(name="admin_id"),
 			inverseJoinColumns=@JoinColumn(name="trip_id")
 	)
-	private List<Activity> tripsCreated;
+	@JsonIgnoreProperties("admins")
+	private List<Trip> tripsCreated;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
@@ -75,108 +83,156 @@ public class User {
 			joinColumns=@JoinColumn(name="invitee_id"),
 			inverseJoinColumns=@JoinColumn(name="trip_id")
 	)
-	private List<Activity> tripsInvited;
+	@JsonIgnoreProperties("invitees")
+	private List<Trip> tripsInvited;
+	
+
+	public User() {
+		this.tripsAttending = new ArrayList<Trip>();
+	}
+	
+	
 	
 	public Long getId() {
 		return id;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getPasswordConfirmation() {
-		return passwordConfirmation;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public List<Activity> getLikedActivities() {
-		return likedActivities;
-	}
-
-	public List<Activity> getTripsAttending() {
-		return tripsAttending;
-	}
-
-	public List<Activity> getTripsCreated() {
-		return tripsCreated;
-	}
-
-	public List<Activity> getTripsInvited() {
-		return tripsInvited;
-	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+
+
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+
+
+
 	public void setPasswordConfirmation(String passwordConfirmation) {
 		this.passwordConfirmation = passwordConfirmation;
 	}
 
+
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+
+
+
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
+	public List<Activity> getLikedActivities() {
+		return likedActivities;
+	}
+
+
+
 	public void setLikedActivities(List<Activity> likedActivities) {
 		this.likedActivities = likedActivities;
 	}
 
-	public void setTripsAttending(List<Activity> tripsAttending) {
+
+
+	public List<Trip> getTripsAttending() {
+		return tripsAttending;
+	}
+
+
+
+	public void setTripsAttending(List<Trip> tripsAttending) {
 		this.tripsAttending = tripsAttending;
 	}
 
-	public void setTripsCreated(List<Activity> tripsCreated) {
+
+
+	public List<Trip> getTripsCreated() {
+		return tripsCreated;
+	}
+
+
+
+	public void setTripsCreated(List<Trip> tripsCreated) {
 		this.tripsCreated = tripsCreated;
 	}
 
-	public void setTripsInvited(List<Activity> tripsInvited) {
+
+
+	public List<Trip> getTripsInvited() {
+		return tripsInvited;
+	}
+
+
+
+	public void setTripsInvited(List<Trip> tripsInvited) {
 		this.tripsInvited = tripsInvited;
 	}
 
-	public User() {
-		
-	}
-	
+
+
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
