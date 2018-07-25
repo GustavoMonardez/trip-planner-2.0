@@ -27,6 +27,7 @@ public class TripService {
 		Trip savedTrip = tripRepository.save(trip);
 		Agenda defaultAgenda = new Agenda();
 		defaultAgenda.setTrip(savedTrip);
+		defaultAgenda.setDay(1);
 		agendaRepo.save(defaultAgenda);
 		return savedTrip;
 	}
