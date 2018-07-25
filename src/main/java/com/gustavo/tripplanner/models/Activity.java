@@ -40,7 +40,7 @@ public class Activity {
     @JsonIgnoreProperties("likedActivties")
     private List<User> likedBy;
 
-    @ManyToOne(fetch = FetchType.LAZY)	
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="agenda_id")
     @JsonIgnoreProperties("activities")
     private Agenda agenda;
@@ -120,7 +120,6 @@ public class Activity {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();

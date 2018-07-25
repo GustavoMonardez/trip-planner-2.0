@@ -8,6 +8,10 @@ import { HttpClient } from '@angular/common/http';
 export class TripService {
   apiUrl = "http://localhost:8080/api/";
   constructor(private _http:HttpClient) { }
+  
+  getApi(lat, lng) {
+    return this._http.get('/googlemapapi');
+
   /********************USERS********************/
   registerUser(user:{}){
     return this._http.post(this.apiUrl+"users",user);
