@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gustavo.tripplanner.models.Activity;
 import com.gustavo.tripplanner.models.Agenda;
 import com.gustavo.tripplanner.models.Trip;
@@ -84,10 +83,12 @@ public class TripController {
 	}
 	/*********************UPDATE*******************/
 	@PostMapping("/agendas/{agenda_id}/edit")
-	public Agenda addActivityToAgenda(@PathVariable("agenda_id")Long agenda_id,@RequestBody Activity activity) {
+	public Activity addActivityToAgenda(@PathVariable("agenda_id")Long agenda_id,@RequestBody Long activity_id) {
+		System.out.println("from server activity: "+activity_id);
 		Agenda agenda = agendaService.findAgendaById(agenda_id);
-		agenda.addActivity(activity);
-		return agendaService.updateAgenda(agenda);
+		Activity activity = activityService.findActivityById(activity_id);
+		activity.setAgenda(agenda);
+		return activityService.updateActivity(activity);
 	}
 	/*********************DELETE BY ID*******************/
 	@PostMapping("/activities/{activity_id}/delete")

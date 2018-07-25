@@ -34,8 +34,8 @@ export class CreatetripComponent implements OnInit {
   createTrip(){
     this.tripService.createTrip(this.trip, this.userId).subscribe(trip=>{
       //eventually add an if check to test if the trip is valid here
-      console.log(data)
-      if(data['id'] != null){
+      console.log(trip)
+      if(trip['id'] != null){
         this.router.navigate(['/dashboard']);
       }
     });

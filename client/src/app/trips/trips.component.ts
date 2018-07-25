@@ -8,6 +8,7 @@ import { ActivatedRoute,Params } from '@angular/router';
   styleUrls: ['./trips.component.css']
 })
 export class TripsComponent implements OnInit {
+  trip_id:any;
   currentTrip={};
   newActivity={};
   newAgenda={};
@@ -25,10 +26,13 @@ export class TripsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params:Params)=>{
       console.log(params['id']);
+      this.trip_id=params['id'];
       this.tripService.findTripById(params['id']).subscribe(data=>{
         if(data['title'] != null){
           this.currentTrip = data;
-          this.droppedProposed = this.currentTrip['agendas'];
+          //console.log("fsajfjslkdfkljsldf "+this.currentTrip['agendas'][0].day);
+          this.droppedProposed = this.currentTrip['agendas'][0]['activities'];
+          console.log("prop has "+this.currentTrip['agendas'][0]['activities'].length);
           if(this.currentTrip['agendas'].length == 0){
             this.newAgenda = {
               trip:this.currentTrip,
@@ -39,6 +43,8 @@ export class TripsComponent implements OnInit {
               if(data['day'] != null) console.log("successfully created agenda");
               else console.log("error creating agenda");
             });
+          }else{
+
           }
         }else{
           console.log("there were errors while fetching trip");
@@ -57,7 +63,7 @@ export class TripsComponent implements OnInit {
     };
     this.tripService.createActivity(this.newActivity).subscribe(data=>{
         if(data['location'] != null){
-          this.droppedSuggestions.push(e.dragData);
+          this.droppedSuggestions.push(data);
         } else{
           console.log("There are errors here")
         }
@@ -69,10 +75,14 @@ export class TripsComponent implements OnInit {
       description:e.dragData.description,
       location:e.dragData.location
     };  
-    this.tripService.addActivityToAgenda(this.newActivity,1).subscribe(data=>{
-      
+    this.tripService.addActivityToAgenda(e.dragData.id,1).subscribe(data=>{
+        if(data['location'] != null){
+          console.log("successfully added activity to agenda");
+          this.droppedProposed.push(data);
+        }else{
+          console.log("errors adding act to agenda");
+        }
     });
-    console.log("trip id:"+this.currentTrip['agendas'].length);
-    this.droppedProposed.push(e.dragData);
+    
   }
 }
