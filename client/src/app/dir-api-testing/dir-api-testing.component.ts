@@ -22,11 +22,11 @@ export class DirApiTestingComponent implements OnInit {
   constructor(private zone: NgZone, private tripService: TripService) { }
 
   ngOnInit() {
-    this.map = new google.maps.Map(this.gmapElement.nativeElement, {
+   /*  this.map = new google.maps.Map(this.gmapElement.nativeElement, {
       center: {lat: -33.8688, lng: 151.2195},
       zoom: 13,
       mapTypeId: 'roadmap'
-    })
+    }) */
 
     // this.getNearbySearches();
   }

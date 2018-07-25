@@ -15,14 +15,11 @@ import { AgmCoreModule } from '@agm/core';
 import { JsApiTestingComponent } from './js-api-testing/js-api-testing.component';
 import { DirApiTestingComponent } from './dir-api-testing/dir-api-testing.component';
 import { GooglePlacesDirective } from './google-places.directive';
-
-import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatetripComponent } from './createtrip/createtrip.component';
 import { TripsComponent } from './trips/trips.component';
 import { NgDragDropModule } from 'ng-drag-drop';
-
 
 
 
@@ -33,12 +30,11 @@ import { NgDragDropModule } from 'ng-drag-drop';
     ApiTestingComponent,
     JsApiTestingComponent,
     DirApiTestingComponent,
-    GooglePlacesDirective
+    GooglePlacesDirective,
     LoginComponent,
     DashboardComponent,
     CreatetripComponent,
     TripsComponent
-
   ],
   imports: [
     BrowserModule,
@@ -46,6 +42,7 @@ import { NgDragDropModule } from 'ng-drag-drop';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_API_KEY',
       libraries: ["places"]
@@ -53,8 +50,6 @@ import { NgDragDropModule } from 'ng-drag-drop';
   ],
   providers: [
     TripService
-    NgDragDropModule.forRoot()
-
   ],
   bootstrap: [AppComponent]
 })

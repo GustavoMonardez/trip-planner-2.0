@@ -99,6 +99,6 @@ export class JsApiTestingComponent implements OnInit {
     //   });
     //   map.fitBounds(bounds);
      //});
-  }
+  //}
 
 }

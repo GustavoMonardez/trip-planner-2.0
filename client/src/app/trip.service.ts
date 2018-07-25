@@ -11,7 +11,7 @@ export class TripService {
   
   getApi(lat, lng) {
     return this._http.get('/googlemapapi');
-
+  }
   /********************USERS********************/
   registerUser(user:{}){
     return this._http.post(this.apiUrl+"users",user);
