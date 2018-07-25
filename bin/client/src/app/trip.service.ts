@@ -8,7 +8,4 @@ import { HttpClient } from '@angular/common/http';
 export class TripService {
 
   constructor(private _http:HttpClient) { }
-  getApi(lat, lng) {
-    return this._http.get('/googlemapapi');
-  }
 }

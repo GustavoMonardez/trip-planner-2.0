@@ -37,7 +37,7 @@ public class Activity {
             )
     private List<User> likedBy;
 
-    @ManyToOne(fetch = FetchType.LAZY)	
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="agenda_id")
     private Agenda agenda;
 
@@ -103,7 +103,7 @@ public class Activity {
 	}
 	@Column(updatable=false)
 	private Date createdAt;
-	
+
 	private Date updatedAt;
 	public Activity() {
 	}
