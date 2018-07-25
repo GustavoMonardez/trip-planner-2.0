@@ -20,6 +20,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatetripComponent } from './createtrip/createtrip.component';
 import { TripsComponent } from './trips/trips.component';
 import { NgDragDropModule } from 'ng-drag-drop';
+import { UserSearchComponent } from './user-search/user-search.component';
+
+import { UserService } from './user.service'
 
 
 
@@ -34,7 +37,8 @@ import { NgDragDropModule } from 'ng-drag-drop';
     LoginComponent,
     DashboardComponent,
     CreatetripComponent,
-    TripsComponent
+    TripsComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { NgDragDropModule } from 'ng-drag-drop';
     })
   ],
   providers: [
-    TripService
+    TripService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

@@ -57,7 +57,15 @@ public class Activity {
 	public Activity() {
 	}
     
-    public String getLocation() {
+    public Trip getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+
+	public String getLocation() {
 		return location;
 	}
 

@@ -84,10 +84,11 @@ export class TripsComponent implements OnInit {
       this.droppedSuggestions = data;
     });
     // google map
+    var mapOptions = 
     this.map = new google.maps.Map(this.gmapElement.nativeElement, {
       center: {lat: -33.8688, lng: 151.2195},
       zoom: 13,
-      mapTypeId: 'roadmap'
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     });
   }
   onSuggestionDrop(e: any) {

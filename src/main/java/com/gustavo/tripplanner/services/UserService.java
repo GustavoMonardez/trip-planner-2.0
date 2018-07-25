@@ -1,5 +1,6 @@
 package com.gustavo.tripplanner.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +54,22 @@ public class UserService {
 				return false;
 			}
 		}
+	}
+	public List<User> searchUsers(String term){
+		List<User> returnList = userRepository.findAllByFirstNameContains(term);
+		for(User user: userRepository.findAllByLastNameContains(term)) {
+			if(!returnList.contains(user)) {
+				returnList.add(user);
+			}
+		}
+		for(User user: userRepository.findAllByEmailContains(term)) {
+			if(!returnList.contains(user)) {
+				returnList.add(user);
+			}
+		}
+		return returnList;
+	}
+	public List<User> searchUsers(String term, String lastname){
+		return userRepository.findDistinctByFirstNameContainsOrLastNameContains(term, lastname);
 	}
 }

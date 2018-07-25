@@ -43,6 +43,7 @@ public class Agenda {
 	
 	public Agenda() {
 	}
+	
 	public Long getId() {
 		return id;
 	}
