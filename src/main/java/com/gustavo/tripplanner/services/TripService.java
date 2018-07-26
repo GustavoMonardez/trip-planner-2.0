@@ -58,7 +58,7 @@ public class TripService {
 	public Trip inviteUser(Long userId, Long tripId) {
 		Trip trip = findTripById(tripId);
 		User user = userService.findUserById(userId);
-		if(!trip.getInvitees().contains(user)) {
+		if(!trip.getInvitees().contains(user) && !trip.getAdmins().contains(user) && !trip.getGuests().contains(user)) {
 			trip.getInvitees().add(user);			
 		}
 		return tripRepository.save(trip);
