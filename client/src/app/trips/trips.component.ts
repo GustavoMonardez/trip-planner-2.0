@@ -151,4 +151,12 @@ export class TripsComponent implements OnInit {
       }
     })
   }
+  onDropDelete(e:any){
+    this.tripService.deleteActivity(e.dragData.id).subscribe(data=>{
+      //console.log("delete data: "+data);
+      this.droppedSuggestions.splice(this.droppedSuggestions.indexOf(e.dragData),1);
+      console.log(e.dragData);
+    })
+    
+  }
 }

@@ -23,17 +23,17 @@
 <!-- end agendas(days) -->
 </div><div
 id="sidebar-container">
+<div id="delete-activities" droppable  [dropScope]="'deleteActivity'" (onDrop)="onDropDelete($event)" >
+    <div id="background-delete">
+        <i class="fa fa-trash"></i> Drop Activities here to Delete
+    </div>
+ </div>
 <!-- start activities (proposed) -->
  <div droppable (onDrop)="onSuggestionDrop($event)" id="proposed-container">
    <h2>Proposed</h2>
-   <div draggable [dragScope]="'agendaDay'" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity">
+   <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity">
      <h3>{{activity.location}}</h3>
      <p>{{activity.description}}</p>
-   </div>
-   <div id="delete-activities">
-      <div id="background-delete">
-        Drop Activities here to Delete 
-      </div>
    </div>
 <!-- end activities (proposed) -->
  </div><div

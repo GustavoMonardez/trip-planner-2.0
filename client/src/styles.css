@@ -10,16 +10,19 @@
 #agenda-container,#sidebar-container{
     display: inline-block;
     vertical-align: top;
-    height:700px;
+    height:800px;
     overflow-y:scroll;
 }
 #agenda-container{
-    width: 70%;
+    width: 65%;
+    margin-right:3%;
     background-color: azure;
 }
 #sidebar-container{
-    width:30%;
+    width:28%;
+    padding:2%;
     background-color:bisque;
+    overflow:hidden;
 }
 #proposed-container,#suggestions-container{
     height:50%;
@@ -27,14 +30,14 @@
 }
 #proposed-container{
     position: relative;
-    background-color:cadetblue;
+    height:45%;
+   /*  background-color:cadetblue; */
 }
 /******************DRAG TO DELETE START********************/
 #delete-activities{
-    display: none;
     width:80%;
-    height: 80px;
-    position: absolute;
+    height: 5%;
+    position: relative;
     left: 10%;
     bottom: 0;
     right: 0;
@@ -49,10 +52,10 @@
     right: 0;
    /*  z-index: -1; */
     overflow: hidden;
-    line-height: 80px;
+    line-height: 30px;
     text-align: center;
     color:white;
-    font-size: 20px;
+    font-size: 16px;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
        -moz-user-select: none; /* Firefox */
@@ -61,7 +64,7 @@
  }
  /******************DRAG TO DELETE END********************/
 #suggestions-container{
-    background-color: coral;
+   /*  background-color: coral; */
 }
 .single-activity{
     width:80%;

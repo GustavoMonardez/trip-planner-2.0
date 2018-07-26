@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -97,8 +98,9 @@ public class TripController {
 		return activityService.createActivity(activity);
 	}
 	/*********************DELETE BY ID*******************/
-	@PostMapping("/activities/{activity_id}/delete")
+	@DeleteMapping("/activities/{activity_id}/delete")
 	public void deleteActivityById(@PathVariable("activity_id")Long activity_id) {
+		System.out.println("activity id:"+activity_id);
 		activityService.deleteActivityById(activity_id);
 	}
 	@PostMapping("/agendas/{agenda_id}/delete")
