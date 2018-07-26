@@ -5,12 +5,15 @@
 <div id="agenda-container">
     <h2>Agenda</h2>
   <!--  start agendas(days) -->
-  <div  class="sidebar-days">
-      <h3 *ngFor="let agenda of agendas" class="day-number" (click)="selectDay(agenda.day)">Day {{agenda.day}}</h3>
+  <div  class="sidebar-days tab">
+      <button *ngFor="let agenda of agendas" [ngClass]="{active : agenda.day == currentAgenda.day}" class="day-number" (click)="selectDay(agenda.day)">Day {{agenda.day}}</button>
       <button (click)="createNewDay()">add day</button>
   </div><div
    class="single-agenda">
       <div droppable  [dropScope]="'agendaDay'" (onDrop)="onActivityDrop($event)" class="agenda-day">
+          <div id="background">
+            Drop Activities here to Add 
+          </div>
         <div *ngFor="let activity of currentAgenda.activities" class="single-activity">
           <h3>{{activity.location}}</h3>
           <p>{{activity.description}}</p>
@@ -26,6 +29,11 @@ id="sidebar-container">
    <div draggable [dragScope]="'agendaDay'" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity">
      <h3>{{activity.location}}</h3>
      <p>{{activity.description}}</p>
+   </div>
+   <div id="delete-activities">
+      <div id="background-delete">
+        Drop Activities here to Delete 
+      </div>
    </div>
 <!-- end activities (proposed) -->
  </div><div
@@ -56,4 +64,3 @@ id="sidebar-container">
     <p *ngIf="suggestions.length == 0">No suggestions found</p>
   </div>
 </div>
-
