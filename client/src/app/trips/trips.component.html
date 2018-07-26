@@ -64,7 +64,7 @@ id="sidebar-container">
     (onSelect)="apiCall($event)"
     type="text"
     class="google-place-input"
-    placeholder="Type to search..">
+    placeholder="Search location..">
     <div id="map" #gmap></div>
     <div draggable *ngFor="let suggestion of nearbySearchList" [dragData]="suggestion" class="single-activity" >
       <div *ngIf="suggestion.photos" [style.background-image]="getBackground(suggestion.photos[0].getUrl({'maxWidth': 400, 'maxHeight': 200}))" style="background-repeat: no-repeat">
