@@ -1,12 +1,11 @@
 <div id = "search-component">
-  <h1>User Search</h1>
+  <h1 *ngIf="currenttrip">Invite User</h1>
+  <h1 *ngIf="!currenttrip">User Search</h1>
   
   <input #searchBox id = "search-box" id="search-box" (keyup)="search(searchBox.value)">
   <ul class = "search-result">
-    <li *ngFor = "let user of users$ | async">
-      <a href>
+    <li *ngFor = "let user of users$ | async" (click)="dostuff(user)">
         {{user.firstName}} {{user.lastName}} ({{user.email}})
-      </a>
     </li>
   </ul>
 </div>

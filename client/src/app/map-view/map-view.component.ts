@@ -1,4 +1,5 @@
-import { Component, OnInit, OnChanges, SimpleChanges, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewChild, Input,SimpleChanges } from '@angular/core';
+
 import { TripService } from '../trip.service';
 import { } from '@types/googlemaps';
 
