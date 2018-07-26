@@ -46,7 +46,7 @@ import { MapViewComponent } from './map-view/map-view.component';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDXO12zgvRXVFT4SNNIWgeYzZCcT81Z5Yw',
+      apiKey: 'API_KEY',
       libraries: ["places"]
     })
   ],

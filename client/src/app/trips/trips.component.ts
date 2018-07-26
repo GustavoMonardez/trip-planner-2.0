@@ -27,11 +27,9 @@ export class TripsComponent implements OnInit {
   place: any;
   map: google.maps.Map;
   googleService: any;
-  nearbySearchList: any;
+  nearbySearchList = [];  // keep Esther's version
   @ViewChild('gmap') gmapElement: any;
   map_view = false;
-  // when the lat lng properties are added to Agenda model, we will just be using currentAgenda
-  agendaLocations = [{lat: -25.363, lng: 131.044}, {lat: 25.0330, lng: 121.5654}];
 
   constructor(
     private tripService:TripService,
@@ -90,7 +88,6 @@ export class TripsComponent implements OnInit {
     this.map = new google.maps.Map(this.gmapElement.nativeElement, {
       center: {lat: -33.8688, lng: 151.2195},
       zoom: 13,
-      // mapTypeId: 'roadmap'
     });
   }
   onSuggestionDrop(e: any) {
@@ -156,7 +153,7 @@ export class TripsComponent implements OnInit {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         this.nearbySearchList = results;
         console.log(this.nearbySearchList);
-        // add to suggestions
+        // add to suggestions: NO LONGER NEEDED
         // for (var i = 0; i < results.length; i++) {
         //   var place = results[i];
         //   this.suggestions.push({location: place.name, description: "insert description here"});
