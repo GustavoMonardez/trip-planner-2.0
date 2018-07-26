@@ -159,7 +159,7 @@ export class TripsComponent implements OnInit {
     this.tripService.createAgenda(agenda,this.trip_id).subscribe(data=>{
       if(data['day'] != null){
         console.log("successfully added one day to trip");
-        //this.currentTrip['agendas'].push(data);
+        this.currentTrip['agendas'].push(data);
         this.agendas.push(data);
       }else{
         console.log("error adding new day");
