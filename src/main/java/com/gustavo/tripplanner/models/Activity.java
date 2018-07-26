@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
@@ -28,6 +29,8 @@ public class Activity {
     private Double lng;
     private Double lat;
     private String location;
+    @Lob
+    @Column(name="imgRef", length=512)
     private String imgRef;
     private String description;
 

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
@@ -30,6 +31,8 @@ public class Trip {
 	private Long id; 
 	@NotEmpty 
 	private String title; 
+	@Lob
+    @Column(name="imgRef", length=512)
 	private String description; 
 	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date date_from; 

@@ -93,6 +93,7 @@ public class TripController {
 	}
 	@PostMapping("/activities/{trip_id}/edit")
 	public Activity addActivityToTrip(@PathVariable("trip_id")Long trip_id,@RequestBody Activity activity) {
+		
 		Trip trip = tripService.findTripById(trip_id);
 		activity.setTrip(trip);
 		return activityService.createActivity(activity);

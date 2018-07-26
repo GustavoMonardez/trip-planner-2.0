@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { TripService } from '../trip.service';
 import { ActivatedRoute,Params } from '@angular/router';
 import { } from '@types/googlemaps';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser'
 
 
 @Component({
@@ -35,7 +36,8 @@ export class TripsComponent implements OnInit {
   constructor(
     private tripService:TripService,
     private route:ActivatedRoute,
-    private cdr:ChangeDetectorRef
+    private cdr:ChangeDetectorRef,
+    private sanitizer:DomSanitizer
   ){}
   ngOnInit() {
     //get current trip info
@@ -71,16 +73,16 @@ export class TripsComponent implements OnInit {
     console.log("triggered");
     //data from google is not an activity yet, so we need to create one
     this.newActivity={
-      // Esther commented out Gustavo's code below:
-      // description:e.dragData.description,
-      // location:e.dragData.location
-      // Esther added the following:
-      description: "activity description goes here",
-      // img_ref: e.dragData.
+      description: e.dragData.types[0],
+      imgRef: typeof e.dragData.photos != 'undefined'
+                  ? e.dragData.photos[0].getUrl({'maxWidth': 400, 'maxHeight': 200})
+                  : "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjl05vOtb3cAhWI0J8KHRgqAP8QjRx6BAgBEAU&url=http%3A%2F%2Fphysic.minimalistics.co%2Fbackground-ocean%2F&psig=AOvVaw0QWe4gT6kREbF4ke5w0JuC&ust=1532716903512453",
       lat: e.dragData.geometry.location.lat(),
       lng: e.dragData.geometry.location.lng(),
       location: e.dragData.name
     };
+    console.log("added suggestion to activity")
+    console.log(this.newActivity.imgRef)
     console.log(this.newActivity)
     /*******An activity should be associated with a trip?******/
     this.tripService.createActivity(this.newActivity,this.trip_id).subscribe(data=>{
@@ -132,11 +134,6 @@ export class TripsComponent implements OnInit {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         this.nearbySearchList = results;
         console.log(this.nearbySearchList);
-        // add to suggestions: NO LONGER NEEDED
-        // for (var i = 0; i < results.length; i++) {
-        //   var place = results[i];
-        //   this.suggestions.push({location: place.name, description: "insert description here"});
-        // }
         this.cdr.detectChanges();
       }
     })
@@ -174,5 +171,9 @@ export class TripsComponent implements OnInit {
       console.log(e.dragData);
     })
 
+  }
+
+  getBackground(img_ref) {
+    return this.sanitizer.bypassSecurityTrustStyle(`url(${img_ref})`);
   }
 }
