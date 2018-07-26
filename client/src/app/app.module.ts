@@ -20,9 +20,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatetripComponent } from './createtrip/createtrip.component';
 import { TripsComponent } from './trips/trips.component';
 import { NgDragDropModule } from 'ng-drag-drop';
-import { UserSearchComponent } from './user-search/user-search.component';
 
+import { MapViewComponent } from './map-view/map-view.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 import { UserService } from './user.service'
+
 
 
 
@@ -38,6 +40,7 @@ import { UserService } from './user.service'
     DashboardComponent,
     CreatetripComponent,
     TripsComponent,
+    MapViewComponent,
     UserSearchComponent
   ],
   imports: [
@@ -48,7 +51,7 @@ import { UserService } from './user.service'
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_API_KEY',
+      apiKey: 'API_KEY',
       libraries: ["places"]
     })
   ],

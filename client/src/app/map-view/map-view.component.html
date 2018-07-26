@@ -1,0 +1,18 @@
+
+<select name="start" [(ngModel)]="startLocation" (change)="showRoute()">
+  <option *ngFor="let a of activities" [ngValue]="a">{{ a.location }}</option>
+</select>
+<span> to </span>
+<select name="end" (change)="showRoute()" [(ngModel)]="endLocation">
+  <option *ngFor="let a of activities" [ngValue]="a">{{ a.location }}</option>
+</select>
+<span> by </span>
+<select name="travelMode" (change)="showRoute()" [(ngModel)]="travelMode">
+  <option value="DRIVING">Driving</option>
+  <option value="WALKING">Walking</option>
+  <option value="BICYCLING">Bicycling</option>
+  <option value="TRANSIT">Transit</option>
+</select>
+<button (click)="showRoute()">Get route</button>
+<div id="map" #gmap style="width:100%;height:400px"></div>
+<div id="directionsPanel" style="width:100%;height:200px">Display Panel</div>

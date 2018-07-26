@@ -10,7 +10,13 @@
       <button (click)="createNewDay()">add day</button>
   </div><div
    class="single-agenda">
-      <div droppable  [dropScope]="'agendaDay'" (onDrop)="onActivityDrop($event)" class="agenda-day">
+
+      <!-- Map View -->
+      <button *ngIf="!map_view" (click)="goMapView()">Map view</button>
+      <button *ngIf="map_view" (click)="goMapView()">List view</button>
+      <app-map-view *ngIf="map_view" [myAgenda]="currentAgenda"></app-map-view>
+      <!-- Map View  -->
+      <div *ngIf="!map_view" droppable  [dropScope]="'agendaDay'" (onDrop)="onActivityDrop($event)" class="agenda-day">
           <div id="background">
             Drop Activities here to Add 
           </div>
@@ -57,10 +63,15 @@ id="sidebar-container">
     class="google-place-input"
     placeholder="Type to search..">
     <div id="map" #gmap></div>
-    <div draggable *ngFor="let suggestion of suggestions" [dragData]="suggestion" class="single-activity">
+    <!-- <div draggable *ngFor="let suggestion of suggestions" [dragData]="suggestion" class="single-activity">
       <h3>{{suggestion.location}}</h3>
       <p>{{suggestion.description}}</p>
+    </div> -->
+    <!-- this is another version of the above commented code  -->
+    <div draggable *ngFor="let suggestion of nearbySearchList" [dragData]="suggestion" class="single-activity">
+      <h3>{{suggestion.name}}</h3>
+      <p>{{suggestion.vicinity}}</p>
     </div>
-    <p *ngIf="suggestions.length == 0">No suggestions found</p>
+    <p *ngIf="nearbySearchList.length == 0">No suggestions found</p>
   </div>
 </div>

@@ -15,7 +15,7 @@ public class TripService {
 	private final TripRepository tripRepository;
 	private final UserService userService;
 	private final AgendaRepository agendaRepo;
-	
+
 	public TripService(TripRepository tripRepository, UserService userService, AgendaRepository agendaRepo) {
 		this.tripRepository = tripRepository;
 		this.userService = userService;
