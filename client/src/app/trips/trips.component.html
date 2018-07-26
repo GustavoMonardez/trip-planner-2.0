@@ -18,9 +18,9 @@
       <!-- Map View  -->
       <div *ngIf="!map_view" droppable  [dropScope]="'agendaDay'" (onDrop)="onActivityDrop($event)" class="agenda-day">
           <div id="background">
-            Drop Activities here to Add 
+            Drop Activities here to Add
           </div>
-        <div *ngFor="let activity of currentAgenda.activities" class="single-activity">
+        <div *ngFor="let activity of currentAgenda.activities" class="single-activity" [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat">
           <h3>{{activity.location}}</h3>
           <p>{{activity.description}}</p>
         </div>
@@ -37,9 +37,12 @@ id="sidebar-container">
 <!-- start activities (proposed) -->
  <div droppable (onDrop)="onSuggestionDrop($event)" id="proposed-container">
    <h2>Proposed</h2>
-   <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity">
+   <!-- <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity"> -->
+  <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity" [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat">
+
      <h3>{{activity.location}}</h3>
      <p>{{activity.description}}</p>
+
    </div>
 <!-- end activities (proposed) -->
  </div><div
@@ -63,14 +66,15 @@ id="sidebar-container">
     class="google-place-input"
     placeholder="Type to search..">
     <div id="map" #gmap></div>
-    <!-- <div draggable *ngFor="let suggestion of suggestions" [dragData]="suggestion" class="single-activity">
-      <h3>{{suggestion.location}}</h3>
-      <p>{{suggestion.description}}</p>
-    </div> -->
-    <!-- this is another version of the above commented code  -->
-    <div draggable *ngFor="let suggestion of nearbySearchList" [dragData]="suggestion" class="single-activity">
-      <h3>{{suggestion.name}}</h3>
-      <p>{{suggestion.vicinity}}</p>
+    <div draggable *ngFor="let suggestion of nearbySearchList" [dragData]="suggestion" class="single-activity" >
+      <div *ngIf="suggestion.photos" [style.background-image]="getBackground(suggestion.photos[0].getUrl({'maxWidth': 400, 'maxHeight': 200}))" style="background-repeat: no-repeat">
+        <h3>{{suggestion.name}}</h3>
+        <p>Rating: {{suggestion.rating}}</p>
+      </div>
+      <div *ngIf="!suggestion.photos">
+        <h3>{{suggestion.name}}</h3>
+        <p>Rating: {{suggestion.rating}}</p>
+      </div>
     </div>
     <p *ngIf="nearbySearchList.length == 0">No suggestions found</p>
   </div>
