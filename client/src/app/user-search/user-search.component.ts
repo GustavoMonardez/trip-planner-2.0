@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, switchMap
@@ -11,12 +11,17 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-search.component.css']
 })
 export class UserSearchComponent implements OnInit {
+  @Input() currenttrip: any;
+
+  @Output() inviteUserEmitter = new EventEmitter();
+
   users$:{};
   private searchTerms = new Subject<string>();
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    console.log("hey i'm in the user-search! and this is the trip that i am getting from the parent: ", this.currenttrip);
     this.users$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -25,5 +30,17 @@ export class UserSearchComponent implements OnInit {
   }
   search(term){
     this.searchTerms.next(term);
+  }
+
+  dostuff(user){
+    if(this.currenttrip){
+      this.emitUserToInviteComponent(user);
+    }else{
+      console.log("im gonna go look at the user profile")
+    }
+  }
+
+  emitUserToInviteComponent(user){
+    this.inviteUserEmitter.emit(user);
   }
 }

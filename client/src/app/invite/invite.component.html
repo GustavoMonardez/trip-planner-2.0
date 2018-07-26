@@ -1,0 +1,33 @@
+<div *ngIf="trip">
+  <h1>{{trip.title}}</h1>
+  <p>Description: {{trip.description}}</p>
+  <p>Date: {{trip.date_from | date: "shortDate"}} - {{trip.date_to | date: "shortDate"}}</p>
+  <p class = "error" *ngIf="errorMessage">{{errorMessage}}</p>
+  <div>
+    <div class = "tripadmins trippeople">
+      <h3>Admins:</h3>
+      <ul>
+        <li *ngFor="let admin of trip.admins" class = "people">{{admin.firstName}} {{admin.lastName}} ({{admin.email}})</li>
+      </ul>
+    </div>
+    <div class = "tripattendees trippeople">
+      <h3>Attendees:</h3>
+      <li *ngFor="let guest of trip.guests" class = "people">
+        <span>{{guest.firstName}} {{guest.lastName}} ({{guest.email}})</span>
+        <button (click)="makeTripAdmin(guest)">Make Admin</button>
+      </li>
+    </div>
+    <div class = "tripinvited trippeople">
+      <h3>Invited:</h3>
+      <li *ngFor="let invitee of trip.invitees" class = "people">
+        <span>{{invitee.firstName}} {{invitee.lastName}} ({{invitee.email}})</span>
+        <button (click)="uninviteUser(invitee)">Uninvite</button>
+      </li>
+
+    </div>
+  </div>
+  <app-user-search [currenttrip] = "trip" (inviteUserEmitter)="inviteUser($event)"></app-user-search>
+</div>
+<div *ngIf="!trip">
+  <h1>Loading page...</h1>
+</div>
