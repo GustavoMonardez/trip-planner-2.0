@@ -91,8 +91,10 @@ export class TripsComponent implements OnInit {
     this.tripService.addActivityToAgenda(e.dragData.id,this.currentAgenda['id']).subscribe(data=>{
         if(data['location'] != null){
           console.log("successfully added activity to agenda");
-          //this.droppedProposed.push(data);
+          //add activity to current agenda day
           this.currentAgenda['activities'].push(data);
+           //remove from list of proposed activities
+           this.droppedSuggestions.splice(this.droppedSuggestions.indexOf(e.dragData),1);
         }else{
           console.log("errors adding act to agenda");
         }
