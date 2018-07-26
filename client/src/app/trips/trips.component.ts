@@ -17,7 +17,7 @@ export class TripsComponent implements OnInit {
   newAgenda={};
   droppedSuggestions:any;
   droppedProposed:any;
-
+  popup=false;
   //code to keep
   agendas=[];
   currentAgenda={};
@@ -175,5 +175,8 @@ export class TripsComponent implements OnInit {
 
   getBackground(img_ref) {
     return this.sanitizer.bypassSecurityTrustStyle(`url(${img_ref})`);
+  }
+  show(){
+    this.popup = (this.popup == true) ? false : true;
   }
 }

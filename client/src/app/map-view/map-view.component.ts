@@ -65,7 +65,7 @@ export class MapViewComponent implements OnInit, OnChanges {
        infowindow.setContent( "<div id='infowindow'>"+ loc.location +"</div>");
        infowindow.open(this.map, marker);
      });
-     bounds.extend(marker.position);
+     bounds.extend(marker['position']);
   }
 
   calcRoute(directionsDisplay) {

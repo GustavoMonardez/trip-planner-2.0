@@ -24,7 +24,9 @@ import { NgDragDropModule } from 'ng-drag-drop';
 import { MapViewComponent } from './map-view/map-view.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserService } from './user.service';
-import { InviteComponent } from './invite/invite.component'
+import { UserActivityComponent } from './user-activity/user-activity.component';
+import { InviteComponent } from './invite/invite.component';
+
 
 
 
@@ -43,6 +45,7 @@ import { InviteComponent } from './invite/invite.component'
     TripsComponent,
     MapViewComponent,
     UserSearchComponent,
+    UserActivityComponent,
     InviteComponent
   ],
   imports: [
