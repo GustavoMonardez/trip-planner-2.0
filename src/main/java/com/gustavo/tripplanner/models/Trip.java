@@ -79,6 +79,14 @@ public class Trip {
 		this.admins = new ArrayList<User>();
 	}
 	
+	public List<Activity> getProposedActivities() {
+		return proposedActivities;
+	}
+
+	public void setProposedActivities(List<Activity> proposedActivities) {
+		this.proposedActivities = proposedActivities;
+	}
+
 	public Long getId() {
 		return id;
 	}

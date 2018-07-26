@@ -90,7 +90,9 @@ public class User {
 		this.tripsAttending = new ArrayList<Trip>();
 	}
 	
-	
+	public String getName() {
+		return firstName + " " + lastName;
+	}
 	
 	public Long getId() {
 		return id;

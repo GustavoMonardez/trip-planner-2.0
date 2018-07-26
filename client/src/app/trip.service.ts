@@ -34,16 +34,21 @@ export class TripService {
   findAllActivities(){
     return this._http.get(this.apiUrl+"activities");
   }
-  createActivity(activity:{}){
-    return this._http.post(this.apiUrl+"activities",activity);
+  createActivity(activity:{},trip_id){
+    return this._http.post(this.apiUrl+"activities/"+trip_id+"/edit",activity);
   }
   addActivityToAgenda(activity_id,agenda_id){
     ///agendas/{agenda_id}/edit
     return this._http.post(this.apiUrl+"agendas/"+agenda_id+"/edit",activity_id);
   }
+  deleteActivity(activity_id){
+    //"/activities/{activity_id}/delete"
+    console.log("activity id(service ts): "+activity_id);
+    return this._http.delete(this.apiUrl+"activities/"+activity_id+"/delete");
+  }
   /********************AGENDA********************/
-  createAgenda(agenda:{}){
-    return this._http.post(this.apiUrl+"agendas",agenda); 
+  createAgenda(agenda:{},trip_id){
+    return this._http.post(this.apiUrl+"agendas/"+trip_id+"/create",agenda); 
   }
   findAgendaById(agenda_id){
     return this._http.get(this.apiUrl+"agendas/"+agenda_id);

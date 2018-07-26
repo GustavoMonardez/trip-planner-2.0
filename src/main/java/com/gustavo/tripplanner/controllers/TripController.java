@@ -6,11 +6,13 @@ import javax.validation.Valid;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gustavo.tripplanner.models.Activity;
@@ -47,8 +49,10 @@ public class TripController {
 	public Activity createActivity(@RequestBody Activity activity) {
 		return activityService.createActivity(activity);
 	}
-	@PostMapping("/agendas")
-	public Agenda createAgenda(@RequestBody Agenda agenda) {
+	@PostMapping("/agendas/{trip_id}/create")
+	public Agenda createAgenda(@RequestBody Agenda agenda,@PathVariable("trip_id")Long trip_id) {
+		Trip trip = tripService.findTripById(trip_id);
+		agenda.setTrip(trip);
 		return agendaService.createAgenda(agenda);
 	}
 	// started modifying -bob
@@ -83,12 +87,20 @@ public class TripController {
 		System.out.println("from server activity: "+activity_id);
 		Agenda agenda = agendaService.findAgendaById(agenda_id);
 		Activity activity = activityService.findActivityById(activity_id);
+		activity.setTrip(null);
 		activity.setAgenda(agenda);
 		return activityService.updateActivity(activity);
 	}
+	@PostMapping("/activities/{trip_id}/edit")
+	public Activity addActivityToTrip(@PathVariable("trip_id")Long trip_id,@RequestBody Activity activity) {
+		Trip trip = tripService.findTripById(trip_id);
+		activity.setTrip(trip);
+		return activityService.createActivity(activity);
+	}
 	/*********************DELETE BY ID*******************/
-	@PostMapping("/activities/{activity_id}/delete")
+	@DeleteMapping("/activities/{activity_id}/delete")
 	public void deleteActivityById(@PathVariable("activity_id")Long activity_id) {
+		System.out.println("activity id:"+activity_id);
 		activityService.deleteActivityById(activity_id);
 	}
 	@PostMapping("/agendas/{agenda_id}/delete")
@@ -140,6 +152,16 @@ public class TripController {
 			return curUser;
 		}else {
 			return new User();
+		}
+	}
+	/*********************FIND USER*******************/
+	//of the format /finduser/search?term=someNameOrEmail&last=asdf
+	@GetMapping("/finduser/search")
+	public List<User> finduser(@RequestParam("term") String term, @RequestParam(value="lastname",required = false) String lastname){
+		if(lastname == null) {
+			return userService.searchUsers(term);			
+		}else {
+			return userService.searchUsers(term, lastname);
 		}
 	}
 }
