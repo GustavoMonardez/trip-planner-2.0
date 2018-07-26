@@ -41,6 +41,11 @@ export class TripService {
     ///agendas/{agenda_id}/edit
     return this._http.post(this.apiUrl+"agendas/"+agenda_id+"/edit",activity_id);
   }
+  deleteActivity(activity_id){
+    //"/activities/{activity_id}/delete"
+    console.log("activity id(service ts): "+activity_id);
+    return this._http.delete(this.apiUrl+"activities/"+activity_id+"/delete");
+  }
   /********************AGENDA********************/
   createAgenda(agenda:{},trip_id){
     return this._http.post(this.apiUrl+"agendas/"+trip_id+"/create",agenda); 
