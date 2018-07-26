@@ -10,6 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatetripComponent } from './createtrip/createtrip.component';
 import { TripsComponent } from './trips/trips.component';
 
+import { UserActivityComponent } from './user-activity/user-activity.component';
+
 
 const routes: Routes = [
   {path:'registration', component:RegistrationComponent},
@@ -21,7 +23,7 @@ const routes: Routes = [
    {path:'apitesting',component:ApiTestingComponent},
   {path:'jsapitesting',component:JsApiTestingComponent},
   {path:'dirapitesting',component:DirApiTestingComponent},
-
+  {path:'trips/plan/activities/:id',component:UserActivityComponent}
 ];
 
 @NgModule({

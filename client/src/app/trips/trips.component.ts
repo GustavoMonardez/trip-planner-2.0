@@ -16,7 +16,7 @@ export class TripsComponent implements OnInit {
   newAgenda={};
   droppedSuggestions:any;
   droppedProposed:any;
-
+  popup=false;
   //code to keep
   agendas=[];
   currentAgenda={};
@@ -173,5 +173,8 @@ export class TripsComponent implements OnInit {
       console.log(e.dragData);
     })
     
+  }
+  show(){
+    this.popup = (this.popup == true) ? false : true;
   }
 }
