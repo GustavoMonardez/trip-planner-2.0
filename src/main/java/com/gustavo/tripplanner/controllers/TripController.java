@@ -19,6 +19,7 @@ import com.gustavo.tripplanner.models.Activity;
 import com.gustavo.tripplanner.models.Agenda;
 import com.gustavo.tripplanner.models.Trip;
 import com.gustavo.tripplanner.models.User;
+import com.gustavo.tripplanner.postmodels.InviteUserPost;
 import com.gustavo.tripplanner.postmodels.TripPost;
 import com.gustavo.tripplanner.services.ActivityService;
 import com.gustavo.tripplanner.services.AgendaService;
@@ -93,6 +94,7 @@ public class TripController {
 	}
 	@PostMapping("/activities/{trip_id}/edit")
 	public Activity addActivityToTrip(@PathVariable("trip_id")Long trip_id,@RequestBody Activity activity) {
+		
 		Trip trip = tripService.findTripById(trip_id);
 		activity.setTrip(trip);
 		return activityService.createActivity(activity);
@@ -163,5 +165,25 @@ public class TripController {
 		}else {
 			return userService.searchUsers(term, lastname);
 		}
+	}
+	
+	@PostMapping("/trips/invite")
+	public Trip inviteUser(@RequestBody InviteUserPost inviteUserPost) {
+		return tripService.inviteUser(inviteUserPost.getUserId(), inviteUserPost.getTripId());
+	}
+	
+	@PostMapping("/trips/uninvite")
+	public Trip uninviteUser(@RequestBody InviteUserPost inviteUserPost) {
+		return tripService.uninviteUser(inviteUserPost.getUserId(), inviteUserPost.getTripId());
+	}
+	
+	@PostMapping("/trips/acceptinvitation")
+	public User acceptInvitation(@RequestBody InviteUserPost inviteUserPost) {
+		return tripService.acceptInvitation(inviteUserPost.getUserId(), inviteUserPost.getTripId());
+	}
+	
+	@PostMapping("/trips/maketripadmin")
+	public Trip makeTripAdmin(@RequestBody InviteUserPost inviteUserPost) {
+		return tripService.makeTripAdmin(inviteUserPost.getUserId(), inviteUserPost.getTripId());
 	}
 }

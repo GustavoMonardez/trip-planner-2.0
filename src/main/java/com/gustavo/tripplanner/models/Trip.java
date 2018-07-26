@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
@@ -30,6 +31,8 @@ public class Trip {
 	private Long id; 
 	@NotEmpty 
 	private String title; 
+	@Lob
+    @Column(name="imgRef", length=512)
 	private String description; 
 	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date date_from; 
@@ -60,7 +63,7 @@ public class Trip {
 	@JoinTable( 
 			name = "trips_invitees", 
 			joinColumns = @JoinColumn(name = "trip_id"), 
-			inverseJoinColumns = @JoinColumn(name = "invitees_id") ) 
+			inverseJoinColumns = @JoinColumn(name = "invitee_id") ) 
 	@JsonIgnoreProperties("tripsInvited")
 	private List<User> invitees;
 	
@@ -77,6 +80,8 @@ public class Trip {
 		//added this line here to avoid a null pointer exception
 		//when creating a trip
 		this.admins = new ArrayList<User>();
+		this.invitees = new ArrayList<User>();
+		this.guests = new ArrayList<User>();
 	}
 	
 	public List<Activity> getProposedActivities() {

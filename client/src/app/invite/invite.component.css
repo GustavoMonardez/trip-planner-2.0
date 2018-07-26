@@ -1,0 +1,16 @@
+.trippeople{
+    display:inline-block;
+    vertical-align: top;
+    width:300px;
+    height:500px;
+    border:2px solid black;
+    margin-right:10px;
+    padding-left:3px;
+
+}
+.people{
+    margin-left:20px;
+}
+.error{
+    color:red;
+}

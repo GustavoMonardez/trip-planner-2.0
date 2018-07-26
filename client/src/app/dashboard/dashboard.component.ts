@@ -18,9 +18,17 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.userId = localStorage.getItem("userId");
+    this.getUser();
+  }
+  getUser() {
     this.tripService.getUser(this.userId).subscribe(user=>{
       console.log(user);
       this.user = user
     });
+  }
+
+  acceptInvitation(trip){
+    console.log("hey im entering here in trip", trip);
+    this.tripService.acceptInvitation(this.user.id, trip.id).subscribe(data=>this.user = data);
   }
 }
