@@ -15,7 +15,7 @@ public class TripService {
 	private final TripRepository tripRepository;
 	private final UserService userService;
 	private final AgendaRepository agendaRepo;
-	
+
 	public TripService(TripRepository tripRepository, UserService userService, AgendaRepository agendaRepo) {
 		this.tripRepository = tripRepository;
 		this.userService = userService;
@@ -27,6 +27,7 @@ public class TripService {
 		Trip savedTrip = tripRepository.save(trip);
 		Agenda defaultAgenda = new Agenda();
 		defaultAgenda.setTrip(savedTrip);
+		defaultAgenda.setDay(1);
 		agendaRepo.save(defaultAgenda);
 		return savedTrip;
 	}

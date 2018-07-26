@@ -29,6 +29,9 @@ export class TripsComponent implements OnInit {
   googleService: any;
   nearbySearchList: any;
   @ViewChild('gmap') gmapElement: any;
+  map_view = false;
+  // when the lat lng properties are added to Agenda model, we will just be using currentAgenda
+  agendaLocations = [{lat: -25.363, lng: 131.044}, {lat: 25.0330, lng: 121.5654}];
 
   constructor(
     private tripService:TripService,
@@ -42,9 +45,9 @@ export class TripsComponent implements OnInit {
       this.tripService.findTripById(params['id']).subscribe(data=>{
         //make sure it exists
         if(data['title'] != null){
-          this.currentTrip = data;      
+          this.currentTrip = data;
           //set activities
-          //set agendas   
+          //set agendas
           for(let i=0; i < this.currentTrip['agendas'].length; ++i){
             //each agenda may contain a list of activities that we
             //are adding to agendas(array of arrays)
@@ -78,7 +81,7 @@ export class TripsComponent implements OnInit {
       });
     });
     //this needs to be changed: it is finding ALL activities suggestions
-    //on the proposed section when we only need activities proposed only 
+    //on the proposed section when we only need activities proposed only
     //for this particular trip
     this.tripService.findAllActivities().subscribe(data=>{
       this.droppedSuggestions = data;
@@ -87,16 +90,24 @@ export class TripsComponent implements OnInit {
     this.map = new google.maps.Map(this.gmapElement.nativeElement, {
       center: {lat: -33.8688, lng: 151.2195},
       zoom: 13,
-      mapTypeId: 'roadmap'
+      // mapTypeId: 'roadmap'
     });
   }
   onSuggestionDrop(e: any) {
     console.log("triggered");
     //data from google is not an activity yet, so we need to create one
     this.newActivity={
-      description:e.dragData.description,
-      location:e.dragData.location
+      // Esther commented out Gustavo's code below:
+      // description:e.dragData.description,
+      // location:e.dragData.location
+      // Esther added the following:
+      description: "activity description goes here",
+      // img_ref: e.dragData.
+      lat: e.dragData.geometry.location.lat(),
+      lng: e.dragData.geometry.location.lng(),
+      location: e.dragData.name
     };
+    console.log(this.newActivity)
     /*******An activity should be associated with a trip?******/
     this.tripService.createActivity(this.newActivity).subscribe(data=>{
         //if succesfully created activity, added to our lists
@@ -109,7 +120,7 @@ export class TripsComponent implements OnInit {
   }
 
   //handles activities being dropped/moved into the agenda section
-  onActivityDrop(e: any) {  
+  onActivityDrop(e: any) {
     //pass both ids(agenda and activity) and update on the many side
     this.tripService.addActivityToAgenda(e.dragData.id,this.currentAgenda['id']).subscribe(data=>{
         if(data['location'] != null){
@@ -146,14 +157,22 @@ export class TripsComponent implements OnInit {
         this.nearbySearchList = results;
         console.log(this.nearbySearchList);
         // add to suggestions
-        for (var i = 0; i < results.length; i++) {
-          var place = results[i];
-          this.suggestions.push({location: place.name, description: "insert description here"});
-        }
+        // for (var i = 0; i < results.length; i++) {
+        //   var place = results[i];
+        //   this.suggestions.push({location: place.name, description: "insert description here"});
+        // }
         this.cdr.detectChanges();
       }
     })
 
+  }
+
+  goMapView() {
+    if(!this.map_view) {
+      this.map_view = true;
+    } else {
+      this.map_view = false;
+    }
   }
 
 }

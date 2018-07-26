@@ -20,6 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatetripComponent } from './createtrip/createtrip.component';
 import { TripsComponent } from './trips/trips.component';
 import { NgDragDropModule } from 'ng-drag-drop';
+import { MapViewComponent } from './map-view/map-view.component';
 
 
 
@@ -34,7 +35,8 @@ import { NgDragDropModule } from 'ng-drag-drop';
     LoginComponent,
     DashboardComponent,
     CreatetripComponent,
-    TripsComponent
+    TripsComponent,
+    MapViewComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { NgDragDropModule } from 'ng-drag-drop';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_API_KEY',
+      apiKey: 'AIzaSyDXO12zgvRXVFT4SNNIWgeYzZCcT81Z5Yw',
       libraries: ["places"]
     })
   ],
