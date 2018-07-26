@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatetripComponent } from './createtrip/createtrip.component';
 import { TripsComponent } from './trips/trips.component';
+import { InviteComponent } from './invite/invite.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,8 @@ const routes: Routes = [
    {path:'apitesting',component:ApiTestingComponent},
   {path:'jsapitesting',component:JsApiTestingComponent},
   {path:'dirapitesting',component:DirApiTestingComponent},
+  
+  {path:'trips/plan/:id/invite',component:InviteComponent},
 
 ];
 

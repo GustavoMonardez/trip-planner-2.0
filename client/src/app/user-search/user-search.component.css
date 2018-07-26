@@ -2,12 +2,15 @@
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
     border-right: 1px solid gray;
-    width: 292px;
-    height: 16px;
+    width: 300px;
+    height: 23px;
     padding: 5px;
     background-color: white;
     cursor: pointer;
     list-style-type: none;
+    padding-top:0px;
+    white-space: nowrap;
+    white-space: pre;
 }
 
 .search-result li:hover {
@@ -28,7 +31,7 @@
 }
 #search-box {
     width: 300px;
-    height: 20px;
+    height: 25px;
 }
 
 

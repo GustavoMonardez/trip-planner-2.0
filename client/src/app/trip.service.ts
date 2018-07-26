@@ -56,4 +56,36 @@ export class TripService {
   getUser(userId:string){
     return this._http.get(this.apiUrl+"users/"+userId);
   }
+
+  inviteUser(userId, tripId){
+    var inviteUserPost = {
+      "userId":userId,
+      "tripId":tripId
+    }
+    return this._http.post(this.apiUrl+"/trips/invite",inviteUserPost);
+  }
+
+  uninviteUser(userId, tripId){
+    var inviteUserPost = {
+      "userId":userId,
+      "tripId":tripId
+    }
+    return this._http.post(this.apiUrl+"/trips/uninvite",inviteUserPost);
+  }
+
+  acceptInvitation(userId, tripId){
+    var inviteUserPost = {
+      "userId":userId,
+      "tripId":tripId
+    }
+    return this._http.post(this.apiUrl + "/trips/acceptinvitation",inviteUserPost);
+  }
+
+  makeTripAdmin(userId,tripId){
+    var inviteUserPost={
+      "userId":userId,
+      "tripId":tripId
+    };
+    return this._http.post(this.apiUrl+"/trips/maketripadmin",inviteUserPost);
+  }
 }

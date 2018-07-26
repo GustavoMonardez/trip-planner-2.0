@@ -27,6 +27,7 @@
           <th>From</th>
           <th>To</th>
           <th>Description</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tr *ngFor="let admintrip of user.tripsCreated">
@@ -34,10 +35,11 @@
         <td>{{admintrip.date_from | date: "yyyy-MM-dd" }}</td>
         <td>{{admintrip.date_to | date: "yyyy-MM-dd" }}</td>
         <td>{{admintrip.description}}</td>
+        <td><a href = "/trips/plan/{{admintrip.id}}/invite">Invite people!</a></td>
       </tr>
     </table>
   </div>
-  <div *ngIf="user.tripsInvited.length > 0">
+  <div *ngIf="user.tripsAttending.length > 0">
     <h3>Trips Attending</h3>
     <table>
         <thead>
@@ -48,7 +50,7 @@
             <th>Description</th>
           </tr>
         </thead>
-        <tr *ngFor="let trip of user.tripsInvited">
+        <tr *ngFor="let trip of user.tripsAttending">
           <td><a href = "/trips/plan/{{trip.id}}">{{trip.title}}</a></td>
           <td>{{trip.date_from | date: "yyyy-MM-dd" }}</td>
           <td>{{trip.date_to | date: "yyyy-MM-dd" }}</td>
@@ -56,7 +58,29 @@
         </tr>
       </table>
   </div>
+  <div *ngIf="user.tripsInvited.length > 0">
+    <h3>Trips Invited</h3>
+    <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Description</th>
+            <th>Accept</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let trip of user.tripsInvited">
+          <td><a href = "/trips/plan/{{trip.id}}">{{trip.title}}</a></td>
+          <td>{{trip.date_from | date: "yyyy-MM-dd" }}</td>
+          <td>{{trip.date_to | date: "yyyy-MM-dd" }}</td>
+          <td>{{trip.description}}</td>
+          <td><button (click)="acceptInvitation(trip)">Accept Invitation</button></td>
+        </tr>
+      </table>
+  </div>
 </div>
+
 <div *ngIf="!user">
   <h1>Loading...</h1>
 </div>

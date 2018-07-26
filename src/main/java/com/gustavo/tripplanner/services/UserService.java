@@ -1,11 +1,11 @@
 package com.gustavo.tripplanner.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.gustavo.tripplanner.models.Trip;
 import com.gustavo.tripplanner.models.User;
 import com.gustavo.tripplanner.repositories.UserRepository;
 
@@ -72,4 +72,5 @@ public class UserService {
 	public List<User> searchUsers(String term, String lastname){
 		return userRepository.findDistinctByFirstNameContainsOrLastNameContains(term, lastname);
 	}
+	
 }
