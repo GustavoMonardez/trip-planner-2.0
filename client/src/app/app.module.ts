@@ -51,7 +51,7 @@ import { UserService } from './user.service'
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'API_KEY',
+      apiKey: 'AIzaSyDXO12zgvRXVFT4SNNIWgeYzZCcT81Z5Yw',
       libraries: ["places"]
     })
   ],

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, ViewChild, Input } from '@angular/core';
 import { TripService } from '../trip.service';
 import { } from '@types/googlemaps';
 
@@ -11,25 +11,21 @@ export class MapViewComponent implements OnInit, OnChanges {
   // making a map
   map: google.maps.Map;
   @ViewChild('gmap') gmapElement: any;
-  // making a directions panel
-  @ViewChild('directionsPanel') dpElement: any;
   // calculating routes
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
   startLocation: any;
   endLocation: any;
   travelMode = "DRIVING";
+  show_route = false;
   // get activities from current agenda
   activities: any;
   @Input() myAgenda: any;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("agenda from map view: ")
-    console.log(this.myAgenda)
     this.activities = this.myAgenda.activities;
     this.startLocation = this.activities[0];
     this.endLocation = this.activities[0];
-    console.log(this.startLocation)
     this.showMap();
   }
 
@@ -88,9 +84,16 @@ export class MapViewComponent implements OnInit, OnChanges {
   }
 
   showRoute() {
+    this.show_route = true;
     this.directionsDisplay.setMap(this.map);
-    this.directionsDisplay.setPanel(this.dpElement);
+    this.directionsDisplay.setPanel(document.getElementById('directionsPanel'));
     this.calcRoute(this.directionsDisplay);
+  }
+  clearRoute() {
+    this.show_route = false;
+    this.directionsDisplay.setMap(null);
+    this.directionsDisplay.setPanel(null);
+    this.showMap();
   }
 
 }

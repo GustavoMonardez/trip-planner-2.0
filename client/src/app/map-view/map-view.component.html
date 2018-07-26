@@ -13,6 +13,7 @@
   <option value="BICYCLING">Bicycling</option>
   <option value="TRANSIT">Transit</option>
 </select>
-<button (click)="showRoute()">Get route</button>
+<button *ngIf="!show_route" (click)="showRoute()">Get route</button>
+<button *ngIf="show_route" (click)="clearRoute()">Clear route</button>
 <div id="map" #gmap style="width:100%;height:400px"></div>
-<div id="directionsPanel" style="width:100%;height:200px">Display Panel</div>
+<div id="directionsPanel" style="width:100%;height:200px"></div>

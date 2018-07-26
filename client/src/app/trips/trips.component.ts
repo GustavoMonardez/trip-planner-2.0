@@ -47,7 +47,7 @@ export class TripsComponent implements OnInit {
           this.currentTrip = data;
           //set activities
           this.droppedSuggestions = this.currentTrip['proposedActivities'];
-          //set agendas   
+          //set agendas
           for(let i=0; i < this.currentTrip['agendas'].length; ++i){
             //each agenda may contain a list of activities that we
             //are adding to agendas(array of arrays)
@@ -61,7 +61,7 @@ export class TripsComponent implements OnInit {
       });
     });
     // google map
-    var mapOptions = 
+    var mapOptions =
     this.map = new google.maps.Map(this.gmapElement.nativeElement, {
       center: {lat: -33.8688, lng: 151.2195},
       zoom: 13
@@ -143,6 +143,7 @@ export class TripsComponent implements OnInit {
 
   }
   goMapView() {
+    console.log("i'm in goMapView")
     if(!this.map_view) {
       this.map_view = true;
     } else {
@@ -172,6 +173,6 @@ export class TripsComponent implements OnInit {
       this.droppedSuggestions.splice(this.droppedSuggestions.indexOf(e.dragData),1);
       console.log(e.dragData);
     })
-    
+
   }
 }
