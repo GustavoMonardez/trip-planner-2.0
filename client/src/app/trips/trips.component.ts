@@ -3,6 +3,7 @@ import { TripService } from '../trip.service';
 import { ActivatedRoute,Params } from '@angular/router';
 import { } from '@types/googlemaps';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 @Component({
@@ -126,7 +127,7 @@ export class TripsComponent implements OnInit {
     var location = new google.maps.LatLng(this.place.geometry.location.lat(), this.place.geometry.location.lng());
     let request = {
       location: location,
-      radius: '300',
+      radius: '6000',
       type: [this.suggestion_type]
     };
     this.googleService.nearbySearch(request, (results, status) => {
