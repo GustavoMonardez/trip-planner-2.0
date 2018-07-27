@@ -119,17 +119,34 @@ export class TripsComponent implements OnInit {
   // google searchbox
   apiCall(placeObj) {
     this.place = placeObj;
-    this.getNearbySearches();
+    if(this.suggestion_type == "specific_location") {
+      this.getSpecificLocation();
+    } else {
+      this.getNearbySearches();
+    }
   }
-
+  search() {
+    if(this.suggestion_type == "specific_location") {
+      this.getSpecificLocation();
+    } else {
+      getNearbySearches();
+    }
+  }
+  getSpecificLocation() {
+    // console.log(this.place);
+    this.nearbySearchList = [this.place];
+    this.cdr.detectChanges();
+    console.log(this.nearbySearchList)
+  }
   getNearbySearches() {
     this.googleService = new google.maps.places.PlacesService(this.map);
     var location = new google.maps.LatLng(this.place.geometry.location.lat(), this.place.geometry.location.lng());
     let request = {
       location: location,
-      radius: '6000',
+      radius: '1000',
       type: [this.suggestion_type]
     };
+
     this.googleService.nearbySearch(request, (results, status) => {
       this.suggestions = [];
       if (status == google.maps.places.PlacesServiceStatus.OK) {

@@ -10,7 +10,8 @@ import { TripService } from '../trip.service';
 export class UserActivityComponent implements OnInit {
   trip_id:any;
   currentTrip={};
-  newActivity={};
+  newActivity={description:"",imgRef:"",lat:"",lng:"",location:""};
+  place: any;
   constructor(
     private tripService:TripService,
     private route:ActivatedRoute,
@@ -21,7 +22,7 @@ export class UserActivityComponent implements OnInit {
     this.route.params.subscribe((params:Params)=>{
       this.trip_id=params['id'];
       this.tripService.findTripById(params['id']).subscribe(data=>{
-        //make sure it exists
+        //make sure trip exists
         if(data['title'] != null){
           this.currentTrip = data;
         }else{
@@ -36,8 +37,18 @@ export class UserActivityComponent implements OnInit {
       if(data['location'] != null){
         this.router.navigate(['/trips/plan/',this.currentTrip['id']]);
       } else{
-        console.log("There are errors here")
+        console.log("There are errors when creating new user activity")
       }
   });
   }
+
+  // google searchbox
+  apiCall(placeObj) {
+    // this.place = placeObj;
+    // console.log(this.place);
+    this.newActivity.location = placeObj;
+    this.newActivity.lat = placeObj.geometry.location.lat();
+  }
+
+
 }
