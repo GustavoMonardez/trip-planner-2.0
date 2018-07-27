@@ -20,36 +20,39 @@
           <div id="background">
             Drop Activities here to Add
           </div>
-        <div *ngFor="let activity of currentAgenda.activities" class="single-activity" [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat">
+        <div draggable [dragScope]="['deleteActivity']" [dragData]="activity" *ngFor="let activity of currentAgenda.activities" class="single-activity" [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat;background-position: center;background-size: cover">
+          <span class="text-wrapper">
           <h3>{{activity.location}}</h3>
           <p>{{activity.description}}</p>
+        </span>
         </div>
       </div>
   </div>
 <!-- end agendas(days) -->
 </div><div
 id="sidebar-container">
-<div id="delete-activities" droppable  [dropScope]="'deleteActivity'" (onDrop)="onDropDelete($event)" >
+<div id="delete-activities" droppable  [dropScope]="'deleteActivity'"  (onDrop)="onDropDelete($event)" >
     <div id="background-delete">
         <i class="fa fa-trash"></i> Drop Activities here to Delete
     </div>
  </div>
  <a href="/trips/plan/activities/{{currentTrip.id}}">Create your own adventure!</a>
 <!-- start activities (proposed) -->
+  <h2>Proposed</h2>
  <div droppable (onDrop)="onSuggestionDrop($event)" id="proposed-container">
-   <h2>Proposed</h2>
+   
    <!-- <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity"> -->
-  <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity" [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat">
-
+  <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity" [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat;background-position: center;background-size: cover">
+    <span class="text-wrapper">
      <h3>{{activity.location}}</h3>
      <p>{{activity.description}}</p>
-
+    </span>
    </div>
 <!-- end activities (proposed) -->
- </div><div
-  id="suggestions-container">
-    <h2>Suggestions</h2>
-    <p>I am looking for...</p>
+
+ </div>
+ <h2>Suggestions</h2>
+ <p>I am looking for...</p>
     <select [(ngModel)]="suggestion_type" (change)="getNearbySearches()">
       <option value="point_of_interest">Anything</option>
       <option value="bar">Bar</option>
@@ -67,14 +70,19 @@ id="sidebar-container">
     class="google-place-input"
     placeholder="Search location..">
     <div id="map" #gmap></div>
+ <div id="suggestions-container">
     <div draggable *ngFor="let suggestion of nearbySearchList" [dragData]="suggestion" class="single-activity" >
-      <div *ngIf="suggestion.photos" [style.background-image]="getBackground(suggestion.photos[0].getUrl({'maxWidth': 400, 'maxHeight': 200}))" style="background-repeat: no-repeat"; else style="background-image: url(suggestion.imgRef)">
+      <div *ngIf="suggestion.photos" [style.background-image]="getBackground(suggestion.photos[0].getUrl({'maxWidth': 400, 'maxHeight': 200}))" style="background-repeat: no-repeat;background-position: center;background-size: cover">
+        <span class="text-wrapper">
         <h3>{{suggestion.name}}</h3>
         <p>Rating: {{suggestion.rating}}</p>
+      </span>
       </div>
       <div *ngIf="!suggestion.photos">
+          <span class="text-wrapper">
         <h3>{{suggestion.name}}</h3>
         <p>Rating: {{suggestion.rating}}</p>
+        </span>
       </div>
     </div>
     <p *ngIf="nearbySearchList.length == 0">No suggestions found</p>
