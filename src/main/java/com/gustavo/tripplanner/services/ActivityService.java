@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.gustavo.tripplanner.models.Activity;
+import com.gustavo.tripplanner.models.User;
 import com.gustavo.tripplanner.repositories.ActivityRepository;
 
 @Service
@@ -36,5 +37,14 @@ public class ActivityService {
 	//find all
 	public List<Activity>findAllActivities(){
 		return activityRepo.findAll();
+	}
+	
+	public Activity likeActivity(Activity activity, User user) {
+		if(activity.getLikedBy().contains(user)) {
+			activity.getLikedBy().remove(user);
+		}else {
+			activity.getLikedBy().add(user);						
+		}
+		return activityRepo.save(activity);
 	}
 }

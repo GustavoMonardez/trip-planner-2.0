@@ -20,6 +20,7 @@ import com.gustavo.tripplanner.models.Agenda;
 import com.gustavo.tripplanner.models.Trip;
 import com.gustavo.tripplanner.models.User;
 import com.gustavo.tripplanner.postmodels.InviteUserPost;
+import com.gustavo.tripplanner.postmodels.LikeActivityPost;
 import com.gustavo.tripplanner.postmodels.TripPost;
 import com.gustavo.tripplanner.services.ActivityService;
 import com.gustavo.tripplanner.services.AgendaService;
@@ -185,5 +186,12 @@ public class TripController {
 	@PostMapping("/trips/maketripadmin")
 	public Trip makeTripAdmin(@RequestBody InviteUserPost inviteUserPost) {
 		return tripService.makeTripAdmin(inviteUserPost.getUserId(), inviteUserPost.getTripId());
+	}
+	
+	@PostMapping("/activities/like")
+	public Activity likeActivity(@RequestBody LikeActivityPost likeActivityPost) {
+		Activity activity = activityService.findActivityById(likeActivityPost.getActivityId());
+		User user = userService.findUserById(likeActivityPost.getUserId());
+		return activityService.likeActivity(activity, user);
 	}
 }

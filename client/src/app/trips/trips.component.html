@@ -42,6 +42,8 @@ id="sidebar-container">
 
      <h3>{{activity.location}}</h3>
      <p>{{activity.description}}</p>
+     <p><span id = "likes">{{activity.likedBy.length}}</span><button (click)="likeActivity(activity)">Like!</button>
+    </p>
 
    </div>
 <!-- end activities (proposed) -->

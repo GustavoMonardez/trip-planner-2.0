@@ -1,5 +1,6 @@
 package com.gustavo.tripplanner.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="activities")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Activity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -40,7 +42,7 @@ public class Activity {
             joinColumns = @JoinColumn(name = "activity_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
             )
-    @JsonIgnoreProperties("likedActivties")
+    @JsonIgnoreProperties({"likedActivities","tripsAttending","tripsCreated","tripsInvited"})
     private List<User> likedBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -58,6 +60,7 @@ public class Activity {
 	
 	private Date updatedAt;
 	public Activity() {
+		likedBy = new ArrayList<User>();
 	}
     
     public Trip getTrip() {
@@ -97,7 +100,6 @@ public class Activity {
 	public String getImgRef() {
 		return imgRef;
 	}
-	
 	public List<User> getLikedBy() {
 		return likedBy;
 	}
