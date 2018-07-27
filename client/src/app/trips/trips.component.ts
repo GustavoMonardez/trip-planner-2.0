@@ -82,7 +82,7 @@ export class TripsComponent implements OnInit {
       location: e.dragData.name
     };
     console.log("added suggestion to activity")
-    console.log(this.newActivity.imgRef)
+    console.log(this.newActivity['imgRef'])
     console.log(this.newActivity)
     /*******An activity should be associated with a trip?******/
     this.tripService.createActivity(this.newActivity,this.trip_id).subscribe(data=>{
