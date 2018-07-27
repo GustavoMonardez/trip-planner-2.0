@@ -27,6 +27,10 @@ import { UserService } from './user.service';
 import { InviteComponent } from './invite/invite.component';
 import { CreateActivityComponent } from './create-activity/create-activity.component';
 // import { MdDialogModule } from '@angular/material';
+import { UserActivityComponent } from './user-activity/user-activity.component';
+
+
+
 
 
 
@@ -46,7 +50,8 @@ import { CreateActivityComponent } from './create-activity/create-activity.compo
     MapViewComponent,
     UserSearchComponent,
     InviteComponent,
-    CreateActivityComponent
+    CreateActivityComponent,
+    UserActivityComponent,
   ],
   imports: [
     BrowserModule,

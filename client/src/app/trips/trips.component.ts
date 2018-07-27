@@ -18,7 +18,7 @@ export class TripsComponent implements OnInit {
   newAgenda={};
   droppedSuggestions:any;
   droppedProposed:any;
-
+  popup=false;
   //code to keep
   agendas=[];
   currentAgenda={};
@@ -83,7 +83,7 @@ export class TripsComponent implements OnInit {
       location: e.dragData.name
     };
     console.log("added suggestion to activity")
-    console.log(this.newActivity.imgRef)
+    console.log(this.newActivity['imgRef'])
     console.log(this.newActivity)
     /*******An activity should be associated with a trip?******/
     this.tripService.createActivity(this.newActivity,this.trip_id).subscribe(data=>{
@@ -176,5 +176,8 @@ export class TripsComponent implements OnInit {
 
   getBackground(img_ref) {
     return this.sanitizer.bypassSecurityTrustStyle(`url(${img_ref})`);
+  }
+  show(){
+    this.popup = (this.popup == true) ? false : true;
   }
 }

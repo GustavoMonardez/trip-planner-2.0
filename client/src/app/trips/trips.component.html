@@ -34,6 +34,7 @@ id="sidebar-container">
         <i class="fa fa-trash"></i> Drop Activities here to Delete
     </div>
  </div>
+ <a href="/trips/plan/activities/{{currentTrip.id}}">Create your own adventure!</a>
 <!-- start activities (proposed) -->
  <div droppable (onDrop)="onSuggestionDrop($event)" id="proposed-container">
    <h2>Proposed</h2>
@@ -67,7 +68,7 @@ id="sidebar-container">
     placeholder="Search location..">
     <div id="map" #gmap></div>
     <div draggable *ngFor="let suggestion of nearbySearchList" [dragData]="suggestion" class="single-activity" >
-      <div *ngIf="suggestion.photos" [style.background-image]="getBackground(suggestion.photos[0].getUrl({'maxWidth': 400, 'maxHeight': 200}))" style="background-repeat: no-repeat">
+      <div *ngIf="suggestion.photos" [style.background-image]="getBackground(suggestion.photos[0].getUrl({'maxWidth': 400, 'maxHeight': 200}))" style="background-repeat: no-repeat"; else style="background-image: url(suggestion.imgRef)">
         <h3>{{suggestion.name}}</h3>
         <p>Rating: {{suggestion.rating}}</p>
       </div>
