@@ -1,4 +1,5 @@
-
+<button *ngIf="!show_route" (click)="showConnectedRoutes()">Show connected routes</button>
+<button *ngIf="show_route" (click)="clearRoute()">Clear routes</button>
 <select name="start" [(ngModel)]="startLocation" (change)="showRoute()">
   <option *ngFor="let a of activities" [ngValue]="a">{{ a.location }}</option>
 </select>

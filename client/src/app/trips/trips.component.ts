@@ -129,7 +129,7 @@ export class TripsComponent implements OnInit {
     if(this.suggestion_type == "specific_location") {
       this.getSpecificLocation();
     } else {
-      getNearbySearches();
+      this.getNearbySearches();
     }
   }
   getSpecificLocation() {
