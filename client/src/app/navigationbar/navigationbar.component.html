@@ -1,0 +1,10 @@
+<p>
+  This is a navigation bar
+</p>
+<nav>
+  <button [routerLink] = "['/dashboard']">Dashboard</button>
+  <button [routerLink] = "['/createtrip']">Create Trip</button>
+  <button *ngIf = "isOnInvitePage()" [routerLink] = "['/trips/plan/',tripId]">Trip Page</button>
+  <button *ngIf = "isOnTripPage()" [routerLink] = "['/trips/plan',tripId,'invite']">Invite people</button>
+  <button (click) = "logout()">Logout</button>
+</nav>

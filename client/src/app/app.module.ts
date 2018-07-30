@@ -24,7 +24,8 @@ import { NgDragDropModule } from 'ng-drag-drop';
 import { MapViewComponent } from './map-view/map-view.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserService } from './user.service';
-import { InviteComponent } from './invite/invite.component'
+import { InviteComponent } from './invite/invite.component';
+import { NavigationbarComponent } from './navigationbar/navigationbar.component';
 
 
 
@@ -43,7 +44,8 @@ import { InviteComponent } from './invite/invite.component'
     TripsComponent,
     MapViewComponent,
     UserSearchComponent,
-    InviteComponent
+    InviteComponent,
+    NavigationbarComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,7 @@ import { InviteComponent } from './invite/invite.component'
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDXO12zgvRXVFT4SNNIWgeYzZCcT81Z5Yw',
+      apiKey: 'AIzaSyDiUo2OhQZ4e32jvqV-ISqgEUNEgLL68Cw',
       libraries: ["places"]
     })
   ],

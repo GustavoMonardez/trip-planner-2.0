@@ -181,7 +181,7 @@ export class TripsComponent implements OnInit {
   getBackground(img_ref) {
     return this.sanitizer.bypassSecurityTrustStyle(`url(${img_ref})`);
   }
-
+  //code for user liking activities
   likeActivity(activity){
     this.tripService.likeActivity(this.userId, activity.id).subscribe(data=>{
       for(var i = 0;i < this.droppedSuggestions.length;i++){
@@ -191,4 +191,14 @@ export class TripsComponent implements OnInit {
       }
     });
   }
+
+  hasUserLiked(activity){
+    for(var i = 0; i < activity.likedBy.length; i++){
+      if(activity.likedBy[i]['id'] == this.userId){
+        return true;
+      }
+    }
+    return false;
+  }
+  //end code for users liking activities
 }

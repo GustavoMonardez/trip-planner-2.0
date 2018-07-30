@@ -89,8 +89,8 @@ export class TripService {
     return this._http.post(this.apiUrl+"/trips/maketripadmin",inviteUserPost);
   }
 
+  //code for user liking activities
   likeActivity(userId, activityId){
-    console.log("hey im in like activity in the service user: ",userId,"activity: ",activityId);
     var likeActivityPost = {
       "userId":userId,
       "activityId":activityId
