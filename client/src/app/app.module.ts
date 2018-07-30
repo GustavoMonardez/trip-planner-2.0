@@ -55,7 +55,7 @@ import { NavigationbarComponent } from './navigationbar/navigationbar.component'
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDiUo2OhQZ4e32jvqV-ISqgEUNEgLL68Cw',
+      apiKey: 'API_KEY',
       libraries: ["places"]
     })
   ],
