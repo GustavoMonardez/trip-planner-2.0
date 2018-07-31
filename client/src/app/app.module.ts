@@ -25,10 +25,10 @@ import { MapViewComponent } from './map-view/map-view.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserService } from './user.service';
 import { InviteComponent } from './invite/invite.component';
+import { NavigationbarComponent } from './navigationbar/navigationbar.component';
 import { CreateActivityComponent } from './create-activity/create-activity.component';
 // import { MdDialogModule } from '@angular/material';
 import { UserActivityComponent } from './user-activity/user-activity.component';
-
 
 
 
@@ -50,6 +50,7 @@ import { UserActivityComponent } from './user-activity/user-activity.component';
     MapViewComponent,
     UserSearchComponent,
     InviteComponent,
+    NavigationbarComponent,
     CreateActivityComponent,
     UserActivityComponent,
   ],
@@ -62,7 +63,7 @@ import { UserActivityComponent } from './user-activity/user-activity.component';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDXO12zgvRXVFT4SNNIWgeYzZCcT81Z5Yw',
+      apiKey: 'API_KEY',
       libraries: ["places"]
     })
   ],

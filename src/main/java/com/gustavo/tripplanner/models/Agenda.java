@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="agendas")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Agenda {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

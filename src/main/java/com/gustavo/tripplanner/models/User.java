@@ -55,7 +55,7 @@ public class User {
 			joinColumns=@JoinColumn(name="user_id"),
 			inverseJoinColumns=@JoinColumn(name="activity_id")
 	)
-	@JsonIgnoreProperties("likedBy")
+	@JsonIgnoreProperties({"likedBy","trip"})
 	private List<Activity> likedActivities;
 	
 	@ManyToMany(fetch=FetchType.LAZY)

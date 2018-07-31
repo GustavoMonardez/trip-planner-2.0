@@ -1,1 +1,14 @@
-
+#liked{
+    background-color:white;
+    font-size:30px;
+    color:purple;
+}
+#notliked{
+    background-color:white;
+    font-size:30px;
+    color:black;
+}
+.likedicon, .notlikedicon{
+    background-color:white;
+    font-size:30px;
+}

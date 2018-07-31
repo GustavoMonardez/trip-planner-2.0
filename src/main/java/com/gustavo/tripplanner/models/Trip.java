@@ -25,7 +25,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity 
-@Table(name="trips") 
+@Table(name="trips")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Trip { 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id; 

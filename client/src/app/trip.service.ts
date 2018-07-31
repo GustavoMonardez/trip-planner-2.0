@@ -88,4 +88,13 @@ export class TripService {
     };
     return this._http.post(this.apiUrl+"/trips/maketripadmin",inviteUserPost);
   }
+
+  //code for user liking activities
+  likeActivity(userId, activityId){
+    var likeActivityPost = {
+      "userId":userId,
+      "activityId":activityId
+    }
+    return this._http.post(this.apiUrl+"/activities/like", likeActivityPost);
+  }
 }

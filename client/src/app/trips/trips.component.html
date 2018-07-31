@@ -1,6 +1,6 @@
 <div>
   <h2>Current Trip: {{currentTrip.title}}</h2>
-  <p>Navbar(map/travel buddies)</p><a href="/dashboard">Home</a>
+  <app-navigationbar></app-navigationbar>
 </div>
 <div id="agenda-container">
     <h2>Agenda</h2>
@@ -46,6 +46,18 @@ id="sidebar-container">
     <span class="text-wrapper">
      <h3>{{activity.location}}</h3>
      <p>{{activity.description}}</p>
+     <!-- html for users liking activities -->
+     <p>
+       <span id = "liked" *ngIf = "hasUserLiked(activity)">
+         {{activity.likedBy.length}}
+         <i class ="fa fa-thumbs-o-up likedicon" (click)="likeActivity(activity)"></i>
+        </span>
+        <span id = "notliked" *ngIf = "!hasUserLiked(activity)">
+          {{activity.likedBy.length}}
+          <i class ="fa fa-thumbs-o-up notlikedicon" (click)="likeActivity(activity)"></i>
+        </span>
+      </p>
+      <!-- end html for user liking stuff-->
     </span>
    </div>
 <!-- end activities (proposed) -->

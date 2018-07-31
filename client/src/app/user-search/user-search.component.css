@@ -9,8 +9,9 @@
     cursor: pointer;
     list-style-type: none;
     padding-top:0px;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    white-space: pre;
+    overflow: hidden; 
 }
 
 .search-result li:hover {

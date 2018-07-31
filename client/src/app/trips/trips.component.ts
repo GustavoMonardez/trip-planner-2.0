@@ -30,7 +30,10 @@ export class TripsComponent implements OnInit {
   place: any;
   map: google.maps.Map;
   googleService: any;
+
   nearbySearchList = [];  // keep Esther's version
+
+  userId:number;
   @ViewChild('gmap') gmapElement: any;
   map_view = false;
 
@@ -41,6 +44,8 @@ export class TripsComponent implements OnInit {
     private sanitizer:DomSanitizer
   ){}
   ngOnInit() {
+    //get user
+    this.userId = localStorage['userId'];
     //get current trip info
     this.route.params.subscribe((params:Params)=>{
       this.trip_id=params['id'];
@@ -199,7 +204,29 @@ export class TripsComponent implements OnInit {
   getBackground(img_ref) {
     return this.sanitizer.bypassSecurityTrustStyle(`url(${img_ref})`);
   }
+  //code for user liking activities
+  likeActivity(activity){
+    this.tripService.likeActivity(this.userId, activity.id).subscribe(data=>{
+      for(var i = 0;i < this.droppedSuggestions.length;i++){
+        if(this.droppedSuggestions[i]['id'] == data['id']){
+          this.droppedSuggestions[i]['likedBy'] = data['likedBy']
+        }
+      }
+    });
+  }
+
+  hasUserLiked(activity){
+    for(var i = 0; i < activity.likedBy.length; i++){
+      if(activity.likedBy[i]['id'] == this.userId){
+        return true;
+      }
+    }
+    return false;
+  }
+  //end code for users liking activities
+
   show(){
     this.popup = (this.popup == true) ? false : true;
   }
+
 }
