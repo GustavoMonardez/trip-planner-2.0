@@ -184,9 +184,14 @@ export class TripsComponent implements OnInit {
   }
   onDropDelete(e:any){
     this.tripService.deleteActivity(e.dragData.id).subscribe(data=>{
-      //console.log("delete data: "+data);
-      this.droppedSuggestions.splice(this.droppedSuggestions.indexOf(e.dragData),1);
-      console.log(e.dragData);
+      //activities can be deleted from 2 sections: the agenda(day) and the proposed sections
+      //we'll remove the activity and update accordingly
+      if(this.currentAgenda['activities'].indexOf(e.dragData) != -1){
+        this.currentAgenda['activities'].splice(this.currentAgenda['activities'].indexOf(e.dragData),1);
+      }else{
+        this.droppedSuggestions.splice(this.droppedSuggestions.indexOf(e.dragData),1);
+      }
+      console.log(e);
     })
 
   }
