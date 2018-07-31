@@ -48,7 +48,7 @@ export class TripService {
   }
   /********************AGENDA********************/
   createAgenda(agenda:{},trip_id){
-    return this._http.post(this.apiUrl+"agendas/"+trip_id+"/create",agenda); 
+    return this._http.post(this.apiUrl+"agendas/"+trip_id+"/create",agenda);
   }
   findAgendaById(agenda_id){
     return this._http.get(this.apiUrl+"agendas/"+agenda_id);

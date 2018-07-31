@@ -12,6 +12,7 @@
     vertical-align: top;
     height:800px;
     overflow-y:scroll;
+    padding:1%;
 }
 #agenda-container{
     width: 65%;
@@ -20,7 +21,6 @@
 }
 #sidebar-container{
     width:28%;
-    padding:2%;
     background-color:bisque;
     overflow:hidden;
 }
@@ -145,4 +145,22 @@
 /* Create an active/current "tab button" class */
 .tab button.active {
     background-color: #ccc;
+}
+/************************************/
+.text-wrapper {
+  position: relative;
+  /* max-width: 400px; */
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+}
+
+.text-wrapper:hover {
+  transition: all 0.8s ease;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 1;cursor: -webkit-grab; cursor: grab;
 }

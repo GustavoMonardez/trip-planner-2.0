@@ -3,6 +3,7 @@ import { TripService } from '../trip.service';
 import { ActivatedRoute,Params } from '@angular/router';
 import { } from '@types/googlemaps';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class TripsComponent implements OnInit {
   newAgenda={};
   droppedSuggestions:any;
   droppedProposed:any;
-
+  popup=false;
   //code to keep
   agendas=[];
   currentAgenda={};
@@ -87,7 +88,7 @@ export class TripsComponent implements OnInit {
       location: e.dragData.name
     };
     console.log("added suggestion to activity")
-    console.log(this.newActivity.imgRef)
+    console.log(this.newActivity['imgRef'])
     console.log(this.newActivity)
     /*******An activity should be associated with a trip?******/
     this.tripService.createActivity(this.newActivity,this.trip_id).subscribe(data=>{
@@ -123,17 +124,34 @@ export class TripsComponent implements OnInit {
   // google searchbox
   apiCall(placeObj) {
     this.place = placeObj;
-    this.getNearbySearches();
+    if(this.suggestion_type == "specific_location") {
+      this.getSpecificLocation();
+    } else {
+      this.getNearbySearches();
+    }
   }
-
+  search() {
+    if(this.suggestion_type == "specific_location") {
+      this.getSpecificLocation();
+    } else {
+      this.getNearbySearches();
+    }
+  }
+  getSpecificLocation() {
+    // console.log(this.place);
+    this.nearbySearchList = [this.place];
+    this.cdr.detectChanges();
+    console.log(this.nearbySearchList)
+  }
   getNearbySearches() {
     this.googleService = new google.maps.places.PlacesService(this.map);
     var location = new google.maps.LatLng(this.place.geometry.location.lat(), this.place.geometry.location.lng());
     let request = {
       location: location,
-      radius: '300',
+      radius: '1000',
       type: [this.suggestion_type]
     };
+
     this.googleService.nearbySearch(request, (results, status) => {
       this.suggestions = [];
       if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -171,9 +189,14 @@ export class TripsComponent implements OnInit {
   }
   onDropDelete(e:any){
     this.tripService.deleteActivity(e.dragData.id).subscribe(data=>{
-      //console.log("delete data: "+data);
-      this.droppedSuggestions.splice(this.droppedSuggestions.indexOf(e.dragData),1);
-      console.log(e.dragData);
+      //activities can be deleted from 2 sections: the agenda(day) and the proposed sections
+      //we'll remove the activity and update accordingly
+      if(this.currentAgenda['activities'].indexOf(e.dragData) != -1){
+        this.currentAgenda['activities'].splice(this.currentAgenda['activities'].indexOf(e.dragData),1);
+      }else{
+        this.droppedSuggestions.splice(this.droppedSuggestions.indexOf(e.dragData),1);
+      }
+      console.log(e);
     })
 
   }
@@ -201,4 +224,9 @@ export class TripsComponent implements OnInit {
     return false;
   }
   //end code for users liking activities
+
+  show(){
+    this.popup = (this.popup == true) ? false : true;
+  }
+
 }

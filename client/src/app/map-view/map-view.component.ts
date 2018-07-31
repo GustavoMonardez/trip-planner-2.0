@@ -49,7 +49,6 @@ export class MapViewComponent implements OnInit, OnChanges {
        labelIndex++;
      }
      this.map.fitBounds(bounds);
-
   }
 
   placeMarker(loc, infowindow, bounds, labels, labelIndex) {
@@ -65,7 +64,7 @@ export class MapViewComponent implements OnInit, OnChanges {
        infowindow.setContent( "<div id='infowindow'>"+ loc.location +"</div>");
        infowindow.open(this.map, marker);
      });
-     bounds.extend(marker.position);
+     bounds.extend(marker['position']);
   }
 
   calcRoute(directionsDisplay) {
@@ -92,9 +91,57 @@ export class MapViewComponent implements OnInit, OnChanges {
   }
   clearRoute() {
     this.show_route = false;
+    // clear route on map and directions panel
     this.directionsDisplay.setMap(null);
     this.directionsDisplay.setPanel(null);
+    // clear connected routes on panel
+    var summaryPanel = document.getElementById('directionsPanel');
+    summaryPanel.innerHTML = "";
     this.showMap();
+  }
+  showConnectedRoutes() {
+    this.show_route = true;
+    this.directionsDisplay.setMap(this.map);
+    let l = this.activities.length;
+    console.log("activity:")
+    console.log()
+    let start = new google.maps.LatLng( this.activities[0].lat, this.activities[0].lng);
+    let end = new google.maps.LatLng( this.activities[l-1].lat, this.activities[l-1].lng);
+    let waypts = [];
+    for(let i = 1; i < l-1; i++) {
+      waypts.push({
+        location: new google.maps.LatLng( this.activities[i].lat, this.activities[i].lng),
+        stopover: true;
+      });
+      console.log(waypts);
+    }
+    var tm = google.maps.TravelMode[this.travelMode];
+    let directionsDisplay = this.directionsDisplay;   // due to scoing problem inside a callback, we need to store it in a local variable to avoid using "this"
+    this.directionsService.route({
+      origin: start,
+      destination: end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
+      travelMode: tm
+    }, function(response, status) {
+      // if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+        var route = response.routes[0];
+        var summaryPanel = document.getElementById('directionsPanel');
+        summaryPanel.innerHTML = '';
+        // For each route, display summary information.
+        for (var i = 0; i < route.legs.length; i++) {
+          var routeSegment = i + 1;
+          summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+              '</b><br>';
+          summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+          summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+          summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+        }
+      // } else {
+      //   window.alert('Directions request failed due to ' + status);
+      // }
+    })
   }
 
 }

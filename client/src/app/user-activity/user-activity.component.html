@@ -1,0 +1,16 @@
+<h2>Add your own adventure!</h2>
+<a href="/trips/plan/{{currentTrip.id}}">Back to trip</a>
+<form (submit)="onSubmit()">
+  <p>Location: </p>
+  <input
+  google-places
+  (onSelect)="apiCall($event)"
+  type="text"
+  class="google-place-input"
+  placeholder="Search location.."
+  name="newActivity.location"
+  [(ngModel)]="place">
+  <p>Description: <input type="text" name="newActivity.description" [(ngModel)]="newActivity.description" /></p>
+  <p>Image url: <input type="text" name="newActivity.imgRef" [(ngModel)]="newActivity.imgRef" /></p>
+  <input type="submit" value="Create Activity" />
+</form>

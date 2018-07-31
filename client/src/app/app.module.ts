@@ -26,6 +26,11 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { UserService } from './user.service';
 import { InviteComponent } from './invite/invite.component';
 import { NavigationbarComponent } from './navigationbar/navigationbar.component';
+import { CreateActivityComponent } from './create-activity/create-activity.component';
+// import { MdDialogModule } from '@angular/material';
+import { UserActivityComponent } from './user-activity/user-activity.component';
+
+
 
 
 
@@ -45,12 +50,15 @@ import { NavigationbarComponent } from './navigationbar/navigationbar.component'
     MapViewComponent,
     UserSearchComponent,
     InviteComponent,
-    NavigationbarComponent
+    NavigationbarComponent,
+    CreateActivityComponent,
+    UserActivityComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    // MdDialogModule,
     FormsModule,
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
