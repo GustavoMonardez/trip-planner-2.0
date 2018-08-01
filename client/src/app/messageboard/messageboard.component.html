@@ -1,4 +1,4 @@
-<h1>Messages</h1>
+<h2>MESSAGES</h2>
 <div #scrollMe class = "message-board">
   <div *ngIf="trip" >
     <div *ngIf="trip.messages.length == 0">
@@ -6,10 +6,10 @@
     </div>
     <div class = "message" *ngFor="let message of trip.messages">
       <p>
-        <span class = "author">{{message.messageAuthor.firstName}} {{message.messageAuthor.lastName}} </span>
-        <span class = "message-date" >Posted On: {{message.createdAt | date: "medium"}}</span>
+        <span class = "author">{{message.messageAuthor.firstName}} {{message.messageAuthor.lastName}}</span>
       </p>
       <p>{{message.messageContent}}</p>
+      <span class = "message-date" >Posted On: {{message.createdAt | date: "medium"}}</span>
     </div>
   </div>
   <div *ngIf = "!trip">

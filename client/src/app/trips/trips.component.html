@@ -8,11 +8,11 @@
   <!--  start agendas(days) -->
   <div id="agenda-options-wrapper">
   <div id="agenda-text">A<span>G</span>ENDA</div><div id="agenda-options">
-      <button *ngIf="!map_view" (click)="goMapView()">Map view</button>
-      <button *ngIf="map_view" (click)="goMapView()">List view</button>
+      <button *ngIf="!map_view" (click)="goMapView()">MAP VIEW</button>
+      <button *ngIf="map_view" (click)="goMapView()">LIST VIEW</button>
       <div id="delete-activities" droppable  [dropScope]="'deleteActivity'"  (onDrop)="onDropDelete($event)" >
             <i class="fa fa-trash"></i>
-            <span> Drop to delete</span>
+            <span> DROP TO DELETE</span>
       </div>
   </div></div><div
   class="sidebar-days tab">
