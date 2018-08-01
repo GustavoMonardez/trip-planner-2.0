@@ -7,7 +7,7 @@
 <div id="agenda-container">
   <!--  start agendas(days) -->
   <div id="agenda-options-wrapper">
-  <div id="agenda-text">AGENDA</div><div id="agenda-options">
+  <div id="agenda-text">A<span>G</span>ENDA</div><div id="agenda-options">
       <button *ngIf="!map_view" (click)="goMapView()">Map view</button>
       <button *ngIf="map_view" (click)="goMapView()">List view</button>
       <div id="delete-activities" droppable  [dropScope]="'deleteActivity'"  (onDrop)="onDropDelete($event)" >
