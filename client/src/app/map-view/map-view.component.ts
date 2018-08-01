@@ -111,7 +111,7 @@ export class MapViewComponent implements OnInit, OnChanges {
     for(let i = 1; i < l-1; i++) {
       waypts.push({
         location: new google.maps.LatLng( this.activities[i].lat, this.activities[i].lng),
-        stopover: true;
+        stopover: true
       });
       console.log(waypts);
     }

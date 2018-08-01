@@ -29,6 +29,7 @@ import { NavigationbarComponent } from './navigationbar/navigationbar.component'
 import { CreateActivityComponent } from './create-activity/create-activity.component';
 // import { MdDialogModule } from '@angular/material';
 import { UserActivityComponent } from './user-activity/user-activity.component';
+import { SplashComponent } from './splash/splash.component';
 
 
 
@@ -53,6 +54,7 @@ import { UserActivityComponent } from './user-activity/user-activity.component';
     NavigationbarComponent,
     CreateActivityComponent,
     UserActivityComponent,
+    SplashComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,7 @@ import { UserActivityComponent } from './user-activity/user-activity.component';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'API_KEY',
+      apiKey: 'AIzaSyDiUo2OhQZ4e32jvqV-ISqgEUNEgLL68Cw',
       libraries: ["places"]
     })
   ],
