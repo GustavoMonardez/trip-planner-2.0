@@ -29,6 +29,7 @@ import { NavigationbarComponent } from './navigationbar/navigationbar.component'
 import { CreateActivityComponent } from './create-activity/create-activity.component';
 // import { MdDialogModule } from '@angular/material';
 import { UserActivityComponent } from './user-activity/user-activity.component';
+import { SplashComponent } from './splash/splash.component';
 import { MessageboardComponent } from './messageboard/messageboard.component';
 
 import { MessageService } from './message.service';
@@ -55,6 +56,7 @@ import { MessageService } from './message.service';
     NavigationbarComponent,
     CreateActivityComponent,
     UserActivityComponent,
+    SplashComponent,
     MessageboardComponent,
   ],
   imports: [

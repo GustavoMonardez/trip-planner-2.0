@@ -1,0 +1,12 @@
+
+h1, div {
+  text-align: center;
+  background-color: white;
+  z-index: 0
+}
+form {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0
+}
