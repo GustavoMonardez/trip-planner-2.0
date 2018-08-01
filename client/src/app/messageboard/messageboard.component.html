@@ -1,0 +1,22 @@
+<h1>Messages</h1>
+<div #scrollMe class = "message-board">
+  <div *ngIf="trip" >
+    <div *ngIf="trip.messages.length == 0">
+      <p>Add a message!</p>
+    </div>
+    <div class = "message" *ngFor="let message of trip.messages">
+      <p>
+        <span class = "author">{{message.messageAuthor.firstName}} {{message.messageAuthor.lastName}} </span>
+        <span class = "message-date" >Posted On: {{message.createdAt | date: "medium"}}</span>
+      </p>
+      <p>{{message.messageContent}}</p>
+    </div>
+  </div>
+  <div *ngIf = "!trip">
+    <i class = "fa fa-refresh fa-spin"></i>
+  </div>
+</div>
+<div class = "messageForm">
+  <textarea #messageBox id = "messagebox"></textarea>
+  <p><button id = "submitButton" (click)="addMessage(messageBox.value)">Add a message!</button></p>
+</div>

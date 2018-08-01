@@ -31,6 +31,7 @@ public class Agenda {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_id")
     @JsonIgnoreProperties({"agenda","guests","invitees","admins"})
+
     private Trip trip;
 
     @OneToMany(mappedBy="agenda", fetch = FetchType.LAZY)

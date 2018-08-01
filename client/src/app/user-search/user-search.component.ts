@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, switchMap
@@ -15,13 +15,19 @@ export class UserSearchComponent implements OnInit {
 
   @Output() inviteUserEmitter = new EventEmitter();
 
+  isClicked:boolean;
+
   users$:{};
   private searchTerms = new Subject<string>();
 
-  constructor(private userService: UserService) { }
+
+  constructor(
+    private userService: UserService,
+    private eRef: ElementRef,
+  ) { }
 
   ngOnInit() {
-    console.log("hey i'm in the user-search! and this is the trip that i am getting from the parent: ", this.currenttrip);
+    this.isClicked = true;
     this.users$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -42,5 +48,15 @@ export class UserSearchComponent implements OnInit {
 
   emitUserToInviteComponent(user){
     this.inviteUserEmitter.emit(user);
+  }
+  @HostListener('document:click',['$event'])
+  clickout(event){
+    if(this.eRef.nativeElement.contains(event.target)){
+      console.log("clicked inside of user search");
+      this.isClicked = true;
+    } else {
+      console.log("clicked outside of user search");
+      this.isClicked = false;
+    }
   }
 }
