@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -85,6 +86,9 @@ public class User {
 	@JsonIgnoreProperties("invitees")
 	private List<Trip> tripsInvited;
 	
+	@OneToMany(mappedBy = "messageAuthor",fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("messageAuthor")
+	private List<Message> messages;
 
 	public User() {
 		this.tripsAttending = new ArrayList<Trip>();
@@ -99,6 +103,14 @@ public class User {
 	}
 
 
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
 
 	public void setId(Long id) {
 		this.id = id;

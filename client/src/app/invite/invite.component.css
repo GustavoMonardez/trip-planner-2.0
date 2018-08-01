@@ -2,15 +2,39 @@
     display:inline-block;
     vertical-align: top;
     width:300px;
-    height:500px;
+    height:200px;
     border:2px solid black;
     margin-right:10px;
     padding-left:3px;
-
+    overflow-y:auto;
+    vertical-align:top;
+    /* this is just so that you dont see an overlap */
+    margin-top:-2px;
 }
 .people{
     margin-left:20px;
 }
 .error{
     color:red;
+}
+
+.people-wrapper{
+    display:inline-block;
+    width: 400px;
+}
+
+.message-board{
+    display:inline-block;
+    vertical-align:top;
+}
+
+.invite-wrapper{
+    width:1200px;
+}
+
+.user-search{
+    padding-bottom:20px;
+}
+#admin{
+    font-style:italic;
 }
