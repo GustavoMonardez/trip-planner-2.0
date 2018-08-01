@@ -2,47 +2,62 @@
     margin:0;
     padding:0;
 }
+select, input{
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom:1%;
+}
 #main-container{
-    width: 90%;
+    width: 80%;
     margin:auto;
+    background-color: white;
 }
 /************************TRIPS PAGE*************************/
 #agenda-container,#sidebar-container{
     display: inline-block;
     vertical-align: top;
-    height:800px;
-    overflow-y:scroll;
-    padding:1%;
+    height:825px;
 }
 #agenda-container{
     width: 65%;
-    margin-right:3%;
-    background-color: azure;
+    margin-right:1%;
 }
 #sidebar-container{
-    width:28%;
-    background-color:bisque;
+    width:34%;
+    background-color:white;
     overflow:hidden;
+    padding:20px;
+}
+#sidebar-container h2{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 5px 12px;
+    color:#62B4A7;
 }
 #proposed-container,#suggestions-container{
     height:50%;
     overflow-y:scroll;
 }
+#suggestions-container{
+    height:42%;
+}
 #proposed-container{
     position: relative;
     height:45%;
+    margin-bottom:5px;
    /*  background-color:cadetblue; */
 }
 /******************DRAG TO DELETE START********************/
 #delete-activities{
-    width:80%;
-    height: 5%;
-    position: relative;
-    left: 10%;
-    bottom: 0;
-    right: 0;
-    border: 2px dashed brown;
-    background-color:#D9534F;
+    display: inline-block;
+   /*  border: 2px dashed brown;
+    background-color:#D9534F; */
+    background-color: #3B4F57;
+    color:white;
+    text-align: center;
+    padding:5px 10px;
+    border-radius: 5px;
+    font-weight:600;
 }
 #background-delete {
     position: absolute;
@@ -63,13 +78,53 @@
             user-select: none;
  }
  /******************DRAG TO DELETE END********************/
-#suggestions-container{
-   /*  background-color: coral; */
+ #agenda-options-wrapper{
+     background-color: white;
+ }
+#agenda-navbar{
+    height:200px;
+    background: url("assets/images/main.gif");
+}
+#agenda-navbar h2{
+    margin-right: 171px;
+    display: inline-block;
+    padding:0px 22px 0px 22px;
+}
+#agenda-options{
+    width:70%;
+    padding: 0 2% 0 2%;
+    text-align: center;
+}
+#agenda-options button{
+    padding:5px 10px;
+    border-radius: 5px;
+    background-color: #62B4A7;
+    color:white;
+    border:none;
+    margin-right:5px;
+    font-weight:600;
+    cursor: pointer;
 }
 .single-activity{
     width:80%;
-    margin:auto auto 2% auto;
-    border:1px solid black;
+    margin:2% auto 2% auto;
+    /* border:1px solid silver; */
+    z-index: 5;
+    background-color: white;
+    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding-bottom:15px;
+    cursor:grab;
+}
+.single-activity h3{
+    color:#333333;
+}
+.single-activity p{
+    color:#666666;
+}
+.activity-image{
+   /*  width:400px; */
+    height:150px;
 }
 .single-agenda,.sidebar-days{
     display: inline-block;
@@ -77,15 +132,72 @@
 }
 .sidebar-days{
     width:26%;
-    border: 1px solid silver;
     padding:2%;
 }
 .single-agenda{
     position: relative;
-    width:65%;
-    height:640px;
-    margin-left:2%;
+    width:70%;
+    height:800px;
+    padding:0 2% 0 2%;
+    overflow-y:scroll;
+    background-color: white;
+    text-align: center;
+   /*  border: 2px dashed silver; */
    /*  border: 1px solid silver; */
+}
+.single-agenda button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    margin:0 5px 0 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-clear-get{
+    color: #3B4F57;
+    border: 1px solid #3B4F57;
+}
+.btn-connected{
+    color: #62B4A7;
+    border: 1px solid #62B4A7;
+}
+#suggestions-header p,#suggestions-header select, .no-suggestions{
+    margin-left:12px;
+}
+.single-suggestion{
+    width: 400px;
+    height:100px;
+    margin: 2% auto 2% 1%;
+    background-color: white;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+    cursor:grab;
+}
+.suggestion-image{
+    display: inline-block;
+    width: 200px;
+    height:100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    vertical-align: text-bottom;
+}
+.suggestion-text{
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+}
+.suggestion-text h3{
+    font-size: 16px;
+    color:#333333;
+    text-align: center;
+    font-weight: 600;
+}
+.suggestion-text p{
+    color:#666666;
+    text-align: center;
+}
+#liked, #notliked{
+    cursor: pointer;
 }
 #background {
     position: absolute;
@@ -107,7 +219,20 @@
  }
 .agenda-day{
     height:100%;
-    border: 2px dashed silver;
+}
+#agenda-text,#agenda-options{
+    display:inline-block;
+}
+#agenda-text{
+    background-color: #3B4F57;
+    color:white;
+    width: 26%;
+    padding: 2%;
+    padding-left: 3%;
+    font-weight:600;
+}
+#agenda-text span{
+    color:#62B4A7;
 }
 /* .day-number{
     width:20%;
@@ -117,8 +242,7 @@
 /* Style the tab */
 .tab {
     float: left;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #182630;
    /*  width: 30%;
     height: 300px; */
 }
@@ -127,7 +251,7 @@
 .tab button {
     display: block;
     background-color: inherit;
-    color: black;
+    color:white;
     padding: 22px 16px;
     width: 100%;
     border: none;
@@ -139,12 +263,12 @@
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #3B4F57;
 }
 
 /* Create an active/current "tab button" class */
 .tab button.active {
-    background-color: #ccc;
+    background-color: #62B4A7;
 }
 /************************************/
 .text-wrapper {

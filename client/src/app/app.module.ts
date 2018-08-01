@@ -30,7 +30,9 @@ import { CreateActivityComponent } from './create-activity/create-activity.compo
 // import { MdDialogModule } from '@angular/material';
 import { UserActivityComponent } from './user-activity/user-activity.component';
 import { SplashComponent } from './splash/splash.component';
+import { MessageboardComponent } from './messageboard/messageboard.component';
 
+import { MessageService } from './message.service';
 
 
 
@@ -55,6 +57,7 @@ import { SplashComponent } from './splash/splash.component';
     CreateActivityComponent,
     UserActivityComponent,
     SplashComponent,
+    MessageboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,13 +68,14 @@ import { SplashComponent } from './splash/splash.component';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'API_KEY',
+      apiKey: 'AIzaSyBZXHmbaI-Ku4IH_pK527YoH5nXKUqNUNU',
       libraries: ["places"]
     })
   ],
   providers: [
     TripService,
-    UserService
+    UserService,
+    MessageService,
   ],
   bootstrap: [AppComponent]
 })

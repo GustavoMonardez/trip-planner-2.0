@@ -1,103 +1,115 @@
-<div>
-  <h2>Current Trip: {{currentTrip.title}}</h2>
-  <app-navigationbar></app-navigationbar>
+<app-navigationbar></app-navigationbar>
+<!-- <div>
+  <h2>{{currentTrip.title}}</h2>
+</div> -->
+<div id="agenda-navbar">
 </div>
 <div id="agenda-container">
-    <h2>Agenda</h2>
-
   <!--  start agendas(days) -->
-  <div  class="sidebar-days tab">
+  <div id="agenda-options-wrapper">
+  <div id="agenda-text">A<span>G</span>ENDA</div><div id="agenda-options">
+      <button *ngIf="!map_view" (click)="goMapView()">Map view</button>
+      <button *ngIf="map_view" (click)="goMapView()">List view</button>
+      <div id="delete-activities" droppable  [dropScope]="'deleteActivity'"  (onDrop)="onDropDelete($event)" >
+            <i class="fa fa-trash"></i>
+            <span> Drop to delete</span>
+      </div>
+  </div></div><div
+  class="sidebar-days tab">
       <button *ngFor="let agenda of agendas" [ngClass]="{active : agenda.day == currentAgenda.day}" class="day-number" (click)="selectDay(agenda.day)">Day {{agenda.day}}</button>
       <button (click)="createNewDay()">add day</button>
   </div><div
    class="single-agenda">
-
       <!-- Map View -->
-      <button *ngIf="!map_view" (click)="goMapView()">Map view</button>
-      <button *ngIf="map_view" (click)="goMapView()">List view</button>
       <app-map-view *ngIf="map_view" [myAgenda]="currentAgenda"></app-map-view>
       <!-- Map View  -->
       <div *ngIf="!map_view" droppable  [dropScope]="'agendaDay'" (onDrop)="onActivityDrop($event)" class="agenda-day">
           <div id="background">
             Drop Activities here to Add
           </div>
-        <div draggable [dragScope]="['deleteActivity']" [dragData]="activity" *ngFor="let activity of currentAgenda.activities" class="single-activity" [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat;background-position: center;background-size: cover">
-          <span class="text-wrapper">
+        <div draggable [dragScope]="['deleteActivity']" [dragData]="activity" *ngFor="let activity of currentAgenda.activities" class="single-activity">
+         <!--  <span class="text-wrapper"> -->
+          <div [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat;background-position: center;background-size: cover" class="activity-image"></div>
           <h3>{{activity.location}}</h3>
           <p>{{activity.description}}</p>
-        </span>
+       <!--  </span> -->
         </div>
       </div>
   </div>
 <!-- end agendas(days) -->
 </div><div
 id="sidebar-container">
-<div id="delete-activities" droppable  [dropScope]="'deleteActivity'"  (onDrop)="onDropDelete($event)" >
-    <div id="background-delete">
-        <i class="fa fa-trash"></i> Drop Activities here to Delete
-    </div>
- </div>
 <!-- start activities (proposed) -->
-  <h2>Proposed</h2>
+  <h2>PROPOSED</h2>
  <div droppable (onDrop)="onSuggestionDrop($event)" id="proposed-container">
    
    <!-- <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity"> -->
-  <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity" [style.background-image]="getBackground(activity.imgRef)" style="background-repeat: no-repeat;background-position: center;background-size: cover">
-    <span class="text-wrapper">
-     <h3>{{activity.location}}</h3>
-     <p>{{activity.description}}</p>
-     <!-- html for users liking activities -->
-     <p>
-       <span id = "liked" *ngIf = "hasUserLiked(activity)">
-         {{activity.likedBy.length}}
-         <i class ="fa fa-thumbs-o-up likedicon" (click)="likeActivity(activity)"></i>
-        </span>
-        <span id = "notliked" *ngIf = "!hasUserLiked(activity)">
+  <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-suggestion" >
+    <!-- <span class="text-wrapper"> -->
+      <div [style.background-image]="getBackground(activity.imgRef)" class="suggestion-image"></div>
+      <div class="suggestion-text">
+      <h3>{{activity.location}}</h3>
+      <p>{{activity.description}}</p>
+      <!-- html for users liking activities -->
+      <p>
+        <span id = "liked" *ngIf = "hasUserLiked(activity)">
           {{activity.likedBy.length}}
-          <i class ="fa fa-thumbs-o-up notlikedicon" (click)="likeActivity(activity)"></i>
-        </span>
-      </p>
+          <i class ="fa fa-thumbs-o-up likedicon" (click)="likeActivity(activity)"></i>
+          </span>
+          <span id = "notliked" *ngIf = "!hasUserLiked(activity)">
+            {{activity.likedBy.length}}
+            <i class ="fa fa-thumbs-o-up notlikedicon" (click)="likeActivity(activity)"></i>
+          </span>
+        </p>
+        </div>
       <!-- end html for user liking stuff-->
-    </span>
+    <!-- </span> -->
    </div>
 <!-- end activities (proposed) -->
- </div><div
-  id="suggestions-container">
-    <h2>Suggestions</h2>
-    <p>I am looking for...</p>
-    <select [(ngModel)]="suggestion_type" (change)="search()">
-      <option value="specific_location">Specific Location</option>
-      <option value="point_of_interest">Anything</option>
-      <option value="bar">Bar</option>
-      <option value="cafe">Cafe</option>
-      <option value="restaurant">Restaurant</option>
-      <option value="shopping_mall">Shopping Mall</option>
-      <option value="park">Park</option>
-      <option value="lodging">Lodging</option>
-      <option value="airport">Airport</option>
-    </select>
-    <input
-    google-places
-    (onSelect)="apiCall($event)"
-    type="text"
-    class="google-place-input"
-    placeholder="Search location..">
-    <div id="map" #gmap></div>
-    <div draggable *ngFor="let suggestion of nearbySearchList" [dragData]="suggestion" class="single-activity" >
+ </div>
+ <div id="suggestions-header">
+  <h2>SUGGESTIONS</h2>
+  <p>I am looking for...</p>
+      <select [(ngModel)]="suggestion_type" (change)="search()">
+        <option value="specific_location">Specific Location</option>
+        <option value="point_of_interest">Anything</option>
+        <option value="bar">Bar</option>
+        <option value="cafe">Cafe</option>
+        <option value="restaurant">Restaurant</option>
+        <option value="shopping_mall">Shopping Mall</option>
+        <option value="park">Park</option>
+        <option value="lodging">Lodging</option>
+        <option value="airport">Airport</option>
+      </select>
+      near 
+      <input
+      google-places
+      (onSelect)="apiCall($event)"
+      type="text"
+      class="google-place-input"
+      placeholder="Search location..">
+      <div id="map" #gmap></div>
+  </div>
+ <div id="suggestions-container">
+    
+    <div draggable *ngFor="let suggestion of nearbySearchList" [dragData]="suggestion" class="single-suggestion" >
 
-      <div *ngIf="suggestion.photos" [style.background-image]="getBackground(suggestion.photos[0].getUrl({'maxWidth': 400, 'maxHeight': 200}))" style="background-repeat: no-repeat;background-position: center;background-size: cover">
-        <span class="text-wrapper">
-        <h3>{{suggestion.name}}</h3>
-        <p>Rating: {{suggestion.rating}}</p>
-      </span>
+      <div class="suggestion-small">
+        <!-- <span class="text-wrapper"> -->
+        <div *ngIf="suggestion.photos" [style.background-image]="getBackground(suggestion.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 100}))" class="suggestion-image"></div>
+        <div class="suggestion-text">
+          <h3>{{suggestion.name}}</h3>
+          <p>Rating: {{suggestion.rating}}</p>
+        </div>
+     <!--  </span> -->
       </div>
       <div *ngIf="!suggestion.photos">
-          <span class="text-wrapper">
+          <!-- <span class="text-wrapper"> -->
         <h3>{{suggestion.name}}</h3>
         <p>Rating: {{suggestion.rating}}</p>
-        </span>
+       <!--  </span> -->
       </div>
     </div>
-    <p *ngIf="nearbySearchList.length == 0">No suggestions found</p>
+    <p *ngIf="nearbySearchList.length == 0" class="no-suggestions">No suggestions found</p>
   </div>
 </div>
