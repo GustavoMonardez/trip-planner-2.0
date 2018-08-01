@@ -63,7 +63,7 @@ import { UserActivityComponent } from './user-activity/user-activity.component';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'API_KEY',
+      apiKey: 'AIzaSyBZXHmbaI-Ku4IH_pK527YoH5nXKUqNUNU',
       libraries: ["places"]
     })
   ],
