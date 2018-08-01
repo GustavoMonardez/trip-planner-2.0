@@ -14,19 +14,21 @@
 nav{
     float: right;
 }
-button{
-    margin-right:20px;
-    border: none;
-    background-color: transparent;
-    color:white;
-    cursor: pointer;padding:15px 0 15px 0;
-}
+
 p,nav{
     display: inline-block;
 }
 p{
     font-weight: 600;
     padding:1%;
+}
+button{
+    margin-right:20px;
+    border: none;
+    background-color: transparent;
+    color:white;
+    cursor: pointer;padding:15px 0 15px 0;
+    border-radius: 0;
 }
 button:hover{
     background-color: #3B4F57;

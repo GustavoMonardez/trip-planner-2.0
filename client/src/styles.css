@@ -7,6 +7,15 @@ select, input{
     border-radius: 5px;
     margin-bottom:1%;
 }
+button{
+    margin-right:20px;
+    border: none;
+    background-color: transparent;
+    color:white;
+    cursor: pointer;
+    padding:5px 10px;
+    border-radius: 5px;
+}
 #main-container{
     width: 80%;
     margin:auto;
@@ -84,6 +93,9 @@ select, input{
 #agenda-navbar{
     height:200px;
     background: url("assets/images/main.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
 }
 #agenda-navbar h2{
     margin-right: 171px;
@@ -118,6 +130,7 @@ select, input{
 }
 .single-activity h3{
     color:#333333;
+    font-size: 20px;
 }
 .single-activity p{
     color:#666666;
@@ -243,6 +256,7 @@ select, input{
 .tab {
     float: left;
     background-color: #182630;
+    font-size: 12px;
    /*  width: 30%;
     height: 300px; */
 }
@@ -259,6 +273,7 @@ select, input{
     text-align: left;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 0;
 }
 
 /* Change background color of buttons on hover */
