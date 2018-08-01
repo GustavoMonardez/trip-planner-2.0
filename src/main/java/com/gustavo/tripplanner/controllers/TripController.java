@@ -17,13 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gustavo.tripplanner.models.Activity;
 import com.gustavo.tripplanner.models.Agenda;
+import com.gustavo.tripplanner.models.Message;
 import com.gustavo.tripplanner.models.Trip;
 import com.gustavo.tripplanner.models.User;
 import com.gustavo.tripplanner.postmodels.InviteUserPost;
 import com.gustavo.tripplanner.postmodels.LikeActivityPost;
+import com.gustavo.tripplanner.postmodels.MessagePost;
 import com.gustavo.tripplanner.postmodels.TripPost;
 import com.gustavo.tripplanner.services.ActivityService;
 import com.gustavo.tripplanner.services.AgendaService;
+import com.gustavo.tripplanner.services.MessageService;
 import com.gustavo.tripplanner.services.TripService;
 import com.gustavo.tripplanner.services.UserService;
 
@@ -35,16 +38,19 @@ public class TripController {
 	private final AgendaService agendaService;
 	private final TripService tripService;
 	private final UserService userService;
+	private final MessageService messageService;
 	
 	public TripController(
 			ActivityService activityService,
 			AgendaService agendaService,
 			TripService tripService,
-			UserService userService) {
+			UserService userService,
+			MessageService messageService) {
 		this.activityService = activityService;
 		this.agendaService = agendaService;
 		this.tripService = tripService;
 		this.userService = userService;
+		this.messageService = messageService;
 	}
 	/*********************CREATE*******************/
 	@PostMapping("/activities")
@@ -193,5 +199,14 @@ public class TripController {
 		Activity activity = activityService.findActivityById(likeActivityPost.getActivityId());
 		User user = userService.findUserById(likeActivityPost.getUserId());
 		return activityService.likeActivity(activity, user);
+	}
+	
+	@PostMapping("/messages")
+	public Message addMessage(@RequestBody MessagePost messagePost) {
+		User user = userService.findUserById(messagePost.getUserId());
+		Trip trip = tripService.findTripById(messagePost.getTripId());
+		System.out.println(user);
+		System.out.println(trip);
+		return messageService.addMessage(user, trip, messagePost.getMessage());
 	}
 }
