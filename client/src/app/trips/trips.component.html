@@ -3,17 +3,19 @@
   <h2>{{currentTrip.title}}</h2>
 </div> -->
 <div id="agenda-navbar">
-  <h2>Agenda</h2>
-  <button *ngIf="!map_view" (click)="goMapView()">Map view</button>
-  <button *ngIf="map_view" (click)="goMapView()">List view</button>
-  <div id="delete-activities" droppable  [dropScope]="'deleteActivity'"  (onDrop)="onDropDelete($event)" >
-        <i class="fa fa-trash"></i>
-        <span> Drop to delete</span>
-  </div>
 </div>
 <div id="agenda-container">
   <!--  start agendas(days) -->
-  <div  class="sidebar-days tab">
+  <div id="agenda-options-wrapper">
+  <div id="agenda-text">AGENDA</div><div id="agenda-options">
+      <button *ngIf="!map_view" (click)="goMapView()">Map view</button>
+      <button *ngIf="map_view" (click)="goMapView()">List view</button>
+      <div id="delete-activities" droppable  [dropScope]="'deleteActivity'"  (onDrop)="onDropDelete($event)" >
+            <i class="fa fa-trash"></i>
+            <span> Drop to delete</span>
+      </div>
+  </div></div><div
+  class="sidebar-days tab">
       <button *ngFor="let agenda of agendas" [ngClass]="{active : agenda.day == currentAgenda.day}" class="day-number" (click)="selectDay(agenda.day)">Day {{agenda.day}}</button>
       <button (click)="createNewDay()">add day</button>
   </div><div
@@ -38,7 +40,7 @@
 </div><div
 id="sidebar-container">
 <!-- start activities (proposed) -->
-  <h2>Proposed</h2>
+  <h2>PROPOSED</h2>
  <div droppable (onDrop)="onSuggestionDrop($event)" id="proposed-container">
    
    <!-- <div draggable [dragScope]="['agendaDay','deleteActivity']" *ngFor="let activity of droppedSuggestions"  [dragData]="activity" class="single-activity"> -->
@@ -66,7 +68,7 @@ id="sidebar-container">
 <!-- end activities (proposed) -->
  </div>
  <div id="suggestions-header">
-  <h2>Suggestions</h2>
+  <h2>SUGGESTIONS</h2>
   <p>I am looking for...</p>
       <select [(ngModel)]="suggestion_type" (change)="search()">
         <option value="specific_location">Specific Location</option>

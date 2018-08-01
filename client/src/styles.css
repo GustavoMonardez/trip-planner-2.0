@@ -3,31 +3,31 @@
     padding:0;
 }
 #main-container{
-    width: 90%;
+    width: 80%;
     margin:auto;
+    background-color: white;
 }
 /************************TRIPS PAGE*************************/
 #agenda-container,#sidebar-container{
     display: inline-block;
     vertical-align: top;
     height:825px;
-    padding:1%;
 }
 #agenda-container{
     width: 65%;
-    margin-right:7%;
-    background-color: azure;
+    margin-right:5%;
 }
 #sidebar-container{
-    width:28%;
-    background-color:bisque;
+    width:30%;
+    background-color:white;
     overflow:hidden;
+    padding:20px;
 }
 #sidebar-container h2{
     font-size: 18px;
     font-weight: 600;
     margin: 0 0 5px 12px;
-    color:#333333;
+    color:#62B4A7;
 }
 #proposed-container,#suggestions-container{
     height:50%;
@@ -47,7 +47,7 @@
     display: inline-block;
    /*  border: 2px dashed brown;
     background-color:#D9534F; */
-    background-color: #D9534F;
+    background-color: #3B4F57;
     color:white;
     text-align: center;
     padding:5px 10px;
@@ -72,18 +72,27 @@
             user-select: none;
  }
  /******************DRAG TO DELETE END********************/
- #agenda-navbar{
-     background-color: beige;
+ #agenda-options-wrapper{
+     background-color: white;
  }
+#agenda-navbar{
+    height:200px;
+    background: url("assets/images/main.gif");
+}
 #agenda-navbar h2{
     margin-right: 171px;
     display: inline-block;
     padding:0px 22px 0px 22px;
 }
-#agenda-navbar button{
+#agenda-options{
+    width:70%;
+    margin-left: 2%;
+    text-align: center;
+}
+#agenda-options button{
     padding:5px 10px;
     border-radius: 5px;
-    background-color: #11a1d5;
+    background-color: #62B4A7;
     color:white;
     border:none;
     margin-right:5px;
@@ -114,15 +123,15 @@
 }
 .sidebar-days{
     width:26%;
-    border: 1px solid silver;
     padding:2%;
 }
 .single-agenda{
     position: relative;
-    width:72%;
+    width:70%;
     height:800px;
     margin-left:2%;
     overflow-y:scroll;
+    background-color: white;
    /*  border: 2px dashed silver; */
    /*  border: 1px solid silver; */
 }
@@ -184,6 +193,16 @@
 .agenda-day{
     height:100%;
 }
+#agenda-text,#agenda-options{
+    display:inline-block;
+}
+#agenda-text{
+    background-color: #3B4F57;
+    color:white;
+    width: 26%;
+    padding: 2%;
+    padding-left: 3%;
+}
 /* .day-number{
     width:20%;
     border:1px solid silver;
@@ -192,8 +211,7 @@
 /* Style the tab */
 .tab {
     float: left;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #182630;
    /*  width: 30%;
     height: 300px; */
 }
@@ -202,7 +220,7 @@
 .tab button {
     display: block;
     background-color: inherit;
-    color: black;
+    color:white;
     padding: 22px 16px;
     width: 100%;
     border: none;
@@ -214,12 +232,12 @@
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #3B4F57;
 }
 
 /* Create an active/current "tab button" class */
 .tab button.active {
-    background-color: #ccc;
+    background-color: #62B4A7;
 }
 /************************************/
 .text-wrapper {
