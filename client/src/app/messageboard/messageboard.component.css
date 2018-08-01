@@ -1,0 +1,30 @@
+.message{
+    border: 2px solid black;
+    width: 675px;
+    padding:10px;
+    margin-bottom:-2px;
+}
+.message-date{
+    float:right;
+}
+.author{
+    font-weight: bold;
+}
+.message-board{
+    width:700px;
+    height:400px;
+    overflow-y:auto;
+}
+.messageForm, #messagebox{
+    margin-top:10px;
+    width:675px;
+}
+#messagebox{
+    height:100px;
+}
+#submitButton{
+    float:right;
+}
+.messageForm{
+    margin-bottom:50px;
+}

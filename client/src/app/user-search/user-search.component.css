@@ -39,4 +39,5 @@
 ul.search-result {
     margin-top: 0;
     padding-left: 0;
+    position:absolute;
 }

@@ -72,6 +72,10 @@ public class Trip {
 	@JsonIgnoreProperties("trip")
 	private List<Activity> proposedActivities;
 	
+	@OneToMany(mappedBy="trip", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("trip")
+	private List<Message> messages;
+	
 	@Column(updatable=false)
 	private Date createdAt;
 	
@@ -85,6 +89,20 @@ public class Trip {
 		this.guests = new ArrayList<User>();
 	}
 	
+	
+	
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+
+
+
 	public List<Activity> getProposedActivities() {
 		return proposedActivities;
 	}

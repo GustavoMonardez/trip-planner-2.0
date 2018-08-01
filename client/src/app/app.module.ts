@@ -29,7 +29,9 @@ import { NavigationbarComponent } from './navigationbar/navigationbar.component'
 import { CreateActivityComponent } from './create-activity/create-activity.component';
 // import { MdDialogModule } from '@angular/material';
 import { UserActivityComponent } from './user-activity/user-activity.component';
+import { MessageboardComponent } from './messageboard/messageboard.component';
 
+import { MessageService } from './message.service';
 
 
 
@@ -53,6 +55,7 @@ import { UserActivityComponent } from './user-activity/user-activity.component';
     NavigationbarComponent,
     CreateActivityComponent,
     UserActivityComponent,
+    MessageboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,13 +66,14 @@ import { UserActivityComponent } from './user-activity/user-activity.component';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'API_KEY',
+      apiKey: 'AIzaSyBZXHmbaI-Ku4IH_pK527YoH5nXKUqNUNU',
       libraries: ["places"]
     })
   ],
   providers: [
     TripService,
-    UserService
+    UserService,
+    MessageService,
   ],
   bootstrap: [AppComponent]
 })
