@@ -12,14 +12,15 @@ import { TripsComponent } from './trips/trips.component';
 import { InviteComponent } from './invite/invite.component';
 
 import { UserActivityComponent } from './user-activity/user-activity.component';
-
+import { SplashComponent } from './splash/splash.component';
 
 const routes: Routes = [
+  {path:'', component: SplashComponent, pathMatch:'full'},
   {path:'registration', component:RegistrationComponent},
   {path:'login', component:LoginComponent},
   {path:'dashboard', component:DashboardComponent},
   {path:'createtrip', component:CreatetripComponent},
-  {path:'', redirectTo:'login', pathMatch:'full'},
+  // {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'trips/plan/:id',component:TripsComponent},
    {path:'apitesting',component:ApiTestingComponent},
   {path:'jsapitesting',component:JsApiTestingComponent},

@@ -7,6 +7,20 @@
 .cal-day-badge{
     display:none !important;
 }
+select, input{
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom:1%;
+}
+button{
+    margin-right:20px;
+    border: none;
+    background-color: #62B4A7;
+    color:white;
+    cursor: pointer;
+    padding:5px 10px;
+    border-radius: 5px;
+}
 #main-container{
     width: 80%;
     margin:auto;
@@ -84,6 +98,9 @@
 #agenda-navbar{
     height:200px;
     background: url("assets/images/main.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
 }
 #agenda-navbar h2{
     margin-right: 171px;
@@ -92,7 +109,7 @@
 }
 #agenda-options{
     width:70%;
-    margin-left: 2%;
+    padding: 0 2% 0 2%;
     text-align: center;
 }
 #agenda-options button{
@@ -106,7 +123,7 @@
     cursor: pointer;
 }
 .single-activity{
-    width:400px;
+    width:80%;
     margin:2% auto 2% auto;
     /* border:1px solid silver; */
     z-index: 5;
@@ -118,12 +135,13 @@
 }
 .single-activity h3{
     color:#333333;
+    font-size: 20px;
 }
 .single-activity p{
     color:#666666;
 }
 .activity-image{
-    width:400px;
+   /*  width:400px; */
     height:150px;
 }
 .single-agenda,.sidebar-days{
@@ -138,9 +156,10 @@
     position: relative;
     width:70%;
     height:800px;
-    margin-left:2%;
+    padding:0 2% 0 2%;
     overflow-y:scroll;
     background-color: white;
+    text-align: center;
    /*  border: 2px dashed silver; */
    /*  border: 1px solid silver; */
 }
@@ -148,7 +167,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     background-color: transparent;
-    margin-right: 5px;
+    margin:0 5px 0 5px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -242,6 +261,7 @@
 .tab {
     float: left;
     background-color: #182630;
+    font-size: 12px;
    /*  width: 30%;
     height: 300px; */
 }
@@ -258,6 +278,7 @@
     text-align: left;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 0;
 }
 
 /* Change background color of buttons on hover */
