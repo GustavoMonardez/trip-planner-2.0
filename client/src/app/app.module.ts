@@ -65,7 +65,7 @@ import { SplashComponent } from './splash/splash.component';
     ReactiveFormsModule,
     NgDragDropModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'API_KEY',
+      apiKey: 'AIzaSyBZXHmbaI-Ku4IH_pK527YoH5nXKUqNUNU',
       libraries: ["places"]
     })
   ],
