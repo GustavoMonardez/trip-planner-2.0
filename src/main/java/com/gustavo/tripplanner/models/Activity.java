@@ -52,7 +52,7 @@ public class Activity {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_id")
-    @JsonIgnoreProperties("proposedActivities")
+    @JsonIgnoreProperties({"proposedActivities","admins","guests","invitees"})
     private Trip trip;
     
     @Column(updatable=false)

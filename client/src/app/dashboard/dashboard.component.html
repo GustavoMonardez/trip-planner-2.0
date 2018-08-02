@@ -16,7 +16,7 @@
       </tr>
     </table>
   </div>
-  <div *ngIf="user.tripsCreated.length > 0">
+  <!-- <div *ngIf="user.tripsCreated.length > 0">
     <h3>Trips Administrating</h3>
     <table>
       <thead>
@@ -76,14 +76,42 @@
           <td><button (click)="acceptInvitation(trip)">Accept Invitation</button></td>
         </tr>
       </table>
-  </div>
-</div>
+  </div> -->
 
-<div *ngIf="!user">
+
+<!-- <div *ngIf="!user">
   <h1>Loading...</h1>
 </div>
 
 <p><a [routerLink]="['/createtrip']">Add Travel Plan</a></p>
 
 
-<app-user-search></app-user-search>
+<app-user-search></app-user-search> -->
+  <div class = "calendar">
+    <app-calendar [selectedTrip] = "selectedTrip" (eventEmitter)="scrollToTrip($event)"></app-calendar>
+  </div>
+  <div class = "trips-div">
+    <div *ngIf = "tripsAttending.length != 0">
+      <h1>Upcoming trips!</h1>
+      <div class = "trips-attending-wrapper">
+        <div *ngFor = "let trip of tripsAttending" class = "trips-attending" (click) = "setCalendarToTrip(trip)" [id] = "'trip' + trip.id">
+          <p><a href = "/trips/plan/{{trip.id}}">{{trip.title}}</a></p>
+          <p>{{trip.date_from | date: "yyyy-MM-dd"}} - {{trip.date_to | date: "yyyy-MM-dd"}}</p>
+          <p>{{trip.description}}</p>
+          <p *ngIf="trip.role == 'admin'"><a href = "/trips/plan/{{trip.id}}/invite"><button>Invite people!</button></a></p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf = "user.tripsInvited.length != 0">
+      <h1>Invited Trips!</h1>
+      <div class = "trips-invited-wrapper">
+        <div *ngFor = "let trip of user.tripsInvited" class = "trips-invited" (click) = "setCalendarToTrip(trip)" [id] = "'trip' + trip.id">
+          <p>{{trip.title}}</p>
+          <p>{{trip.date_from | date: "yyyy-MM-dd"}} - {{trip.date_to | date: "yyyy-MM-dd"}}</p>
+          <p>{{trip.description}}</p>
+          <button (click)="acceptInvitation(trip)">Accept Invitation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

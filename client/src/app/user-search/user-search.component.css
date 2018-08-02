@@ -32,11 +32,11 @@
 }
 #search-box {
     width: 300px;
-    height: 25px;
 }
 
 
 ul.search-result {
     margin-top: 0;
     padding-left: 0;
+    position:absolute;
 }

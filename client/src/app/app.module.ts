@@ -30,9 +30,14 @@ import { CreateActivityComponent } from './create-activity/create-activity.compo
 // import { MdDialogModule } from '@angular/material';
 import { UserActivityComponent } from './user-activity/user-activity.component';
 import { SplashComponent } from './splash/splash.component';
+import { MessageboardComponent } from './messageboard/messageboard.component';
 
+import { MessageService } from './message.service';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';  
 
 
 
@@ -55,6 +60,9 @@ import { SplashComponent } from './splash/splash.component';
     CreateActivityComponent,
     UserActivityComponent,
     SplashComponent,
+    MessageboardComponent,
+    CalendarComponent,
+    CalendarHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,11 +75,14 @@ import { SplashComponent } from './splash/splash.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBZXHmbaI-Ku4IH_pK527YoH5nXKUqNUNU',
       libraries: ["places"]
-    })
+    }),
+    BrowserAnimationsModule,
+    CalendarModule.forRoot(),
   ],
   providers: [
     TripService,
-    UserService
+    UserService,
+    MessageService,
   ],
   bootstrap: [AppComponent]
 })

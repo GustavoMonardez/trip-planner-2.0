@@ -1,0 +1,44 @@
+.message{
+    margin: 2% auto 2% auto;
+    border-bottom: 1px solid silver;
+    z-index: 5;
+    background-color: white;
+    font-size:12px;
+    /* text-align: center; */
+    padding: 15px;
+}
+.message-date{
+    font-size: 10px;
+    color:silver;
+}
+.author{
+    font-weight: bold;
+}
+.message-board{
+    height:400px;
+    overflow-y:auto;
+}
+.messageForm, #messagebox{
+    margin-top:10px;
+}
+#messagebox{
+    width:100%;
+    height:100%;
+    border:1px solid silver;
+}
+#submitButton{
+    float:right;
+    margin-top:10px;
+}
+.messageForm{
+    margin-bottom:50px;
+}
+button{
+    background-color: #62B4A7;
+    color: white;
+    margin-right:0;
+}
+h2{
+    color:#62B4A7;
+    font-size: 22px;
+}
