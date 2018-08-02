@@ -1,6 +1,11 @@
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
 *{
     margin:0;
     padding:0;
+}
+.cal-day-badge{
+    display:none !important;
 }
 select, input{
     padding: 5px;

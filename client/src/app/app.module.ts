@@ -33,8 +33,11 @@ import { SplashComponent } from './splash/splash.component';
 import { MessageboardComponent } from './messageboard/messageboard.component';
 
 import { MessageService } from './message.service';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';  
 
 
 
@@ -58,6 +61,8 @@ import { MessageService } from './message.service';
     UserActivityComponent,
     SplashComponent,
     MessageboardComponent,
+    CalendarComponent,
+    CalendarHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,9 @@ import { MessageService } from './message.service';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBZXHmbaI-Ku4IH_pK527YoH5nXKUqNUNU',
       libraries: ["places"]
-    })
+    }),
+    BrowserAnimationsModule,
+    CalendarModule.forRoot(),
   ],
   providers: [
     TripService,

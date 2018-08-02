@@ -1,0 +1,20 @@
+<mwl-demo-utils-calendar-header
+  [(view)]="view"
+  [(viewDate)]="viewDate">
+</mwl-demo-utils-calendar-header>
+
+<div class="alert alert-warning" *ngIf="period?.events.length === 0">
+  There are no events on this {{ view }}
+</div>
+
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (beforeViewRender)="beforeViewRender($event)"
+    (eventClicked)="eventClicked($event)">
+  </mwl-calendar-month-view>
+</div>

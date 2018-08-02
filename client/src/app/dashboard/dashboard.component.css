@@ -1,0 +1,21 @@
+
+.calendar{
+    width:500px;
+    display:inline-block;
+    vertical-align:top;
+}
+.trips-attending, .trips-invited{
+    padding:5px;
+    border:2px solid black;
+}
+.trips-div{
+    display:inline-block;
+    width:500px;
+    vertical-align:top;
+    float:right;
+
+}
+.trips-attending-wrapper, .trips-invited-wrapper{
+    overflow-y:auto;
+    height:300px;
+}
