@@ -3,6 +3,7 @@
 <div class="login-wrapper">
   <h2>Sign in</h2>
   <form>
+    <table>
     <tr>
       <td>Email:</td>
       <td><input type="text" name="email" [(ngModel)]="user.email"></td>
@@ -15,6 +16,7 @@
       <td><p>New?<a [routerLink]="['/registration']"> Register here</a></p></td>
       <td><button (click)="login()">Sign in</button></td>
     </tr>
+    </table>
   </form>
 </div>
 

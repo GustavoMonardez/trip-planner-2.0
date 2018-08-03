@@ -1,6 +1,5 @@
 
 h1, div {
-  text-align: center;
   z-index: 0
 }
 button{
@@ -24,6 +23,7 @@ a{
   line-height: 200px;
   color:white;
   font-size: 40px;
+  text-align: center;
 }
 form {
   margin:auto;
@@ -43,4 +43,7 @@ h2{
   padding:3%;
   background-color: #fafafa;
   min-height: 700px;
+}
+table,input{
+  width:100%;
 }
