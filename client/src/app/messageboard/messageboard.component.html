@@ -2,7 +2,7 @@
 <div #scrollMe class = "message-board">
   <div *ngIf="trip" >
     <div *ngIf="trip.messages.length == 0">
-      <p>Add a message!</p>
+      <p>No messages yet.</p>
     </div>
     <div class = "message" *ngFor="let message of trip.messages">
       <p>

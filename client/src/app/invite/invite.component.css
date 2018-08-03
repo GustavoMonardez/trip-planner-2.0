@@ -8,6 +8,8 @@
 }
 .people{
     margin-left:20px;
+    overflow: auto;
+    margin-bottom: 10px;
 }
 .error{
     color:red;
