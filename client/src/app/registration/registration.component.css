@@ -2,3 +2,37 @@
     color:red;
     font-size:10px;
 }
+button{
+    margin-right:0px;
+    float:right;
+}
+p{
+    font-size:12px;
+    color:silver;
+}
+a{
+    color:#62B4A7;
+}
+#register-title{
+    height:200px;
+    background: url("../../assets/images/register.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+form{
+    width:60%;
+    margin:auto;
+    padding:20px;
+    background-color: #fafafa;
+}
+h2{
+    color:#62B4A7;
+    width:60%;
+    margin:auto;
+    padding:10px 20px;
+    background-color: #fafafa;
+}
+table,input{
+    width:100%;
+}

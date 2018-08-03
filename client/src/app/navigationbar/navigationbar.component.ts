@@ -50,5 +50,9 @@ export class NavigationbarComponent implements OnInit {
     }
     return false;
   }
-
+  isOnReg(){
+    var re = new RegExp('/registration');
+    if(this.router.url.match(re)) return true;
+    return false;
+  }
 }
