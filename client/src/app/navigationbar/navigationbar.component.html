@@ -1,5 +1,5 @@
 <div id="main-menu">
-<p><span>TRIP</span> PLANNER</p><nav>
+<p><span>TRIP</span> PLANNER</p><nav *ngIf = "!isOnReg()">
     <button [routerLink] = "['/dashboard']">DASHBOARD</button>
     <button [routerLink] = "['/createtrip']">CREATE TRIP</button>
     <button *ngIf = "isOnInvitePage()" [routerLink] = "['/trips/plan/',tripId]">TRIP PAGE</button>
