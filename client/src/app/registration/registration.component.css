@@ -21,18 +21,23 @@ a{
     background-position: center;
 }
 form{
-    width:60%;
     margin:auto;
     padding:20px;
     background-color: #fafafa;
 }
 h2{
     color:#62B4A7;
-    width:60%;
     margin:auto;
     padding:10px 20px;
     background-color: #fafafa;
 }
 table,input{
     width:100%;
+}
+.register-wrapper{
+    width: 45%;
+    margin: auto;
+    padding:3%;
+    background-color: #fafafa;
+    min-height: 700px;
 }

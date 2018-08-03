@@ -1,0 +1,31 @@
+#create-image{
+    height:200px;
+    background: url("../../assets/images/create.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.create-wrapper{
+    width: 40%;
+    margin: auto;
+    padding:3%;
+    background-color: #fafafa;
+    min-height: 700px;
+}
+button{
+    margin-right:0px;
+    float:right;
+}
+form{
+    margin:auto;
+    padding:20px;
+}
+h2{
+    color:#62B4A7;
+    margin:auto;
+    padding:10px 20px;
+    background-color: #fafafa;
+}
+table,input{
+    width:100%;
+}

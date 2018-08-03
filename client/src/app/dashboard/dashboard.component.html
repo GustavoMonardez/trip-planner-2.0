@@ -101,7 +101,7 @@
           <p><a href = "/trips/plan/{{trip.id}}">{{trip.title}}</a></p>
           <p>What's about: {{trip.description}}</p>
           <p class="dates">Dates: {{trip.date_from | date: "yyyy-MM-dd"}} - {{trip.date_to | date: "yyyy-MM-dd"}}</p>
-          <p *ngIf="trip.role == 'admin'"><a href = "/trips/plan/{{trip.id}}/invite"><button>Invite people!</button></a></p>
+          <p *ngIf="trip.role == 'admin'"><a href = "/trips/plan/{{trip.id}}/invite"><button>Invite friends!</button></a></p>
         </div>
       </div>
     </div>
