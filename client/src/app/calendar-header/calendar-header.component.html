@@ -1,10 +1,10 @@
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<br>
-<div>
+
+<div id="header-wrapper">
   <div class = "datebuttons">
     <div class="btn-group">
       <div
-        class="btn btn-primary"
+        class="day-buttons prev-next"
         mwlCalendarPreviousView
         [view]="view"
         [(viewDate)]="viewDate"
@@ -12,14 +12,14 @@
         Previous
       </div>
       <div
-        class="btn btn-outline-secondary"
+        class="day-buttons"
         mwlCalendarToday
         [(viewDate)]="viewDate"
         (viewDateChange)="viewDateChange.next(viewDate)">
         Today
       </div>
       <div
-        class="btn btn-primary"
+        class="day-buttons prev-next"
         mwlCalendarNextView
         [view]="view"
         [(viewDate)]="viewDate"
@@ -32,4 +32,3 @@
     <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
   </div>
 </div>
-<br>

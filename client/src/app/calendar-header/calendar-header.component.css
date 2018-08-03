@@ -1,4 +1,23 @@
+#header-wrapper{
+    margin:10px 0;
+}
 .monthname, .datebuttons {
     margin-right:10px;
     display:inline-block;
+    vertical-align: top;
+}
+.day-buttons{
+    margin-right:2px;
+    border: none;
+    background-color: #62B4A7;
+    color:white;
+    cursor: pointer;
+    padding:5px 10px;
+    border-radius: 5px;
+}
+.today{
+
+}
+.prev-next{
+    background-color: #182630;
 }
