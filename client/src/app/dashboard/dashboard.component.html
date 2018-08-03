@@ -1,6 +1,8 @@
 <app-navigationbar></app-navigationbar>
+<div id="dashboard-image"></div>
 <div *ngIf="user">
-  <div>
+  <div id="profile">
+      <h2>PROFILE</h2>
     <table>
       <tr>
         <td>Name:</td>
@@ -88,27 +90,28 @@
 
 <app-user-search></app-user-search> -->
   <div class = "calendar">
+      <h2>CALENDAR</h2>
     <app-calendar [selectedTrip] = "selectedTrip" (eventEmitter)="scrollToTrip($event)"></app-calendar>
   </div>
   <div class = "trips-div">
     <div *ngIf = "tripsAttending.length != 0">
-      <h1>Upcoming trips!</h1>
+      <h2>UPCOMING TRIPS</h2>
       <div class = "trips-attending-wrapper">
         <div *ngFor = "let trip of tripsAttending" class = "trips-attending" (click) = "setCalendarToTrip(trip)" [id] = "'trip' + trip.id">
           <p><a href = "/trips/plan/{{trip.id}}">{{trip.title}}</a></p>
-          <p>{{trip.date_from | date: "yyyy-MM-dd"}} - {{trip.date_to | date: "yyyy-MM-dd"}}</p>
-          <p>{{trip.description}}</p>
+          <p>What's about: {{trip.description}}</p>
+          <p class="dates">Dates: {{trip.date_from | date: "yyyy-MM-dd"}} - {{trip.date_to | date: "yyyy-MM-dd"}}</p>
           <p *ngIf="trip.role == 'admin'"><a href = "/trips/plan/{{trip.id}}/invite"><button>Invite people!</button></a></p>
         </div>
       </div>
     </div>
     <div *ngIf = "user.tripsInvited.length != 0">
-      <h1>Invited Trips!</h1>
+      <h2>INVITED TRIPS</h2>
       <div class = "trips-invited-wrapper">
         <div *ngFor = "let trip of user.tripsInvited" class = "trips-invited" (click) = "setCalendarToTrip(trip)" [id] = "'trip' + trip.id">
           <p>{{trip.title}}</p>
-          <p>{{trip.date_from | date: "yyyy-MM-dd"}} - {{trip.date_to | date: "yyyy-MM-dd"}}</p>
           <p>{{trip.description}}</p>
+          <p class="dates">{{trip.date_from | date: "yyyy-MM-dd"}} - {{trip.date_to | date: "yyyy-MM-dd"}}</p>
           <button (click)="acceptInvitation(trip)">Accept Invitation</button>
         </div>
       </div>

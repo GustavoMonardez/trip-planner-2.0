@@ -21,6 +21,7 @@ p,nav{
 p{
     font-weight: 600;
     padding:1%;
+    margin-bottom: 0;
 }
 button{
     margin-right:20px;

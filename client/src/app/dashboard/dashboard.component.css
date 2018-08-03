@@ -1,21 +1,59 @@
 
+#profile{
+    display: inline-block;
+    width: 30%;
+    padding: 3%;
+}
 .calendar{
-    width:500px;
+    width:40%;
+    padding: 3%;
     display:inline-block;
     vertical-align:top;
+    background-color:#fafafa;
+}
+h2{
+    color: #62B4A7;
+    font-size: 22px;
+}
+a,a:hover{
+    color:#62B4A7;
+    font-size: 16px;
+}
+p{
+    margin:0;
+    font-size: 14px;
+}
+table{
+    font-size:14px;
+}
+.calendar h2{
+    color:#68838b;
 }
 .trips-attending, .trips-invited{
     padding:5px;
-    border:2px solid black;
+    border-bottom: 1px solid silver;
 }
 .trips-div{
     display:inline-block;
-    width:500px;
+    width:30%;
     vertical-align:top;
-    float:right;
-
+    padding: 3%;
 }
 .trips-attending-wrapper, .trips-invited-wrapper{
     overflow-y:auto;
     height:300px;
+}
+#dashboard-image{
+    height:200px;
+    background: url("../../assets/images/dashboard.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+button{
+    border-radius: 5px;
+}
+.dates{
+    font-size: 12px;
+    color: silver;
 }
