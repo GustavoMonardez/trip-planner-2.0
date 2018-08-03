@@ -12,6 +12,7 @@
                 type="email" 
                 name="email"
                 required
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                 minlength = '3'
                 maxlength = '20' 
                 [(ngModel)]="newUser.email"
@@ -20,11 +21,12 @@
               >
             </td>
         </tr>
-        <tr *ngIf="email.errors">
+        <tr *ngIf="email.errors && email.touched">
             <td></td>
             <td>
               <p class = "error" *ngIf="email.errors.required">*An email is required</p>
               <p class = "error" *ngIf="email.errors.minlength">*Min length of an email is 3 characters</p>
+              <p class = "error" *ngIf="email.errors.pattern">*Email is invalid</p>
             </td>
           </tr>
         <tr>
@@ -42,7 +44,7 @@
               >
             </td>
         </tr>
-        <tr *ngIf="first_name.errors">
+        <tr *ngIf="first_name.errors && first_name.touched">
             <td></td>
             <td>
               <p class = "error" *ngIf="first_name.errors.required">*An first name is required</p>
@@ -64,7 +66,7 @@
               >
             </td>
         </tr>
-        <tr *ngIf="last_name.errors">
+        <tr *ngIf="last_name.errors && last_name.touched">
             <td></td>
             <td>
               <p class = "error" *ngIf="last_name.errors.required">*An last name is required</p>
@@ -106,10 +108,19 @@
         </tr>
         <tr>
           <td><p>Already have an account?<a [routerLink]="['/login']"> Sign in here</a></p></td>
-          <td><button type="submit" class="btn btn-primary" (click)="register()">Register</button></td>
+          <td>
+            <button 
+              type="submit" 
+              class="btn btn-primary" 
+              (click)="register()" 
+              
+              >
+              Register
+            </button>
+          </td>
         </tr>
       </table>
     </form>
-    
   </div>
 </div>
+<!-- [disabled] = "email.invalid || first_name.invalid || last_name.invalid" -->

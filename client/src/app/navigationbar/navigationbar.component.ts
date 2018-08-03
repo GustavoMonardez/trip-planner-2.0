@@ -17,10 +17,11 @@ export class NavigationbarComponent implements OnInit {
 
   ngOnInit() {
     console.log("loaded navigation component");
-    if(localStorage['userId'] == null){
-      this.router.navigate(['/login'])
+    if(!this.isOnReg()){
+      if(localStorage['userId'] == null){
+        this.router.navigate(['/login'])
+      }
     }
-    
   }
 
   logout(){

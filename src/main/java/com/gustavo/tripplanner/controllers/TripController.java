@@ -149,6 +149,7 @@ public class TripController {
 		if(br.hasErrors()) {
 			System.out.println("has errors");
 			System.out.println(br.getAllErrors().get(0));
+			System.out.println(br.getModel());
 			return new User();
 		}else {
 			return userService.createUser(user);
