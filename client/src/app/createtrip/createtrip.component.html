@@ -1,7 +1,7 @@
 <app-navigationbar></app-navigationbar>
-<h1 id="register-title">&#164; DREAM ON &#164;</h1>
+<div id="create-image"></div>
 <div class="container">
-  <div class="block register">
+  <div class="create-wrapper">
   <h2>Add a Trip</h2>
   <form>
     <table>
@@ -21,10 +21,11 @@
         <td>To:</td>
         <td><input name="date_to" type="date" [(ngModel)] = "trip.date_to"></td>
       </tr>
+      <tr>
+        <td></td>
+        <td><button (click) = "createTrip()">Let's go places!</button></td>
+      </tr>
     </table>
-    <div>
-      <button (click) = "createTrip()">Let's go places!</button>
-    </div>
   </form>
   </div>
 </div>
