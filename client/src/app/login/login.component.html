@@ -1,5 +1,6 @@
-<h1 id="welcome-title">EXPLORE &#164; RELAX &#164; ENJOY</h1>
-<div>
+<app-navigationbar></app-navigationbar>
+<div id="login-image">EXPLORE &#164; RELAX &#164; ENJOY</div>
+<div class="login-wrapper">
   <h2>Sign in</h2>
   <form>
     <tr>
@@ -10,11 +11,10 @@
       <td>Password:</td>
       <td><input type="password" name="password" [(ngModel)]="user.password" autocomplete="password"></td>
     </tr>
-    <div class="text-right">
-        <button (click)="login()">Sign in</button>
-    </div>
+    <tr>
+      <td><p>New?<a [routerLink]="['/registration']"> Register here</a></p></td>
+      <td><button (click)="login()">Sign in</button></td>
+    </tr>
   </form>
-  <div></div>
-  <p>New?<a [routerLink]="['/registration']"> Register here</a></p>
 </div>
 
