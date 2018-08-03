@@ -2,7 +2,6 @@ package com.gustavo.tripplanner.models;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -27,9 +26,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name="users")
 public class User {
-	@Transient
-	private HashMap<String, String> errors;
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

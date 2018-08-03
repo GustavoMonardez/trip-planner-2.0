@@ -113,7 +113,7 @@
               type="submit" 
               class="btn btn-primary" 
               (click)="register()" 
-              
+              [disabled] = "email.invalid || first_name.invalid || last_name.invalid"
               >
               Register
             </button>
@@ -123,4 +123,3 @@
     </form>
   </div>
 </div>
-<!-- [disabled] = "email.invalid || first_name.invalid || last_name.invalid" -->
