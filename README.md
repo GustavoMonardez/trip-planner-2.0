@@ -13,10 +13,12 @@ Travel website that allows friends to collaboratively plan a trip.
 
 ## Made By:
 * Gustavo Monardez
-<a href = "https://github.com/GustavoMonardez"><img src = "https://image.flaticon.com/icons/svg/25/25231.svg" width = "20px"/> GitHub</a>
-| <a href = "https://www.linkedin.com/in/gustavo-monardez/"><img src = "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png" width = "20px"/> LinkedIn</a>
-* [Esther Ting](https://github.com/estherting)
-* [Robert Tang](https://github.com/tangrobs)
+<a href = "https://github.com/GustavoMonardez"><img src = "https://image.flaticon.com/icons/svg/25/25231.svg" width = "14px"/> GitHub</a>
+| <a href = "https://www.linkedin.com/in/gustavo-monardez/"><img src = "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png" width = "13px"/> LinkedIn</a>
+* Esther Ting
+<a href = "https://github.com/estherting"><img src = "https://image.flaticon.com/icons/svg/25/25231.svg" width = "14px"/> GitHub</a>
+* Robert Tang
+<a href = "https://github.com/tangrobs"><img src = "https://image.flaticon.com/icons/svg/25/25231.svg" width = "14px"/> GitHub</a>
 
 
 
